@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const BecomeCook = () => {
     return (
         <div className="md:w-11/12 md:mx-auto mt-28 mb-5">
@@ -24,7 +26,7 @@ const BecomeCook = () => {
 
                     <span className="text-white text-4xl font-bold">Join Today</span>
                     <span className=" text-xl text-gray-300">Share your love of Homecooked meals</span>
-                    <button className="bg-primary p-3 rounded-xl font-bold">Register Now</button>
+                   <Link to="/joinAsCook"><button className="bg-primary p-3 rounded-xl font-bold">Register Now</button></Link> 
 
                 </div>
 
