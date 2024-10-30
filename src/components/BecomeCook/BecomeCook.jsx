@@ -11,6 +11,7 @@ const BecomeCook = () => {
                     backgroundPosition: 'center',
                     height: '600px',
                     position: 'relative',
+                    
                 }}
             >
                 <div className="flex flex-col items-center justify-center gap-4"

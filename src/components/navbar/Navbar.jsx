@@ -6,7 +6,9 @@ const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);
 
     return (
-        <section className="md:w-11/12 md:mx-auto sticky top-0 z-50 bg-white  backdrop-blur-md bg-white/60">
+        <section className="sticky top-0 z-50 bg-white  backdrop-blur-md bg-white/60">
+
+        <section className="md:w-11/12 md:mx-auto ">
             <div className="navbar">
                 <div className="navbar-start">
                     <img src="/public/logo-removebg-preview.png" alt="" className='w-[50px] h-[50px] hidden md:block' />
@@ -49,6 +51,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+        </section>
         </section>
     );
 };

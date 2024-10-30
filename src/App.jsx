@@ -7,6 +7,7 @@ import FeaturedItems from './components/FeaturedItems/FeaturedItems'
 import Hero from './components/hero/Hero'
 import HowitWorks from './components/HowItWorks/HowitWorks'
 import Navbar from './components/navbar/Navbar'
+import States from './components/states/States'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       
       <Hero/>
       <HowitWorks></HowitWorks>
+      <States/>
       <About></About>
       <FeaturedItems></FeaturedItems>
       <BecomeCook></BecomeCook>
