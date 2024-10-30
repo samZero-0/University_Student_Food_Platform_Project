@@ -1,8 +1,5 @@
-# React + Vite
+**Project Descriprion**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a web app project based on student food sharing platform. Currently using react as front end.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+to run the project just clone the repo and type 'cd/project-directory/npm run dev' in your console.
