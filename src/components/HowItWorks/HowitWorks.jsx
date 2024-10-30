@@ -12,10 +12,10 @@ const HowitWorks = () => {
 
 
 
-            <div className="flex gap-2 w-full mt-10 justify-center">
+            <div className="md:flex md:flex-row flex flex-col gap-2 w-full mt-10 justify-center">
 
                 
-                <div className="w-1/4  flex flex-col gap-3 items-center justify-center">
+                <div className="md:w-1/4  flex flex-col gap-3 items-center justify-center">
                     
                 <img src="/public/step-1.jpg" alt=""  className="w-1/3 h-[140px] "/>
 
@@ -29,7 +29,7 @@ const HowitWorks = () => {
                 </div>
 
 
-                <div className="w-1/4  flex flex-col gap-3 items-center justify-center" >
+                <div className="md:w-1/4  flex flex-col gap-3 items-center justify-center" >
                     
                 <img src="/public/step-2.jpg" alt=""  className="w-1/3 h-[140px]"/>
 
@@ -44,7 +44,7 @@ const HowitWorks = () => {
                 </div>
 
 
-                <div className="w-1/4  flex flex-col gap-3 items-center justify-center">
+                <div className="md:w-1/4  flex flex-col gap-3 items-center justify-center">
                     
                 <img src="/public/step-3.jpg" alt=""  className="w-1/3 h-[140px]"/>
 

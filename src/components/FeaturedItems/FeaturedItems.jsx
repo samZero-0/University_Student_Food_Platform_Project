@@ -17,7 +17,7 @@ const FeaturedItems = () => {
             {/* carousel */}
 
        <div className="flex justify-center">
-<div className="carousel w-1/2 ">
+<div className="carousel md:w-1/2 ">
   <div id="slide1" className="carousel-item relative w-full flex flex-col gap-2">
     <img
       src="/public/slide-1.jpg"
