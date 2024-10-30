@@ -1,4 +1,4 @@
-import { LuCornerDownRight } from "react-icons/lu";
+import GreenButton from "./GreenButton";
 const Hero = () => {
     return (
         <section className="mt-2">
@@ -14,7 +14,7 @@ const Hero = () => {
                         <p className="mb-5 text-sm md:text-lg md:w-2/3 mx-auto text-gray-300">
                          Connect with Food Lovers & Share Culinary Experiences.  Explore Local Flavors, Build Community, and Savor Every Bite Together
                         </p>
-                        <button className="btn border-none text-base font-bold bg-[#76fb74] "><LuCornerDownRight className="text-xl   " />Explore Now</button>
+                        <button className="btn border-none text-base font-bold bg-primary ">Explore Now <GreenButton /> </button>
                     </div>
                 </div>
             </div>

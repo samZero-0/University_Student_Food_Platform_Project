@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import GreenButton from "../hero/GreenButton";
 
 const BecomeCook = () => {
     return (
@@ -25,10 +26,12 @@ const BecomeCook = () => {
                     }}
                 >
 
-                    <span className="text-white text-4xl font-bold">Join Today</span>
-                    <span className=" text-xl text-gray-300">Share your love of Homecooked meals</span>
-                   <Link to="/joinAsCook"><button className="bg-primary p-3 rounded-xl font-bold">Register Now</button></Link> 
+                    <span className="text-white text-4xl font-bold">Join With Us!</span>
+                    <span className=" text-gray-400">Share your love of Homecooked meals as a cook</span>
+                   <div className="border p-2 border-primary rounded-xl">
+                   <Link to="/joinAsCook"><button className="bg-primary flex justify-center  item-center btn border-none rounded-xl font-bold">Register Now <GreenButton /> </button></Link> 
 
+                   </div>
                 </div>
 
                 

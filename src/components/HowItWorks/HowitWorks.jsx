@@ -1,3 +1,4 @@
+import GreenButton from "../hero/GreenButton";
 
 const HowitWorks = () => {
     return (
@@ -45,7 +46,7 @@ const HowitWorks = () => {
                     </div>
                 
                 </div>
-                   <button className="btn mt-8 text-lg font-semibold bg-primary">Join Now!</button>
+                   <button className="btn mt-8 text-lg font-semibold bg-primary">Join Now!<GreenButton /></button>
 
             </div>
         </div>

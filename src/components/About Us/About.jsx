@@ -1,5 +1,7 @@
 
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import GreenButton from "../hero/GreenButton";
+// import GreenButton from "../hero/GreenButton";
 const About = () => {
     return (
         
@@ -46,8 +48,8 @@ const About = () => {
                         
 
                         <div className="flex justify-center text-center items-center">
-                        <button className= "btn  border-none bg-primary p-3 rounded-xl font-bold w-3/5 hover:bg-accent ">
-                            Learn More
+                        <button className= "btn  border-none bg-primary  rounded-xl  font-bold w-3/5 hover:bg-accent ">
+                            Learn More  <GreenButton></GreenButton>
                         </button>
                         </div>
                         </div>

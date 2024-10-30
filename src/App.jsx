@@ -8,6 +8,9 @@ import Hero from './components/hero/Hero'
 import HowitWorks from './components/HowItWorks/HowitWorks'
 import Navbar from './components/navbar/Navbar'
 import States from './components/states/States'
+import WhyTryUs from './components/HowItWorks/WhyTryUs'
+import Testimonials from './components/HowItWorks/Testimonials'
+import Footer from './components/HowItWorks/Footer'
 
 function App() {
 
@@ -20,9 +23,11 @@ function App() {
       <States/>
       <About></About>
       <FeaturedItems></FeaturedItems>
+      <WhyTryUs/>
       <BecomeCook></BecomeCook>
       <Outlet></Outlet>
-
+      <Testimonials />
+      <Footer />
       
     </>
   )
