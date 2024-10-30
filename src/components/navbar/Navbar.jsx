@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
-
+import { AiOutlineLogin } from "react-icons/ai";
+import { MdOutlineFastfood } from "react-icons/md"; 
 const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);
 
     return (
-        <section className="w-11/12 mx-auto">
-            <div className="navbar bg-base-100">
+        <section className="md:w-11/12 md:mx-auto ">
+            <div className="navbar">
                 <div className="navbar-start">
                     <a className="btn btn-ghost text-xl">PlateMate</a>
                 </div>
@@ -18,8 +19,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn btn-ghost mr-5">Categories</a>
-                    <a className="btn">Login</a>
+                    <a className="btn btn-ghost mr-5"><MdOutlineFastfood className="text-lg" />Categories</a>
+                    <a className="btn bg-[#a0e2ff] hidden lg:flex"><AiOutlineLogin className="text-xl" />Login/Signup</a>
                     {/* Hamburger menu for small devices */}
                     <div className="dropdown ml-2 lg:hidden">
                         <Hamburger
@@ -36,10 +37,12 @@ const Navbar = () => {
                         {hamburger && (
                             <ul
                                 tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-base-100 rounded-box -left-14 z-[1] mt-3 p-2 shadow">
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box -left-12 z-[1] mt-3 p-2 shadow">
                                 <li><a>Home</a></li>
                                 <li><a>About</a></li>
                                 <li><a>Contact</a></li>
+                                <li className="hover:bg-[#a0e2ff]"><a>Login</a></li>
+                                <li className="hover:bg-[#a0e2ff]"><a>SignUp</a></li>
                             </ul>
                         )}
                     </div>
