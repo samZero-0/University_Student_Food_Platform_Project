@@ -1,0 +1,55 @@
+import { useState } from "react";
+import { Sling as Hamburger } from "hamburger-react";
+import { AiOutlineLogin } from "react-icons/ai";
+import { MdOutlineFastfood } from "react-icons/md"; 
+const Navbar = () => {
+    const [hamburger, setHamburger] = useState(false);
+
+    return (
+        <section className="md:w-11/12 md:mx-auto ">
+            <div className="navbar">
+                <div className="navbar-start">
+                    <a className="btn btn-ghost text-xl">PlateMate</a>
+                </div>
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1">
+                        <li><a>Home</a></li>
+                        <li><a>About</a></li>
+                        <li><a>Contact</a></li>
+                    </ul>
+                </div>
+                <div className="navbar-end">
+                    <a className="btn btn-ghost mr-5"><MdOutlineFastfood className="text-lg" />Categories</a>
+                    <a className="btn bg-[#a0e2ff] hidden lg:flex"><AiOutlineLogin className="text-xl" />Login/Signup</a>
+                    {/* Hamburger menu for small devices */}
+                    <div className="dropdown ml-2 lg:hidden">
+                        <Hamburger
+                            toggled={hamburger}
+                            toggle={setHamburger}
+                            onToggle={(toggled) => {
+                                if (toggled) {
+                                    setHamburger(true);
+                                } else {
+                                    setHamburger(false);
+                                }
+                            }}
+                        />
+                        {hamburger && (
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box -left-12 z-[1] mt-3 p-2 shadow">
+                                <li><a>Home</a></li>
+                                <li><a>About</a></li>
+                                <li><a>Contact</a></li>
+                                <li className="hover:bg-[#a0e2ff]"><a>Login</a></li>
+                                <li className="hover:bg-[#a0e2ff]"><a>SignUp</a></li>
+                            </ul>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Navbar;
