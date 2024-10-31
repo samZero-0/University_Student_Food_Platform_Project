@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdOutlineFastfood } from "react-icons/md"; 
+import { Link } from "react-router-dom";
 const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);
 
@@ -11,13 +12,13 @@ const Navbar = () => {
         <section className="md:w-11/12 md:mx-auto ">
             <div className="navbar">
                 <div className="navbar-start">
-                    <img src="/public/logo-removebg-preview.png" alt="" className='w-[50px] h-[50px] hidden md:block' />
+                    <img src="/public/logo2-removebg-preview.png" alt="" className='w-[50px] h-[50px] hidden md:block' />
                     <a className="btn btn-ghost text-xl">PlateMate</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><a>Home</a></li>
-                        <li><a>About</a></li>
+                    <li><Link to='/'>Home</Link></li>
+                        <li><a href="#aboutUs">About</a></li>
                         <li><a>Contact</a></li>
                     </ul>
                 </div>
@@ -41,7 +42,7 @@ const Navbar = () => {
                             <ul
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box -left-12 z-[1] mt-3 p-2 shadow">
-                                <li><a>Home</a></li>
+                                <li><Link to='/'>Home</Link></li>
                                 <li><a>About</a></li>
                                 <li><a>Contact</a></li>
                                 <li className="hover:bg-[#a0e2ff]"><a>Login</a></li>
