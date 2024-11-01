@@ -1,36 +1,81 @@
+import { FaStar } from 'react-icons/fa';
+import PropTypes from 'prop-types';
+const Category = ({ food }) => {
+  const { category, foodName, price, image, sellerName, rating, status, discount } = food;
 
-const Category = ({food}) => {
+  const statusStyles = {
+    Open: "bg-green-100 text-green-800",
+    Closed: "bg-red-100 text-red-800",
+    "Opens at": "bg-yellow-50 text-yellow-800",
+  };
 
-    const {category,foodName,price,image,sellerName,rating} =food;
+  const getStatusStyle = () => {
+    if (status === "Open") return statusStyles.Open;
+    if (status === "Closed") return statusStyles.Closed;
+    if (status.includes("Opens at")) return statusStyles["Opens at"];
+    return "bg-gray-100 text-gray-600"; 
+  };
 
-    return (
-        <div className="flex flex-col gap-3 w-10/12 border border-gray-300 rounded-xl transform transition-transform duration-300 hover:scale-105 ">
-            
-            <div className="w-full flex justify-center mt-5">
-                <img src={image} alt="" className="w-2/3 object-cover h-[200px] rounded-lg"/>
-            </div>
+  return (
+    <div className="flex flex-col w-80 border border-gray-200 rounded-2xl shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105 bg-white">
+      
+      {/* Image Section with Discount Badge */}
+      <div className="relative">
+        <img src={image} alt={foodName} className="w-full h-48 object-cover rounded-t-2xl" />
+        {discount > 0 && (
+          <span className="absolute top-3 left-3 bg-green-500 text-xs font-semibold text-white px-3 py-1 rounded-full shadow-md">
+            {discount}% OFF
+          </span>
+        )}
+      </div>
 
-            <div className="w-full  flex justify-center">
-                <span className="text-xl font-semibold">Name:{foodName}</span>
-            </div>
-            <div className="w-full  flex justify-center">
-                <span className="text-lg text-gray-500">Price: {price} Tk.</span>
-            </div>
-
-            <div className="flex justify-center ">
-                <span className="font-semibold">{sellerName}</span>
-            </div>
-
-            <div className="flex justify-center ">
-                <span className="">Rating: {rating}</span>
-            </div>
-
-            <div className="flex justify-center mb-5">
-            <button className="bg-primary p-2 text-center text-xl font-bold w-1/2 rounded-xl">Buy</button></div>
-
-            
+      <div className="p-5">
+        {/* Food Name and Rating */}
+        <div className="flex justify-between items-center mb-2">
+          <h2 className="text-lg font-bold text-gray-800">{foodName}</h2>
+          <div className="flex items-center gap-1 text-yellow-400">
+            <FaStar />
+            <span className="text-sm font-medium text-gray-700">{rating}</span>
+          </div>
         </div>
-    );
+
+        <p className="text-sm text-gray-500 mb-4">{category}</p>
+
+        {/* Price and Seller */}
+        <div className="flex justify-between items-center mb-4">
+          <span className="text-lg font-semibold text-">{price} Tk.</span>
+          <span className="text-xs text-gray-400">by {sellerName}</span>
+        </div>
+
+        {/* Status and Buy Button */}
+        <div className="flex justify-between items-center mt-4">
+          <span className={`text-sm font-medium px-3 py-1 rounded-lg shadow ${getStatusStyle()}`}>
+            {status || "Open"} 
+          </span>
+          <button
+            className="py-2 px-5 bg-gradient-to-r from-green-500 to-primary text-white font-bold text-sm rounded-lg hover:bg-gradient-to-l hover:from-primary hover:to-green-400 transition-all duration-200 ease-in-out shadow-lg"
+          >
+            View
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+
+Category.propTypes = {
+  food: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    foodName: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    sellerName: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
+    discount: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default Category;

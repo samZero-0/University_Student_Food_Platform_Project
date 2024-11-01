@@ -1,52 +1,59 @@
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const FeaturedItems = () => {
+const PromotionalCarousel = () => {
+  const promotions = [
+    {
+      title: "Get Discount Voucher Up To 20%",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+      background: "#ffb703",
+      image: "https://example.com/image1.jpg" // replace with actual image URLs
+    },
+    {
+      title: "Free Delivery for Orders Over $50",
+      description: "Order now and enjoy free delivery on all orders over $50.",
+      background: "#fcbf49",
+      image: "https://example.com/image2.jpg"
+    },
+    {
+      title: "Buy 1 Get 1 Free",
+      description: "Limited time offer on selected items. Don’t miss out!",
+      background: "#fb8500",
+      image: "https://example.com/image3.jpg"
+    }
+  ];
+
   return (
-    <div className="md:w-10/12 lg:w-8/12 mx-auto mt-20 mb-5">
-      <div className="flex flex-col items-center">
-        <span className="text-4xl font-bold mt-10 mb-5">Featured Items</span>
-        <span className="text-gray-500 mb-8 text-center w-10/12">
-          Discover delicious and budget-friendly meals made by students, for students!
-        </span>
-      </div>
-
-      <Carousel
-        showThumbs={false}
-        showStatus={false}
-        infiniteLoop
-        useKeyboardArrows
-        autoPlay
-        interval={3000}
-        className="max-w-full"
-      >
-        <div className="relative h-[400px] md:h-[450px] overflow-hidden rounded-lg">
-          <img src="/public/slide-1.jpg" className="w-full h-full object-cover" alt="Breakfast" />
-          <div className="absolute bottom-5 left-5 text-white">
-            <span className="text-2xl font-semibold">Breakfast</span>
+    <Carousel
+      autoPlay
+      infiniteLoop
+      showThumbs={false}
+      showStatus={false}
+      showIndicators={true}
+      interval={5000}
+      transitionTime={1000}
+      className="w-full h-64 md:h-80 rounded-lg shadow-lg"
+    >
+      {promotions.map((promo, index) => (
+        <div key={index} className="w-full h-full relative">
+          <div
+            className="w-full h-full flex items-center justify-center text-white p-10 rounded-lg"
+            style={{
+              backgroundColor: promo.background,
+              backgroundImage: `url(${promo.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            <div className="text-center max-w-lg bg-opacity-75 bg-black p-5 rounded-lg">
+              <h2 className="text-2xl font-bold mb-2">{promo.title}</h2>
+              <p className="text-sm md:text-base">{promo.description}</p>
+            </div>
           </div>
         </div>
-        <div className="relative h-[400px] md:h-[450px] overflow-hidden rounded-lg">
-          <img src="/slide2.jpg" className="h-full object-cover" alt="Salad" />
-          <div className="absolute bottom-5 left-5 text-white">
-            <span className="text-2xl font-semibold">Salad</span>
-          </div>
-        </div>
-        <div className="relative h-[400px] md:h-[450px] overflow-hidden rounded-lg">
-          <img src="/slide3.jpg" className="w-full h-full object-cover" alt="Noodles" />
-          <div className="absolute bottom-5 left-5 text-white">
-            <span className="text-2xl font-semibold">Noodles</span>
-          </div>
-        </div>
-        <div className="relative h-[400px] md:h-[450px] overflow-hidden rounded-lg">
-          <img src="/slide4.jpg" className="w-full h-full object-cover" alt="Biryani" />
-          <div className="absolute bottom-5 left-5 text-white">
-            <span className="text-2xl font-semibold">Biryani</span>
-          </div>
-        </div>
-      </Carousel>
-    </div>
+      ))}
+    </Carousel>
   );
 };
 
-export default FeaturedItems;
+export default PromotionalCarousel;
