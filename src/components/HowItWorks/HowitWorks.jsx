@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import GreenButton from "../hero/GreenButton";
 
 const HowitWorks = () => {
@@ -46,7 +47,7 @@ const HowitWorks = () => {
                     </div>
                 
                 </div>
-                   <button className="btn mt-8 text-lg font-semibold bg-primary">Join Now!<GreenButton /></button>
+                   <NavLink to={"/login"}><button className="btn mt-8 text-lg font-semibold bg-primary">Join Now!<GreenButton /></button> </NavLink>
 
             </div>
         </div>

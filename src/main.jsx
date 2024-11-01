@@ -12,6 +12,8 @@ import CookLayout from './components/CookLayout/CookLayout.jsx';
 import CookRegistrationPage from './components/CookRegistration/CookRegistrationPage.jsx';
 import SuccessPage from './components/CookRegistration/SuccessPage.jsx';
 import AllCategories from './components/Categories/AllCategories.jsx';
+import AuthPage from './components/Login-Signup/AuthPage.jsx';
+import LoginSignupLayout from './components/Login-Signup/LoginSignupLayout.jsx';
 
 
 const router = createBrowserRouter([
@@ -67,7 +69,20 @@ const router = createBrowserRouter([
       
       
     ],
+  },
+  {
+    path: '/login',
+    element: <LoginSignupLayout/>,
+    children: [
+      {
+        path: '',
+        element: <AuthPage />,
+      },
+      
+      
+    ],
   }
+  
   
   
 ]);
