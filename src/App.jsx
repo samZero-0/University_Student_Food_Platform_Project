@@ -17,10 +17,10 @@ function App() {
   return (
     <>
       <Navbar/>
-      
       <Hero/>
       <HowitWorks></HowitWorks>
       <States/>
+      <div id='aboutUs'></div>
       <About></About>
       <FeaturedItems></FeaturedItems>
       <WhyTryUs/>

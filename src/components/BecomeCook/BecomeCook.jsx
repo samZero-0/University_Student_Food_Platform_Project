@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, NavLink } from "react-router-dom";
 import GreenButton from "../hero/GreenButton";
 
 const BecomeCook = () => {
@@ -26,11 +26,12 @@ const BecomeCook = () => {
                     }}
                 >
 
-                    <span className="text-white text-4xl font-bold">Join With Us!</span>
-                    <span className=" text-gray-400">Share your love of Homecooked meals as a cook</span>
+                   <span className="text-white text-4xl font-bold">Join With Us!</span>
+                   <span className=" text-gray-400">Share your love of Homecooked meals as a cook</span>
                    <div className="border p-2 border-primary rounded-xl">
-                   <Link to="/joinAsCook"><button className="bg-primary flex justify-center  item-center btn border-none rounded-xl font-bold">Register Now <GreenButton /> </button></Link> 
+                   <NavLink to="/joinAsCook"><button className="bg-primary flex justify-center  item-center btn border-none rounded-xl font-bold">Register Now <GreenButton /> </button></NavLink> 
 
+                  
                    </div>
                 </div>
 

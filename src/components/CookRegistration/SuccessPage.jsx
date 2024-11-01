@@ -17,7 +17,7 @@ const SuccessPage = () => {
                 </div>
                 
                 
-                <Link to="/" className="bg-primary p-4 rounded-xl w-1/4 text-bold text-3xl flex items-center justify-center gap-2 cursor-pointer"> <FaHome className="text-4xl text-black" />Go Home</Link>
+                <Link to="/" className="bg-primary p-4 rounded-xl md:w-1/4 text-bold text-3xl flex items-center justify-center gap-2 cursor-pointer"> <FaHome className="text-4xl text-black" />Go Home</Link>
 
                 </div>
         </div>

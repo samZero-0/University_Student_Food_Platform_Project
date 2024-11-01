@@ -1,0 +1,122 @@
+[
+    {
+        "category": "Breakfast",
+        "categoryId": 1,
+        "foodName": "Pancakes",
+        "foodId": 101,
+        "price": 200,  
+        "sellerName": "Morning Delights",
+        "rating": 4.8,
+        "description": "Fluffy pancakes served with maple syrup.",
+        "image": "https://i.ibb.co.com/M28NHdn/pancake.jpg",
+        "categoryThumbnail": "https://i.ibb.co.com/7KW5gtN/breakfast-thumb.jpg"
+    },
+    {
+        "category": "Lunch",
+        "categoryId": 2,
+        "foodName": "Grilled Chicken Salad",
+        "foodId": 102,
+        "price": 350,  
+        "sellerName": "Healthy Bites",
+        "rating": 4.7,
+        "description": "Fresh salad topped with grilled chicken and vinaigrette.",
+        "image": "https://i.ibb.co.com/12pX328/grilled-chicken.jpg",
+        "categoryThumbnail": "https://i.ibb.co.com/ckwMXGB/lunch-thumb.jpg"
+    },
+    {
+        "category": "Main Courses",
+        "categoryId": 3,
+        "foodName": "Biryani",
+        "foodId": 103,
+        "price": 450, 
+        "sellerName": "Italian Kitchen",
+        "rating": 4.9,
+        "description": "Fragrant basmati rice cooked with marinated meat and spices.",
+        "image": "https://i.ibb.co.com/twG8hmm/biryani.jpg",
+        "categoryThumbnail": "https://i.ibb.co.com/ccdmPZt/main-Courses-thumb.jpg"
+    },
+    {
+        "category": "Snacks",
+        "categoryId": 4,
+        "foodName": "Samosa",
+        "foodId": 104,
+        "price": 150,  
+        "sellerName": "Asian Delights",
+        "rating": 4.5,
+        "description": "Crispy pastries filled with spiced potatoes and peas.",
+        "image": "https://i.ibb.co.com/CB9WhYP/samosa.jpg",
+        "categoryThumbnail": "https://i.ibb.co.com/5hsJzyG/snacks-thumb.jpg"
+    },
+    {
+        "category": "Desserts",
+        "categoryId": 5,
+        "foodName": "Chocolate Lava Cake",
+        "foodId": 105,
+        "price": 300,  
+        "sellerName": "Sweet Treats",
+        "rating": 4.8,
+        "description": "Decadent chocolate cake with a molten center.",
+        "image": "https://i.ibb.co.com/2cydXL8/cake.jpg",
+        "categoryThumbnail": "https://i.ibb.co.com/Y2GJkMp/dessert-thumb.jpg"
+    },
+    {
+        "category": "Lunch",
+        "categoryId": 6,
+        "foodName": "Fish Curry",
+        "foodId": 106,
+        "price": 250,  
+        "sellerName": "Fish World",
+        "rating": 4.6,
+        "description": "Fresh fish cooked in a spicy mustard gravy.",
+        "image": "https://i.ibb.co.com/zSLF0TT/fish-currry.jpg",
+        "categoryThumbnail": "https://i.ibb.co.com/ckwMXGB/lunch-thumb.jpg"
+    },
+    {
+        "category": "Main Courses",
+        "categoryId": 7,
+        "foodName": "Khichuri",
+        "foodId": 107,
+        "price": 400, 
+        "sellerName": "Bengali Flavors",
+        "rating": 4.7,
+        "description": "A comforting dish made with rice, lentils, and spices.",
+        "image": "https://i.ibb.co.com/GnhZz0N/khichuri.webp",
+        "categoryThumbnail": "https://i.ibb.co.com/ccdmPZt/main-Courses-thumb.jpg"
+    },
+    {
+        "category": "Breakfast",
+        "categoryId": 8,
+        "foodName": "Omelette",
+        "foodId": 108,
+        "price": 180,  
+        "sellerName": "Breakfast Haven",
+        "rating": 4.7,
+        "description": "Fluffy omelette with your choice of fillings.",
+        "image": "https://i.ibb.co.com/Z6m3rXS/ommelettte.jpg",
+        "categoryThumbnail": "https://i.ibb.co.com/7KW5gtN/breakfast-thumb.jpg"
+    },
+    {
+        "category": "Snacks",
+        "categoryId": 9,
+        "foodName": "Nachos",
+        "foodId": 109,
+        "price": 200,  
+        "sellerName": "Snack Central",
+        "rating": 4.5,
+        "description": "Crispy nachos topped with cheese and jalapeños.",
+        "image": "https://i.ibb.co.com/qpdF4jQ/nachos.jpg",
+        "categoryThumbnail": "https://i.ibb.co.com/5hsJzyG/snacks-thumb.jpg"
+    },
+    {
+        "category": "Desserts",
+        "categoryId": 10,
+        "foodName": "Cheesecake",
+        "foodId": 110,
+        "price": 350,  
+        "sellerName": "Dessert Bar",
+        "rating": 4.9,
+        "description": "Creamy cheesecake with a graham cracker crust.",
+        "image": "https://i.ibb.co.com/rd5PczS/cheesecake.jpg",
+        "categoryThumbnail": "https://i.ibb.co.com/Y2GJkMp/dessert-thumb.jpg"
+    }
+]

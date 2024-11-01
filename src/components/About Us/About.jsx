@@ -4,7 +4,7 @@ import GreenButton from "../hero/GreenButton";
 // import GreenButton from "../hero/GreenButton";
 const About = () => {
     return (
-        <div id='aboutUs'>
+        <div id=''>
         <div className="md:w-11/12 md:mx-auto  mt-60  mb-5">
 
             <div className="flex flex-col items-center">

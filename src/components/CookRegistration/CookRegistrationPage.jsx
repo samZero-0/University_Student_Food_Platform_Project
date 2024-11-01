@@ -30,8 +30,7 @@ export default function Component() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    // Show a success toast notification
+    event.preventDefault();
     toast.success("Application submitted successfully!");
   };
 

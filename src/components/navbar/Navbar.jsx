@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdOutlineFastfood } from "react-icons/md"; 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);
 
@@ -23,7 +23,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn btn-ghost mr-5"><MdOutlineFastfood className="text-lg" />Categories</a>
+                    <NavLink to='/categories'className="btn btn-ghost mr-5"><MdOutlineFastfood className="text-lg" />Categories</NavLink>
                     <a className="btn bg-[#a0e2ff] hidden lg:flex"><AiOutlineLogin className="text-xl" />Login/Signup</a>
                     {/* Hamburger menu for small devices */}
                     <div className="dropdown ml-2 lg:hidden">
