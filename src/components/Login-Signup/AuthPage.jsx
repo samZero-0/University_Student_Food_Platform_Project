@@ -2,7 +2,60 @@ import { useState } from 'react';
 import { FaUserAlt, FaLock, FaEnvelope } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
+import { useEffect } from "react";
+import BIRDS from "vanta/dist/vanta.birds.min"; 
+import GLOBE from "vanta/dist/vanta.globe.min"; 
+
+
+
 const AuthPage = () => {
+  
+  useEffect(() => {
+    const effect = BIRDS({
+      el: "#vanta",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color1: '#76fb74',
+      // color2: '#a0e2ff',
+      colorMode: "lerpGradient",
+      backgroundAlpha: 0.00
+
+    }); 
+
+    return () => effect.destroy();
+  }, []);
+
+  useEffect(() => {
+    const effect = GLOBE({
+      el: "#bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: '#76fb74',
+      color2: '#a0e2ff',
+      size: 2.00,
+      backgroundColor: 0xffffff
+
+    }); 
+
+    return () => effect.destroy();
+  }, []);
+
+
+
+
+
+
+
   const [isSignUp, setIsSignUp] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const navigate = useNavigate();
@@ -21,9 +74,14 @@ const AuthPage = () => {
 
   };
 
+
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-200 drop-shadow-2xl ">
-      <div className="bg-white rounded-2xl shadow-2xl flex flex-col md:flex-row md:w-3/4 max-w-4xl">
+    <div id='bg' className="min-h-screen flex items-center justify-center bg-gray-200 drop-shadow-2xl " >
+      <div id='vanta' className="bg-white rounded-2xl shadow-2xl flex flex-col md:flex-row md:w-3/4 max-w-4xl
+      
+      motion-scale-in-[0.04] motion-translate-x-in-[-63%] motion-translate-y-in-[-3%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.48s]/scale motion-delay-[0.22s]/scale motion-duration-[0.53s]/translate motion-duration-[0.57s]/opacity motion-duration-[0.66s]/rotate motion-duration-[0.70s]/blur motion-ease-bounce
+      ">
         <div className="w-full md:w-1/2 p-5">
           <img 
             src="/login.png"
