@@ -21,7 +21,7 @@ const FeaturedItems = () => {
         className="max-w-full"
       >
         <div className="relative h-[400px] md:h-[450px] overflow-hidden rounded-lg">
-          <img src="/public/slide-1.jpg" className="w-full h-full object-cover" alt="Breakfast" />
+          <img src="/slide-1.jpg" className="w-full h-full object-cover" alt="Breakfast" />
           <div className="absolute bottom-5 left-5 text-white">
             <span className="text-2xl font-semibold">Breakfast</span>
           </div>

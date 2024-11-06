@@ -26,7 +26,7 @@ const AuthPage = () => {
       <div className="bg-white rounded-2xl shadow-2xl flex flex-col md:flex-row md:w-3/4 max-w-4xl">
         <div className="w-full md:w-1/2 p-5">
           <img 
-            src="../../../public/login.png"
+            src="/login.png"
             alt="Auth Illustration"
             className="w-full h-full object-cover rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none"
           />

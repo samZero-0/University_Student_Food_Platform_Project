@@ -12,7 +12,7 @@ const Navbar = () => {
         <section className="md:w-11/12 md:mx-auto ">
             <div className="navbar">
                 <div className="navbar-start">
-                    <img src="/public/logo2-removebg-preview.png" alt="" className='w-[50px] h-[50px] hidden md:block' />
+                    <img src="/logo2-removebg-preview.png" alt="" className='w-[50px] h-[50px] hidden md:block' />
                     <a className="btn btn-ghost text-xl">PlateMate</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">

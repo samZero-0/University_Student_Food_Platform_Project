@@ -10,7 +10,7 @@ const SuccessPage = () => {
                 <div className="flex flex-col gap-5 items-center">
                 <div className="flex justify-center items-center w-full h-[600px] ">
 
-                <img src="/public/success.svg" alt="" className="w-1/4 h-1/2"/>
+                <img src="/success.svg" alt="" className="w-1/4 h-1/2"/>
                 <span className="text-5xl text-black ">Form Submitted Successfully</span>
 
                 

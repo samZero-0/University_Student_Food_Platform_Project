@@ -7,7 +7,7 @@ const BecomeCook = () => {
 
             <div
                 style={{
-                    backgroundImage: `url('/public/join.jpg')`,
+                    backgroundImage: `url('/join.jpg')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: '600px',

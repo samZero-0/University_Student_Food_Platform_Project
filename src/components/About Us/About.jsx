@@ -15,7 +15,7 @@ const About = () => {
 
                 {/* image section */}
                     <div className="md:w-1/2 flex justify-end">
-                        <img src="/public/about-2.jpg" alt="" className=" rounded-lg" />
+                        <img src="/about-2.jpg" alt="" className=" rounded-lg" />
                     </div>
 
                 {/* desc section */}

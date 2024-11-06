@@ -5,17 +5,17 @@ const features = [
     {
         title: "Support Local Cooks",
         description: "Try something new by supporting your next-door home-cook's delicious meals.",
-        img: "../../../public/whytryuspic/homemade.jpeg",
+        img: "../../../whytryuspic/homemade.jpeg",
     },
     {
         title: "Grandma's Recipes",
         description: "Relive childhood flavors made by skilled homecooks using time-tested family recipes.",
-        img: "../../../public/whytryuspic/Homemade-Food.webp",
+        img: "../../../whytryuspic/Homemade-Food.webp",
     },
     {
         title: "Inspected and Healthy",
         description: "Enjoy unique tastes safely with our regular food and kitchen inspections.",
-        img: "../../../public/whytryuspic/homemade3.avif",
+        img: "../../../whytryuspic/homemade3.avif",
     },
 ];
 

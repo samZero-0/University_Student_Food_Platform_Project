@@ -12,7 +12,7 @@ const HowitWorks = () => {
                    
                     <div className="md:w-1/4 w-11/12  mx-auto p-5  flex flex-col  items-center justify-center border-2 bg-gray-50 rounded-lg relative overflow-hidden">
                         <div className="absolute inset-0  mix-blend-multiply"></div>
-                        <img src="/public/registernow.jpg" alt="" className=" object-cover" />
+                        <img src="/registernow.jpg" alt="" className=" object-cover" />
                         <span className="text-2xl font-bold relative z-10">Register / Sign Up</span>
                         <p className="text-center w-9/12 text-sm text-gray-500 relative z-10">
                             Create an account to start buying or selling.
@@ -21,7 +21,7 @@ const HowitWorks = () => {
 
                     <div className="md:w-1/4 w-11/12  mx-auto p-5  flex flex-col gap-3  items-center justify-center border-2 bg-gray-50 rounded-lg relative overflow-hidden">
                         <div className="absolute inset-0  mix-blend-multiply"></div>
-                        <img src="/public/browsemeal.jpg" alt="" className=" object-cover mix-blend-multiply" />
+                        <img src="/browsemeal.jpg" alt="" className=" object-cover mix-blend-multiply" />
                         <span className="text-2xl font-bold relative z-10">Browse Meals</span>
                         <span className="text-center w-9/12 text-sm text-gray-500 relative z-10">
                             Browse over categories to find your perfect meal.
@@ -31,7 +31,7 @@ const HowitWorks = () => {
        
                     <div className="md:w-1/4 w-11/12  mx-auto p-5  flex flex-col gap-3  items-center justify-center border-2 bg-gray-50 rounded-lg relative overflow-hidden">
                         <div className="absolute inset-0  mix-blend-multiply"></div>
-                        <img src="/public/placeorder.jpg" alt="" className="object-cover mix-blend-multiply" />
+                        <img src="/placeorder.jpg" alt="" className="object-cover mix-blend-multiply" />
                         <span className="text-xl font-bold  relative z-10">Place Your Order & Connect</span>
                         <span className="text-center w-9/12 text-sm text-gray-500 relative z-10">
                             Found a meal? Order it and use in-app chat to coordinate with the seller.
@@ -39,7 +39,7 @@ const HowitWorks = () => {
                     </div>
                     <div className="md:w-1/4 w-11/12  mx-auto p-5  flex flex-col gap-3  items-center justify-center border-2 bg-gray-50 rounded-lg relative overflow-hidden">
                         <div className="absolute inset-0  mix-blend-multiply"></div>
-                        <img src="/public/step-3.jpg" alt="" className="object-cover mix-blend-multiply" />
+                        <img src="/step-3.jpg" alt="" className="object-cover mix-blend-multiply" />
                         <span className="text-2xl font-bold relative z-10">Pick Up & Enjoy</span>
                         <span className="text-center w-9/12 text-sm text-gray-500 relative z-10">
                             Meet the seller at the campus, take the food, and enjoy your meal!
