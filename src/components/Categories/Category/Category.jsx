@@ -1,7 +1,9 @@
 import { FaStar } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 const Category = ({ food }) => {
-  const { category, foodName, price, image, sellerName, rating, status, discount } = food;
+  const { category, foodName, price, image, sellerName, rating, status, discount, foodId } = food;
 
   const statusStyles = {
     Open: "bg-green-100 text-green-800",
@@ -15,6 +17,12 @@ const Category = ({ food }) => {
     if (status.includes("Opens at")) return statusStyles["Opens at"];
     return "bg-gray-100 text-gray-600"; 
   };
+
+  // const handleView(food){
+
+
+
+  // }
 
   return (
     <div className="flex flex-col w-80 border border-gray-200 rounded-2xl shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105 bg-white">
@@ -52,11 +60,15 @@ const Category = ({ food }) => {
           <span className={`text-sm font-medium px-3 py-1 rounded-lg shadow ${getStatusStyle()}`}>
             {status || "Open"} 
           </span>
-          <button
+
+          <Link to={`/details/${foodId}`}>
+          <button 
             className="py-2 px-5 bg-gradient-to-r from-green-500 to-primary text-white font-bold text-sm rounded-lg hover:bg-gradient-to-l hover:from-primary hover:to-green-400 transition-all duration-200 ease-in-out shadow-lg"
           >
             View
           </button>
+          </Link>
+
         </div>
       </div>
     </div>

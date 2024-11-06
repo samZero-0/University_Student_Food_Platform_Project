@@ -14,6 +14,7 @@ import SuccessPage from './components/CookRegistration/SuccessPage.jsx';
 import AllCategories from './components/Categories/AllCategories.jsx';
 import AuthPage from './components/Login-Signup/AuthPage.jsx';
 import LoginSignupLayout from './components/Login-Signup/LoginSignupLayout.jsx';
+import FoodDetails from './components/FoodDetails/FoodDetails.jsx';
 
 
 const router = createBrowserRouter([
@@ -81,7 +82,19 @@ const router = createBrowserRouter([
       
       
     ],
-  }
+  },
+  {
+    path: '/details/:foodId',
+    element: <CookLayout/>,
+    children: [
+      {
+        path: '',
+        element: <FoodDetails />,
+      },
+      
+      
+    ],
+  },
   
   
   
