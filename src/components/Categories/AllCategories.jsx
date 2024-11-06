@@ -30,6 +30,9 @@ const AllCategories = () => {
 
   return (
     <div className="md:w-11/12 md:mx-auto mt-20 mb-5">
+     
+
+
       <PromotionalCarousel />
 
       <h1 className="mt-10 mb-10 text-3xl font-bold text-center">Categories</h1>
@@ -49,7 +52,7 @@ const AllCategories = () => {
 
       {!selectedCategory ? (
         <div>
-          <div className="text-3xl font-bold mt-10">All Foods</div>
+          <div className="text-3xl font-bold mt-10 ">All Foods</div>
           <div className="grid md:grid-cols-4 grid-cols-1 gap-4 mt-5 motion-translate-x-in-[3%] motion-translate-y-in-[85%] motion-duration-[0.86s]/translate">
             {categories.map((food, idx) => (
               <Category key={idx} food={food} />
@@ -66,6 +69,7 @@ const AllCategories = () => {
           </div>
         </>
       )}
+      
     </div>
   );
 };

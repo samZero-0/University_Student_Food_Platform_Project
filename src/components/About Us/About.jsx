@@ -15,7 +15,7 @@ const About = () => {
 
     return (
         <div id=''>
-        <div className="md:w-11/12 md:mx-auto  mt-60  mb-5">
+        <div className="md:w-11/12 md:mx-auto  mt-60  mb-5 overflow-hidden">
 
             <div className="flex flex-col items-center" data-aos="fade-up">
                 <span className="font-bold text-4xl ">About Us</span>

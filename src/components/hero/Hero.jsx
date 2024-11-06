@@ -1,7 +1,7 @@
 import GreenButton from "./GreenButton";
 const Hero = () => {
     return (
-        <section className="mt-2">
+        <section className="mt-2 overflow-hidden">
             <div
                 className="hero h-[89vh]"
                 style={{

@@ -12,7 +12,7 @@ const AuthPage = () => {
     setTimeout(() => {
       setIsSignUp(!isSignUp);
       setIsTransitioning(false);
-    }, 1000); 
+    }, 500); 
   };
 
   const handleSubmit = (e) => {

@@ -7,7 +7,7 @@ const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);
 
     return (
-        <section className="sticky top-0 z-50 bg-white  backdrop-blur-md bg-white/60">
+        <section className="sticky top-0 z-50 bg-white  backdrop-blur-md bg-white/60 overflow-hidden">
 
         <section className="md:w-11/12 md:mx-auto ">
             <div className="navbar">
