@@ -34,7 +34,7 @@ const AllCategories = () => {
 
       <h1 className="mt-10 mb-10 text-3xl font-bold text-center">Categories</h1>
 
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 motion-scale-in-[0.48] motion-translate-x-in-[-50%] motion-translate-y-in-[-2%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-duration-[1.82s]/scale motion-duration-[1.58s]/translate motion-delay-[0.06s]/translate motion-duration-[1.52s]/opacity motion-duration-[1.24s]/blur motion-delay-[0.06s]/blur motion-ease-spring-snappy">
         {uniqueCategories.map((item) => (
           <div
             key={item.categoryId}
@@ -50,7 +50,7 @@ const AllCategories = () => {
       {!selectedCategory ? (
         <div>
           <div className="text-3xl font-bold mt-10">All Foods</div>
-          <div className="grid md:grid-cols-4 grid-cols-1 gap-4 mt-5">
+          <div className="grid md:grid-cols-4 grid-cols-1 gap-4 mt-5 motion-translate-x-in-[3%] motion-translate-y-in-[85%] motion-duration-[0.86s]/translate">
             {categories.map((food, idx) => (
               <Category key={idx} food={food} />
             ))}
@@ -59,7 +59,7 @@ const AllCategories = () => {
       ) : (
         <>
           <h1 className="text-3xl font-bold mt-10">{selectedCategory}</h1>
-          <div className="grid md:grid-cols-4 grid-cols-1 gap-4 mt-5">
+          <div className="grid md:grid-cols-4 grid-cols-1 gap-4 mt-5 motion-scale-in-[0.48] motion-translate-x-in-[-50%] motion-translate-y-in-[-2%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-duration-[1.82s]/scale motion-duration-[1.58s]/translate motion-delay-[0.06s]/translate motion-duration-[1.52s]/opacity motion-duration-[1.24s]/blur motion-delay-[0.06s]/blur motion-ease-spring-snappy">
             {filteredFoods.map((food, idx) => (
               <Category key={idx} food={food} />
             ))}

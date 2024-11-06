@@ -2,25 +2,35 @@
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import GreenButton from "../hero/GreenButton";
 // import GreenButton from "../hero/GreenButton";
+import Aos from "aos";
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 const About = () => {
+    useEffect(()=>{
+        Aos.init({
+            duration:900,
+            easing: "ease-in-out"
+        })
+    },[])
+
     return (
         <div id=''>
         <div className="md:w-11/12 md:mx-auto  mt-60  mb-5">
 
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center" data-aos="fade-up">
                 <span className="font-bold text-4xl ">About Us</span>
             </div>
 
             <div className="md:flex md:flex-row flex flex-col gap-5  mt-10 p-2 ">
 
                 {/* image section */}
-                    <div className="md:w-1/2 flex justify-end">
+                    <div className="md:w-1/2 flex justify-end" data-aos="fade-right">
                         <img src="/about-2.jpg" alt="" className=" rounded-lg" />
                     </div>
 
                 {/* desc section */}
             
-                    <div className="md:w-1/2 flex flex-col gap-2 ml-5  ">
+                    <div className="md:w-1/2 flex flex-col gap-2 ml-5  " data-aos="fade-left">
 
                         <span className=" md:w-11/12 text-base text-gray-500">
                         <span className="font-bold text-2xl text-black">Welcome to our Food Sharing Platform </span><br/><br />– a place where students help students thrive! We believe that food should be affordable and accessible to everyone within our university community. Our platform connects students who have extra or homemade food with others who are looking for budget-friendly meal options, creating a vibrant, sustainable ecosystem of sharing.

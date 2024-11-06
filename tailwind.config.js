@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindcssMotion from "tailwindcss-motion";
 export default {
   content: [
     "./index.html",
@@ -16,6 +17,7 @@ export default {
   plugins: [
     // eslint-disable-next-line no-undef
     require('daisyui'),
+    tailwindcssMotion
   ],
 }
 

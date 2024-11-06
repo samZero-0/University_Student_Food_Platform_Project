@@ -1,10 +1,18 @@
 import { FaBoxOpen , FaUserPlus } from 'react-icons/fa';
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { PiShoppingCartSimpleDuotone } from "react-icons/pi";
-
+import Aos from 'aos';
+import 'aos/dist/aos.css'
+import { useEffect } from 'react';
 const States = () => {
+    useEffect(()=>{
+        Aos.init({
+            duration:700,
+            easing: "ease-in-out"
+        })
+    },[])
     return (
-        <section className="mt-20  mb-10 w-11/12 mx-auto flex justify-center gap-8">
+        <section className="mt-20  mb-10 w-11/12 mx-auto flex justify-center gap-8" data-aos="fade-up">
             {/* New Orders */}
             <div className="bg-gray-50 shadow-lg p-6 rounded-lg w-64">
                 <div className="flex items-center mb-4">

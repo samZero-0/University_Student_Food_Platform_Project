@@ -1,6 +1,6 @@
   const PromotionalBanner = () => {
     return (
-      <div className="flex items-center justify-between bg-[#e9f9e9] p-5 rounded-lg shadow-lg w-full max-w-4xl mx-auto mt-10">
+      <div className="flex items-center justify-between bg-[#e9f9e9] p-5 rounded-lg shadow-lg w-full max-w-4xl mx-auto mt-10 motion-scale-in-[0.5] motion-translate-x-in-[-5%] motion-translate-y-in-[-89%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-duration-[0.75s]/scale motion-duration-[0.64s]/translate motion-delay-[0.11s]/translate motion-duration-[0.76s]/opacity motion-duration-[0.79s]/blur">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">
             Get Discount Voucher <br /> Up To 20%

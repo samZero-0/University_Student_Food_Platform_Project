@@ -40,7 +40,7 @@ const FoodDetails = () => {
         <div className="md:w-11/12 md:mx-auto mt-20 mb-5 flex  flex-col items-center">
             <ToastContainer />
             {food ? (  
-                <div className="border border-gray-300 p-3 w-2/3 rounded-xl flex">
+                <div className="border border-gray-300 p-3 w-2/3 rounded-xl flex motion-scale-in-[0.71] motion-translate-x-in-[-3%] motion-translate-y-in-[2%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-duration-[1.00s]/scale motion-duration-[0.87s]/translate motion-delay-[0.03s]/translate motion-duration-[0.84s]/opacity motion-duration-[0.22s]/blur motion-delay-[0.03s]/blur motion-ease-spring-bouncy">
 
                     {/* Image section */}
                     <div className="w-1/2  flex justify-center">

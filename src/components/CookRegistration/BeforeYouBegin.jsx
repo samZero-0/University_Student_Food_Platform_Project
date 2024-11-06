@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { PiNumberSquareOneBold } from "react-icons/pi";
 import { PiNumberSquareTwoBold } from "react-icons/pi";
 import { PiNumberSquareThreeBold } from "react-icons/pi";
@@ -6,6 +7,10 @@ import { Link } from "react-router-dom";
 
 
 const BeforeYouBegin = () => {
+    useEffect(() => {
+        // Scroll to the top when the component mounts
+        window.scrollTo(0, 0);
+      }, []);
     return (
         <div className="md:w-11/12 md:mx-auto  mt-28 mb-5">
 

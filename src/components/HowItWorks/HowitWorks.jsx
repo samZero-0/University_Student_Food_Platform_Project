@@ -1,16 +1,26 @@
 import { NavLink } from "react-router-dom";
 import GreenButton from "../hero/GreenButton";
+import Aos from "aos";
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 
 const HowitWorks = () => {
+    useEffect(()=>{
+        Aos.init({
+            duration:900,
+            easing: "ease-in-out"
+        })
+    },[])
+
     return (
         <div className="md:w-11/12 md:mx-auto mt-20 mb-10">
             <div className="flex flex-col gap-2 items-center">
                 <span className="text-4xl font-bold">How it Works</span>
                 <span className="text-sm text-gray-500 italic">Learn more about our features</span>
 
-                <div className="md:flex gap-4 w-full mt-10 justify-center ">
+                <div className="md:flex gap-4 w-full mt-10 justify-center " data-aos="fade-right">
                    
-                    <div className="md:w-1/4 w-11/12  mx-auto p-5  flex flex-col  items-center justify-center border-2 bg-gray-50 rounded-lg relative overflow-hidden">
+                    <div className="md:w-1/4 w-11/12  mx-auto p-5  flex flex-col  items-center justify-center border-2 bg-gray-50 rounded-lg relative overflow-hidden " >
                         <div className="absolute inset-0  mix-blend-multiply"></div>
                         <img src="/registernow.jpg" alt="" className=" object-cover" />
                         <span className="text-2xl font-bold relative z-10">Register / Sign Up</span>

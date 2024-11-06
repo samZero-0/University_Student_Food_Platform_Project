@@ -1,10 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { GoUpload } from "react-icons/go";
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 
 export default function Component() {
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   const [mealPrices, setMealPrices] = useState([{ meal: '', price: '' }]);
   const fileInputRef = useRef(null); 
 
