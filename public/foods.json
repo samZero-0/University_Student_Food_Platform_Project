@@ -11,7 +11,32 @@
         "image": "https://i.ibb.co.com/M28NHdn/pancake.jpg",
         "categoryThumbnail": "https://i.ibb.co.com/7KW5gtN/breakfast-thumb.jpg",
         "discount": 10,
-        "status": "Opens at 8:00 AM"
+        "status": "Opens at 8:00 AM",
+        "ingredients": ["Flour", "Eggs", "Milk", "Sugar", "Maple Syrup"],
+        "allergens": ["Gluten", "Dairy"],
+        "nutrition": {
+            "calories": 350,
+            "protein": "6g",
+            "carbohydrates": "50g",
+            "fat": "10g"
+        },
+        "preparationTime": "10 minutes",
+        "servingSize": "2 pancakes",
+        "reviews": [
+            {
+                "username": "breakfastlover",
+                "review": "The best pancakes I've ever had! So fluffy.",
+                "rating": 5
+            },
+            {
+                "username": "foodfanatic",
+                "review": "Good, but a bit too sweet for my taste.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Perfect for a hearty breakfast.",
+        "tags": ["Vegetarian", "Gluten-Free Option Available"],
+        "availability": "Available daily from 8:00 AM - 11:00 AM"
     },
     {
         "category": "Lunch",
@@ -25,7 +50,32 @@
         "image": "https://i.ibb.co.com/12pX328/grilled-chicken.jpg",
         "categoryThumbnail": "https://i.ibb.co.com/ckwMXGB/lunch-thumb.jpg",
         "discount": 15,
-        "status": "Open"
+        "status": "Open",
+        "ingredients": ["Chicken Breast", "Mixed Greens", "Vinaigrette", "Tomatoes", "Cucumbers"],
+        "allergens": ["Dairy"],
+        "nutrition": {
+            "calories": 250,
+            "protein": "25g",
+            "carbohydrates": "10g",
+            "fat": "12g"
+        },
+        "preparationTime": "10-15 minutes",
+        "servingSize": "1 plate",
+        "reviews": [
+            {
+                "username": "foodie123",
+                "review": "Delicious and fresh! Perfect for a healthy lunch.",
+                "rating": 5
+            },
+            {
+                "username": "healthnut",
+                "review": "Great portion size and very flavorful.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Low-calorie meal option, high in protein.",
+        "tags": ["Healthy", "Gluten-Free", "High-Protein"],
+        "availability": "Available daily from 11:00 AM - 3:00 PM"
     },
     {
         "category": "Main Courses",
@@ -39,7 +89,32 @@
         "image": "https://i.ibb.co.com/twG8hmm/biryani.jpg",
         "categoryThumbnail": "https://i.ibb.co.com/ccdmPZt/main-Courses-thumb.jpg",
         "discount": 20,
-        "status": "Closed"
+        "status": "Closed",
+        "ingredients": ["Basmati Rice", "Chicken/Beef", "Garam Masala", "Onions", "Yogurt"],
+        "allergens": ["Dairy"],
+        "nutrition": {
+            "calories": 600,
+            "protein": "35g",
+            "carbohydrates": "70g",
+            "fat": "18g"
+        },
+        "preparationTime": "45 minutes",
+        "servingSize": "1 plate",
+        "reviews": [
+            {
+                "username": "spicyfoodlover",
+                "review": "Amazing flavors, the best biryani I've had.",
+                "rating": 5
+            },
+            {
+                "username": "hungrytraveler",
+                "review": "A bit too spicy for me, but still great.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Best enjoyed with raita or a salad.",
+        "tags": ["Spicy", "Non-Vegetarian"],
+        "availability": "Available daily from 12:00 PM - 9:00 PM"
     },
     {
         "category": "Snacks",
@@ -53,7 +128,32 @@
         "image": "https://i.ibb.co.com/CB9WhYP/samosa.jpg",
         "categoryThumbnail": "https://i.ibb.co.com/5hsJzyG/snacks-thumb.jpg",
         "discount": 5,
-        "status": "Open"
+        "status": "Open",
+        "ingredients": ["Flour", "Potatoes", "Peas", "Spices"],
+        "allergens": ["Gluten"],
+        "nutrition": {
+            "calories": 150,
+            "protein": "3g",
+            "carbohydrates": "25g",
+            "fat": "5g"
+        },
+        "preparationTime": "15 minutes",
+        "servingSize": "2 pieces",
+        "reviews": [
+            {
+                "username": "spicyfoodlover",
+                "review": "Crispy and delicious! Love the spice blend.",
+                "rating": 5
+            },
+            {
+                "username": "veggie_lover",
+                "review": "Tasty but could use more filling.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Great for a quick snack or appetizer.",
+        "tags": ["Vegetarian", "Gluten-Free Option Available"],
+        "availability": "Available daily from 11:00 AM - 7:00 PM"
     },
     {
         "category": "Desserts",
@@ -67,7 +167,32 @@
         "image": "https://i.ibb.co.com/2cydXL8/cake.jpg",
         "categoryThumbnail": "https://i.ibb.co.com/Y2GJkMp/dessert-thumb.jpg",
         "discount": 25,
-        "status": "Opens at 10:00 AM"
+        "status": "Opens at 10:00 AM",
+        "ingredients": ["Chocolate", "Flour", "Eggs", "Butter", "Sugar"],
+        "allergens": ["Gluten", "Dairy"],
+        "nutrition": {
+            "calories": 400,
+            "protein": "5g",
+            "carbohydrates": "55g",
+            "fat": "20g"
+        },
+        "preparationTime": "20 minutes",
+        "servingSize": "1 cake",
+        "reviews": [
+            {
+                "username": "sweettooth",
+                "review": "The molten center is divine!",
+                "rating": 5
+            },
+            {
+                "username": "chocoholic",
+                "review": "Delicious, but a bit too rich for me.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Perfect for chocolate lovers.",
+        "tags": ["Vegetarian", "Gluten-Free Option Available"],
+        "availability": "Available daily from 10:00 AM - 8:00 PM"
     },
     {
         "category": "Lunch",
@@ -81,7 +206,32 @@
         "image": "https://i.ibb.co.com/zSLF0TT/fish-currry.jpg",
         "categoryThumbnail": "https://i.ibb.co.com/ckwMXGB/lunch-thumb.jpg",
         "discount": 0,
-        "status": "Open"
+        "status": "Open",
+        "ingredients": ["Fish", "Mustard Seeds", "Spices", "Onions"],
+        "allergens": ["Fish"],
+        "nutrition": {
+            "calories": 250,
+            "protein": "20g",
+            "carbohydrates": "10g",
+            "fat": "15g"
+        },
+        "preparationTime": "30 minutes",
+        "servingSize": "1 plate",
+        "reviews": [
+            {
+                "username": "seafoodfan",
+                "review": "Amazing curry! Perfectly spiced.",
+                "rating": 5
+            },
+            {
+                "username": "fishlover",
+                "review": "The fish is a bit overcooked, but the flavor is great.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Best served with steamed rice.",
+        "tags": ["Non-Vegetarian", "Spicy"],
+        "availability": "Available daily from 11:00 AM - 7:00 PM"
     },
     {
         "category": "Main Courses",
@@ -95,7 +245,32 @@
         "image": "https://i.ibb.co.com/GnhZz0N/khichuri.webp",
         "categoryThumbnail": "https://i.ibb.co.com/ccdmPZt/main-Courses-thumb.jpg",
         "discount": 10,
-        "status": "Closed"
+        "status": "Closed",
+        "ingredients": ["Rice", "Lentils", "Garam Masala", "Turmeric", "Onions"],
+        "allergens": ["Gluten"],
+        "nutrition": {
+            "calories": 350,
+            "protein": "12g",
+            "carbohydrates": "60g",
+            "fat": "8g"
+        },
+        "preparationTime": "30 minutes",
+        "servingSize": "1 plate",
+        "reviews": [
+            {
+                "username": "comfortfoodfan",
+                "review": "Perfect comfort food, very filling.",
+                "rating": 5
+            },
+            {
+                "username": "bengalilover",
+                "review": "Could use more seasoning, but good overall.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Popular during rainy days.",
+        "tags": ["Vegetarian", "Spicy"],
+        "availability": "Available daily from 1:00 PM - 6:00 PM"
     },
     {
         "category": "Breakfast",
@@ -109,7 +284,32 @@
         "image": "https://i.ibb.co.com/Z6m3rXS/ommelettte.jpg",
         "categoryThumbnail": "https://i.ibb.co.com/7KW5gtN/breakfast-thumb.jpg",
         "discount": 5,
-        "status": "Opens at 7:00 AM"
+        "status": "Opens at 7:00 AM",
+        "ingredients": ["Eggs", "Cheese", "Vegetables", "Herbs"],
+        "allergens": ["Eggs", "Dairy"],
+        "nutrition": {
+            "calories": 200,
+            "protein": "12g",
+            "carbohydrates": "5g",
+            "fat": "15g"
+        },
+        "preparationTime": "10 minutes",
+        "servingSize": "1 omelette",
+        "reviews": [
+            {
+                "username": "breakfastfan",
+                "review": "Perfectly cooked, I love the cheese!",
+                "rating": 5
+            },
+            {
+                "username": "vegetarianlover",
+                "review": "Great choice of fillings.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Customize with your favorite fillings.",
+        "tags": ["Vegetarian", "Gluten-Free Option Available"],
+        "availability": "Available daily from 7:00 AM - 11:00 AM"
     },
     {
         "category": "Snacks",
@@ -123,7 +323,32 @@
         "image": "https://i.ibb.co.com/qpdF4jQ/nachos.jpg",
         "categoryThumbnail": "https://i.ibb.co.com/5hsJzyG/snacks-thumb.jpg",
         "discount": 0,
-        "status": "Open"
+        "status": "Open",
+        "ingredients": ["Tortilla Chips", "Cheese", "Jalapeños", "Sour Cream"],
+        "allergens": ["Dairy"],
+        "nutrition": {
+            "calories": 300,
+            "protein": "8g",
+            "carbohydrates": "40g",
+            "fat": "15g"
+        },
+        "preparationTime": "10 minutes",
+        "servingSize": "1 plate",
+        "reviews": [
+            {
+                "username": "cheese_lovers",
+                "review": "Cheese and jalapeños! What's not to love?",
+                "rating": 5
+            },
+            {
+                "username": "spicyfoodfan",
+                "review": "The jalapeños were a bit too spicy for me.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Best served with salsa.",
+        "tags": ["Vegetarian", "Spicy"],
+        "availability": "Available daily from 11:00 AM - 8:00 PM"
     },
     {
         "category": "Desserts",
@@ -137,6 +362,31 @@
         "image": "https://i.ibb.co.com/rd5PczS/cheesecake.jpg",
         "categoryThumbnail": "https://i.ibb.co.com/Y2GJkMp/dessert-thumb.jpg",
         "discount": 20,
-        "status": "Opens at 11:00 AM"
+        "status": "Opens at 11:00 AM",
+        "ingredients": ["Cream Cheese", "Graham Crackers", "Sugar", "Butter", "Eggs"],
+        "allergens": ["Gluten", "Dairy"],
+        "nutrition": {
+            "calories": 350,
+            "protein": "6g",
+            "carbohydrates": "45g",
+            "fat": "20g"
+        },
+        "preparationTime": "25 minutes",
+        "servingSize": "1 slice",
+        "reviews": [
+            {
+                "username": "sweetlover",
+                "review": "The best cheesecake ever! So creamy.",
+                "rating": 5
+            },
+            {
+                "username": "dessertfan",
+                "review": "Great flavor but a bit too sweet for me.",
+                "rating": 4
+            }
+        ],
+        "additionalInfo": "Perfect with a cup of coffee.",
+        "tags": ["Vegetarian", "Gluten-Free Option Available"],
+        "availability": "Available daily from 11:00 AM - 9:00 PM"
     }
 ]
