@@ -2,7 +2,6 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
-
 import {
   createBrowserRouter,
   RouterProvider,
@@ -15,6 +14,7 @@ import AllCategories from './components/Categories/AllCategories.jsx';
 import AuthPage from './components/Login-Signup/AuthPage.jsx';
 import LoginSignupLayout from './components/Login-Signup/LoginSignupLayout.jsx';
 import FoodDetails from './components/FoodDetails/FoodDetails.jsx';
+import ContexProvider from './contextApi/ContexProvider.jsx';
 
 
 const router = createBrowserRouter([
@@ -102,6 +102,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ContexProvider>
     <RouterProvider router={router} />
+    </ContexProvider>
   </StrictMode>
 );
