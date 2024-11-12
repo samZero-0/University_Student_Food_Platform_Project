@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const Category = ({ food }) => {
-  const { category, foodName, price, image, sellerName, rating, status, discount, foodId } = food;
+  const { category, foodName, price, image, sellerName, rating, status, discount, foodId, nutrition } = food;
 
   const statusStyles = {
     Open: "bg-green-100 text-green-800",
@@ -53,6 +53,13 @@ const Category = ({ food }) => {
         <div className="flex justify-between items-center mb-4">
           <span className="text-lg font-semibold text-">{price} Tk.</span>
           <span className="text-xs text-gray-400">by {sellerName}</span>
+        </div>
+
+        {/* nutrition info */}
+
+        <div className="flex justify-between items-center mb-4">
+          <span className="text-sm text-">Calories: {nutrition.calories} Kcal </span>
+         
         </div>
 
         {/* Status and Buy Button */}

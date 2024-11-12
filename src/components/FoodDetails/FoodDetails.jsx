@@ -50,14 +50,14 @@ const FoodDetails = () => {
     const totalAmount = food? discountedPrice * quantity : 0;
 
     return (
-        <div className="container mx-auto px-4 py-6 max-w-4xl">
+        <div className="container mx-auto px-4 py-6 w-10/12 ">
             <ToastContainer />
             {loading ? (
                 <div className="flex justify-center mt-20">
                     <ScaleLoader color="#a0e2ff" />
                 </div>
             ) : food ? (
-                <div className="bg-gray-100 h-[580px]  shadow-lg rounded-lg overflow-hidden flex lg:flex-row flex-col">
+                <div className="bg-gray-100 h-[580px]  shadow-lg rounded-lg overflow-hidden flex lg:flex-row flex-col  ">
                     <div className="w-full p-10  lg:w-1/2">
                         <img src={food.image} alt={food.foodName} className="object-cover rounded-2xl h-full w-full" data-aos="fade-right" />
                     </div>
@@ -85,7 +85,7 @@ const FoodDetails = () => {
                         </div>
                         <div className="flex items-center justify-between font-bold text-xl mb-2">
                             <span className="text-gray-400 line-through">{actualPrice} Tk.</span>
-                            <span className="text-green-500">{totalAmount} Tk.</span>
+                            
                         </div>
                         <div className="flex justify-between items-center mb-4 space-x-2">
                             <div>
@@ -93,12 +93,20 @@ const FoodDetails = () => {
                             <span className="mx-2 font-semibold text-lg">{quantity}</span>
                             <button onClick={() => handleQuantityChange(1)} className="text-2xl p-2 border rounded">+</button>
                             </div>
-                            <button onClick={handleAddToCart} className="btn bg-primary text-white px-4 py-2 rounded-md">Add to Cart</button>
+                            
                         </div>
+
                         {/* <div className="font-bold text-lg mb-4">
                             <span>Total Amount: {totalAmount} Tk.</span>
                         </div> */}
+
                         <p><strong>Additional Info:</strong> {food.additionalInfo}</p>
+
+                        <div className="w-full my-5 flex gap-12 items-center">
+                        <button onClick={handleAddToCart} className="btn bg-primary text-white px-4 py-2 rounded-md w-1/3 text-xl">Add to Cart</button>
+                          <span className="text-green-500 text-2xl font-bold">{totalAmount} Tk.</span>
+                        </div>
+
                     </div>
                 </div>
             ) : (
