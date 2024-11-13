@@ -1,0 +1,104 @@
+[
+  {
+    "planType": "Diabetes",
+    "mealType": "Breakfast",
+    "mealName": "Oatmeal with Berries",
+    "description": "A heart-healthy and diabetes-friendly start to the day, this oatmeal combines the fiber-rich goodness of oats with antioxidant-packed blueberries, almond milk, and a hint of honey.",
+    "nutritions": {
+      "calories": 300,
+      "carbs": 40,
+      "protein": 10,
+      "fats": 5
+    },
+    "ingredients": ["Oats", "Blueberries", "Almond milk", "Honey"],
+    "rating": 4.5,
+    "image": "https://i.ibb.co.com/GPRx07T/Oatmeal-with-berries2.webp",
+    "maker": "Healthy Start Kitchen",
+    "price": 5.99
+  },
+  {
+    "planType": "High Protein",
+    "mealType": "Lunch",
+    "mealName": "Grilled Chicken Salad",
+    "description": "A protein-packed, flavorful salad featuring juicy grilled chicken breast, fresh mixed greens, cherry tomatoes, feta cheese, and a drizzle of olive oil, ideal for muscle recovery and energy.",
+    "nutritions": {
+      "calories": 450,
+      "carbs": 20,
+      "protein": 35,
+      "fats": 12
+    },
+    "ingredients": ["Chicken breast", "Mixed greens", "Cherry tomatoes", "Olive oil", "Feta cheese"],
+    "rating": 4.7,
+    "image": "https://i.ibb.co.com/12pX328/grilled-chicken.jpg",
+    "maker": "Power Meals Co.",
+    "price": 8.99
+  },
+  {
+    "planType": "Low Calorie",
+    "mealType": "Dinner",
+    "mealName": "Zucchini Noodles with Marinara",
+    "description": "A low-calorie Italian-inspired dinner with zucchini noodles tossed in a savory marinara sauce, topped with a sprinkle of Parmesan and fresh basil for a guilt-free indulgence.",
+    "nutritions": {
+      "calories": 200,
+      "carbs": 25,
+      "protein": 6,
+      "fats": 7
+    },
+    "ingredients": ["Zucchini", "Tomato sauce", "Parmesan cheese", "Basil", "Garlic"],
+    "rating": 4.4,
+    "image": "https://i.ibb.co.com/z72ZjcR/Zucchini-Noodles-with-Marinara-Sauce.jpg",
+    "maker": "Light Eats",
+    "price": 6.49
+  },
+  {
+    "planType": "Weight Loss",
+    "mealType": "Snack",
+    "mealName": "Greek Yogurt with Nuts",
+    "description": "A balanced snack that combines creamy Greek yogurt with crunchy almonds and walnuts, drizzled with honey for a touch of sweetness, perfect for weight loss and sustained energy.",
+    "nutritions": {
+      "calories": 150,
+      "carbs": 10,
+      "protein": 15,
+      "fats": 5
+    },
+    "ingredients": ["Greek yogurt", "Almonds", "Walnuts", "Honey"],
+    "rating": 4.6,
+    "image": "https://i.ibb.co.com/FqQmXHW/Greek-Yogurt-drizzled-with-Honey-and-Walnuts-Yiaourti-me-meli.jpg",
+    "maker": "Slim Snacks",
+    "price": 3.99
+  },
+  {
+    "planType": "Dairy Free",
+    "mealType": "Breakfast",
+    "mealName": "Smoothie Bowl",
+    "description": "A refreshing dairy-free smoothie bowl blended with almond milk and topped with fresh banana slices, strawberries, and chia seeds, ideal for a nutritious, plant-based breakfast.",
+    "nutritions": {
+      "calories": 250,
+      "carbs": 35,
+      "protein": 10,
+      "fats": 7
+    },
+    "ingredients": ["Banana", "Almond milk", "Strawberries", "Chia seeds"],
+    "rating": 4.8,
+    "image": "https://i.ibb.co.com/8Bj54Vg/Smoothie-Bowl-8.jpg",
+    "maker": "Vegan Delights",
+    "price": 5.49
+  },
+  {
+    "planType": "Normal Diet",
+    "mealType": "Lunch",
+    "mealName": "Chicken Caesar Wrap",
+    "description": "A hearty and delicious everyday lunch option, this wrap includes tender chicken breast, crisp lettuce, Caesar dressing, and a hint of Parmesan, wrapped in a wholesome wheat tortilla.",
+    "nutritions": {
+      "calories": 500,
+      "carbs": 45,
+      "protein": 30,
+      "fats": 18
+    },
+    "ingredients": ["Whole wheat wrap", "Chicken breast", "Lettuce", "Caesar dressing", "Parmesan cheese"],
+    "rating": 4.2,
+    "image": "https://i.ibb.co.com/sJDjh7z/healthy-chicken-caesar-wrap-500x375.png",
+    "maker": "Everyday Eats",
+    "price": 7.99
+  }
+]

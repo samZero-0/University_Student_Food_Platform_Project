@@ -137,7 +137,7 @@ const FoodDetails = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 p-3">
                         {relatedItems.map((item) => (
                             <div key={item.foodId} className="border rounded-lg shadow-md p-4">
-                                <img src={item.image} alt={item.foodName} className="h-24 w-full object-cover rounded-md mb-2" />
+                                <img src={item.image} alt={item.foodName} className="h-[200px] w-full object-cover rounded-md mb-2" />
                                 <p className="text-lg font-bold">{item.foodName}</p>
                             </div>
                         ))}

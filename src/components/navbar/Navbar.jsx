@@ -12,14 +12,15 @@ const Navbar = () => {
         <section className="md:w-11/12 md:mx-auto ">
             <div className="navbar">
                 <div className="navbar-start">
-                    <img src="/logo-removebg-preview.png" alt="" className='w-[60px] h-[40px] hidden md:block ' />
+                    <img src="/logo-main.png" alt="" className='w-[60px] h-[40px] hidden md:block ' />
                     <a className="btn btn-ghost text-xl">PlateMate</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                     <li><Link to='/'>Home</Link></li>
                         <li><a href="#aboutUs">About</a></li>
-                        <li><a>Contact</a></li>
+                        {/* <li><a>Contact</a></li> */}
+                        <li><Link to='/mealPlan'>Meal Plan</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end">

@@ -15,6 +15,7 @@ import AuthPage from './components/Login-Signup/AuthPage.jsx';
 import LoginSignupLayout from './components/Login-Signup/LoginSignupLayout.jsx';
 import FoodDetails from './components/FoodDetails/FoodDetails.jsx';
 import ContexProvider from './contextApi/ContexProvider.jsx';
+import MealPlanner from './components/Meal Plan/MealPlanPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -90,6 +91,19 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <FoodDetails />,
+      },
+      
+      
+    ],
+  },
+
+  {
+    path: '/mealPlan',
+    element: <CookLayout/>,
+    children: [
+      {
+        path: '',
+        element: <MealPlanner></MealPlanner>
       },
       
       
