@@ -15,6 +15,11 @@ export default function MealPlanner() {
     .then(data => setMeals(data))
   },[])
 
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   
 
   const nutritionData = [

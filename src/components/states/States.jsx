@@ -24,8 +24,8 @@ const States = () => {
     return (
         <section>
             <div className='mt-20 text-center'>
-                <h1 className='text-3xl font-bold' data-aos="fade-up">States of PlateMate</h1>
-                <p className='text-gray-500 mt-2' data-aos="fade-up">Explore the states of PlateMate</p>
+                <h1 className='text-3xl font-bold' data-aos="fade-up">Stats </h1>
+                <p className='text-gray-500 mt-2' data-aos="fade-up">Explore the stats of PlateMate</p>
             </div>
             <section className="mt-20 md:mb-10 mb-4 md:w-11/12 md:p-3 p-10 mx-auto md:flex md:justify-center gap-8">
 
