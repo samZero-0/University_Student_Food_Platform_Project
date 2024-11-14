@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Info } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 import CreateMealCard from "./CreateMealCard"
+import Marquee from "react-fast-marquee";
 
 export default function MealPlanner() {
   
@@ -81,10 +82,13 @@ export default function MealPlanner() {
 
       {/* Recipe Suggestions */}
       <div className="card bg-base-100 shadow-xl">
+        
         <div className="card-body text-center">
           <h2 className="card text-3xl font-bold my-5 ">Recipe Suggestions</h2>
           <p className="my-3">Explore new recipes for your meal plan</p>
+          <Marquee pauseOnHover={true} speed={100}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
             {[
               { name: "Grilled Chicken Salad", image: "https://i.ibb.co.com/12pX328/grilled-chicken.jpg" },
               { name: "Fish Curry", image: "https://i.ibb.co.com/zSLF0TT/fish-currry.jpg" },
@@ -98,7 +102,9 @@ export default function MealPlanner() {
               </div>
             ))}
           </div>
+          </Marquee>
         </div>
+        
       </div>
 
       {/* Nutritional Information */}

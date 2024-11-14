@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import GreenButton from "./GreenButton";
 const Hero = () => {
     return (
@@ -14,7 +15,7 @@ const Hero = () => {
                         <p className="mb-5 text-sm md:text-lg md:w-2/3 mx-auto text-gray-300">
                          Connect with Food Lovers & Share Culinary Experiences.  Explore Local Flavors, Build Community, and Savor Every Bite Together
                         </p>
-                        <button className="btn border-none text-base font-bold bg-primary ">Explore Now <GreenButton /> </button>
+                        <Link to='/categories'><button className="btn border-none text-base font-bold bg-primary ">Explore Now <GreenButton /> </button></Link>
                     </div>
                 </div>
             </div>

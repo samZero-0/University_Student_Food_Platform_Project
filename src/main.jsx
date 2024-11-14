@@ -16,6 +16,8 @@ import LoginSignupLayout from './components/Login-Signup/LoginSignupLayout.jsx';
 import FoodDetails from './components/FoodDetails/FoodDetails.jsx';
 import ContexProvider from './contextApi/ContexProvider.jsx';
 import MealPlanner from './components/Meal Plan/MealPlanPage.jsx';
+import MealPlanDetails from './components/Meal Plan/MealPlanDetails.jsx';
+import MealDetails from './components/Meal Plan/MealDetails.jsx';
 
 
 const router = createBrowserRouter([
@@ -26,98 +28,78 @@ const router = createBrowserRouter([
   },
   {
     path: '/joinAsCook',
-    element: <CookLayout></CookLayout>,
+    element: <CookLayout />,
     children: [
-      {
-        path: '',
-        element: <BeforeYouBegin />,
-      },
-      
-      
+      { path: '', element: <BeforeYouBegin /> },
     ],
   },
   {
     path: '/cookReg',
-    element: <CookLayout></CookLayout>,
+    element: <CookLayout />,
     children: [
-      {
-        path: '',
-        element: <CookRegistrationPage />,
-      },
-      
-      
+      { path: '', element: <CookRegistrationPage /> },
     ],
   },
   {
     path: '/success',
-    element: <CookLayout></CookLayout>,
+    element: <CookLayout />,
     children: [
-      {
-        path: '',
-        element: <SuccessPage />,
-      },
-      
-      
+      { path: '', element: <SuccessPage /> },
     ],
   },
   {
     path: '/categories',
-    element: <CookLayout></CookLayout>,
+    element: <CookLayout />,
     children: [
-      {
-        path: '',
-        element: <AllCategories />,
-      },
-      
-      
+      { path: '', element: <AllCategories /> },
     ],
   },
   {
     path: '/login',
-    element: <LoginSignupLayout/>,
+    element: <LoginSignupLayout />,
     children: [
-      {
-        path: '',
-        element: <AuthPage />,
-      },
-      
-      
+      { path: '', element: <AuthPage /> },
     ],
   },
   {
+   
     path: '/details/:foodId',
-    element: <CookLayout/>,
+    element: <CookLayout />,
     children: [
-      {
-        path: '',
-        element: <FoodDetails />,
-      },
-      
-      
+      { path: '', element: <FoodDetails /> },
     ],
   },
-
   {
     path: '/mealPlan',
-    element: <CookLayout/>,
+    element: <CookLayout />,
     children: [
-      {
-        path: '',
-        element: <MealPlanner></MealPlanner>
-      },
-      
+      { path: '', element: <MealPlanner /> },
+    ],
+  },
+  {
+    
+    path: '/MealPlanPage/:planType',
+    element: <CookLayout />,
+    children: [
+      { path: '', element: <MealPlanDetails /> },
       
     ],
   },
-  
-  
-  
+  {
+    
+    path: '/mealDetails/:mealId',
+    element: <CookLayout />,
+    children: [
+      { path: '', element: <MealDetails /> },
+    ],
+  },
 ]);
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ContexProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </ContexProvider>
   </StrictMode>
 );

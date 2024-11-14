@@ -7,8 +7,8 @@ import 'aos/dist/aos.css';
 import AOS from 'aos';
 import ScaleLoader from "react-spinners/ScaleLoader";
 
-const FoodDetails = () => {
-    const { foodId } = useParams();
+const MealDetails = () => {
+    const { mealId } = useParams();
     const [food, setFood] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
     const [quantity, setQuantity] = useState(1);
@@ -17,17 +17,17 @@ const FoodDetails = () => {
     useEffect(() => {
         AOS.init({ duration: 800 });
         setTimeout(() => {
-            fetch('../foods.json')
+            fetch('/mealPlan.json')
                 .then((res) => res.json())
                 .then((data) => {
-                    const foundProduct = data.find((item) => item.foodId == foodId);
+                    const foundProduct = data.find((item) => item.foodId == mealId);
                     setFood(foundProduct);
-                    const related = data.filter(item => item.sellerName === foundProduct?.sellerName && item.foodId !== foodId);
+                    const related = data.filter(item => item.sellerName === foundProduct?.sellerName && item.foodId !== mealId);
                     setRelatedItems(related);
                     setLoading(false);
                 });
         }, 1000); 
-    }, [foodId]);
+    }, [mealId]);
 
 
    
@@ -62,20 +62,20 @@ const FoodDetails = () => {
             ) : food ? (
                 <div className="bg-gray-100 h-[580px]  shadow-lg rounded-lg overflow-hidden flex lg:flex-row flex-col  ">
                     <div className="w-full p-10  lg:w-1/2">
-                        <img src={food.image} alt={food.foodName} className="object-cover rounded-2xl h-full w-full" data-aos="fade-right" />
+                        <img src={food.image} alt={food.mealName} className="object-cover rounded-2xl h-full w-full" data-aos="fade-right" />
                     </div>
                     <div className="w-full lg:w-1/2 p-10" data-aos="fade-left">
-                        <h1 className="text-xl font-bold ">{food.foodName}</h1>
+                        <h1 className="text-xl font-bold ">{food.mealName}</h1>
                         <p className="text-gray-500 text-sm">by <span className="text-yellow-700">{food.sellerName}</span></p>
                         <div className="flex items-center mb-2">
                             <ReactStars size={24} value={food.rating} edit={false} />
                             <span className="ml-2 font-bold text-lg">{food.rating}</span>
                         </div>
-                        <p className="mb-2"><strong>Category:</strong> {food.category}</p>
+                       
                         <p className="mb-2"><strong>Description:</strong> {food.description}</p>
                         <div className="mb-2">
                             <p><strong>Ingredients:</strong> {food.ingredients.join(', ')}</p>
-                            <p><strong>Allergens:</strong> {food.allergens.join(', ')}</p>
+                            
                         </div>
                         <div className="border-t border-gray-200 pt-2 mb-2">
                             <p><strong>Nutrition:</strong></p>
@@ -156,4 +156,4 @@ const FoodDetails = () => {
     );
 };
 
-export default FoodDetails;
+export default MealDetails;

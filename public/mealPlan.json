@@ -1,9 +1,37 @@
 [
+
   {
+    "mealId": 1,
     "planType": "Diabetes",
     "mealType": "Breakfast",
     "mealName": "Oatmeal with Berries",
     "description": "A heart-healthy and diabetes-friendly start to the day, this oatmeal combines the fiber-rich goodness of oats with antioxidant-packed blueberries, almond milk, and a hint of honey.",
+    "foodSuggestion": {
+      "dietFocus": "The Diabetes plan is designed to help maintain balanced blood sugar levels through low-glycemic foods that provide slow-release energy.",
+      "recommendedFoods": [
+        {
+          "category": "Whole Grains",
+          "examples": ["Oats", "Barley", "Quinoa"],
+          "benefits": "Rich in fiber and low in sugar, these grains help control blood sugar levels and promote satiety."
+        },
+        {
+          "category": "Low-Glycemic Fruits",
+          "examples": ["Berries", "Apples", "Pears"],
+          "benefits": "Packed with vitamins, antioxidants, and fiber, these fruits help prevent sugar spikes."
+        },
+        {
+          "category": "Lean Proteins",
+          "examples": ["Chicken breast", "Fish", "Tofu"],
+          "benefits": "Provides essential amino acids and helps stabilize blood sugar levels."
+        },
+        {
+          "category": "Healthy Fats",
+          "examples": ["Avocado", "Olive oil", "Nuts"],
+          "benefits": "Enhances satiety and supports heart health, important for those managing diabetes."
+        }
+      ],
+      "nutritionalGuidance": "Focus on nutrient-dense foods and avoid added sugars and refined carbs to keep blood sugar levels stable. A balance of protein, healthy fats, and fiber will aid in gradual glucose release."
+    },
     "nutritions": {
       "calories": 300,
       "carbs": 40,
@@ -12,15 +40,47 @@
     },
     "ingredients": ["Oats", "Blueberries", "Almond milk", "Honey"],
     "rating": 4.5,
-    "image": "https://i.ibb.co.com/GPRx07T/Oatmeal-with-berries2.webp",
+    "image": "https://i.ibb.co/GPRx07T/Oatmeal-with-berries2.webp",
     "maker": "Healthy Start Kitchen",
-    "price": 5.99
+    "price": 123
   },
+
+
+
+
+
   {
+    "mealId": 2,
     "planType": "High Protein",
     "mealType": "Lunch",
     "mealName": "Grilled Chicken Salad",
     "description": "A protein-packed, flavorful salad featuring juicy grilled chicken breast, fresh mixed greens, cherry tomatoes, feta cheese, and a drizzle of olive oil, ideal for muscle recovery and energy.",
+    "foodSuggestion": {
+      "dietFocus": "The High Protein plan prioritizes muscle repair, strength, and sustained energy with nutrient-dense, protein-rich foods.",
+      "recommendedFoods": [
+        {
+          "category": "Lean Meats",
+          "examples": ["Chicken breast", "Turkey", "Lean beef"],
+          "benefits": "Amino acids in lean meats support muscle maintenance and growth."
+        },
+        {
+          "category": "Plant-Based Proteins",
+          "examples": ["Lentils", "Chickpeas", "Quinoa"],
+          "benefits": "Plant proteins provide fiber and other essential nutrients, complementing animal-based proteins."
+        },
+        {
+          "category": "Nuts and Seeds",
+          "examples": ["Almonds", "Chia seeds", "Pumpkin seeds"],
+          "benefits": "Rich in healthy fats and protein, ideal for energy and muscle repair."
+        },
+        {
+          "category": "Dairy or Dairy Alternatives",
+          "examples": ["Greek yogurt", "Cottage cheese", "Almond milk"],
+          "benefits": "High in protein and calcium, beneficial for muscle recovery and bone health."
+        }
+      ],
+      "nutritionalGuidance": "Aim to include lean proteins in each meal, along with nutrient-dense sides for balance. Consider varying protein sources to gain a broader nutrient spectrum."
+    },
     "nutritions": {
       "calories": 450,
       "carbs": 20,
@@ -29,15 +89,42 @@
     },
     "ingredients": ["Chicken breast", "Mixed greens", "Cherry tomatoes", "Olive oil", "Feta cheese"],
     "rating": 4.7,
-    "image": "https://i.ibb.co.com/12pX328/grilled-chicken.jpg",
+    "image": "https://i.ibb.co/12pX328/grilled-chicken.jpg",
     "maker": "Power Meals Co.",
     "price": 8.99
   },
   {
+    "mealId": 3,
     "planType": "Low Calorie",
     "mealType": "Dinner",
     "mealName": "Zucchini Noodles with Marinara",
     "description": "A low-calorie Italian-inspired dinner with zucchini noodles tossed in a savory marinara sauce, topped with a sprinkle of Parmesan and fresh basil for a guilt-free indulgence.",
+    "foodSuggestion": {
+      "dietFocus": "The Low Calorie plan emphasizes reducing overall calorie intake while maintaining essential nutrients for weight management.",
+      "recommendedFoods": [
+        {
+          "category": "Vegetable-Based Alternatives",
+          "examples": ["Zucchini noodles", "Cauliflower rice", "Spaghetti squash"],
+          "benefits": "Lower in calories and carbohydrates, these alternatives help reduce overall calorie intake without sacrificing volume."
+        },
+        {
+          "category": "Lean Proteins",
+          "examples": ["Tofu", "Fish", "Chicken breast"],
+          "benefits": "Provides necessary protein for muscle maintenance while keeping calorie counts low."
+        },
+        {
+          "category": "Low-Fat Dairy or Alternatives",
+          "examples": ["Parmesan cheese", "Low-fat mozzarella", "Almond milk"],
+          "benefits": "Offers calcium and protein with fewer calories and less fat."
+        },
+        {
+          "category": "Herbs and Spices",
+          "examples": ["Basil", "Oregano", "Garlic"],
+          "benefits": "Enhances flavor without adding significant calories, promoting satisfaction and variety in meals."
+        }
+      ],
+      "nutritionalGuidance": "Incorporate plenty of vegetables and lean proteins to create filling meals that are low in calories. Avoid high-calorie sauces and dressings by opting for herbs and spices to add flavor."
+    },
     "nutritions": {
       "calories": 200,
       "carbs": 25,
@@ -46,15 +133,42 @@
     },
     "ingredients": ["Zucchini", "Tomato sauce", "Parmesan cheese", "Basil", "Garlic"],
     "rating": 4.4,
-    "image": "https://i.ibb.co.com/z72ZjcR/Zucchini-Noodles-with-Marinara-Sauce.jpg",
+    "image": "https://i.ibb.co/z72ZjcR/Zucchini-Noodles-with-Marinara-Sauce.jpg",
     "maker": "Light Eats",
     "price": 6.49
   },
   {
+    "mealId": 4,
     "planType": "Weight Loss",
     "mealType": "Snack",
     "mealName": "Greek Yogurt with Nuts",
     "description": "A balanced snack that combines creamy Greek yogurt with crunchy almonds and walnuts, drizzled with honey for a touch of sweetness, perfect for weight loss and sustained energy.",
+    "foodSuggestion": {
+      "dietFocus": "The Weight Loss plan focuses on creating a calorie deficit while ensuring adequate protein and healthy fats to promote satiety and prevent muscle loss.",
+      "recommendedFoods": [
+        {
+          "category": "High-Protein Foods",
+          "examples": ["Greek yogurt", "Cottage cheese", "Egg whites"],
+          "benefits": "Helps maintain muscle mass and increases feelings of fullness."
+        },
+        {
+          "category": "Healthy Fats",
+          "examples": ["Almonds", "Walnuts", "Chia seeds"],
+          "benefits": "Provides essential fatty acids that support metabolism and satiety."
+        },
+        {
+          "category": "Low-Sugar Additions",
+          "examples": ["Honey", "Fresh berries", "Cinnamon"],
+          "benefits": "Adds natural sweetness and flavor without excessive sugar, aiding in blood sugar control."
+        },
+        {
+          "category": "Fiber-Rich Foods",
+          "examples": ["Oats", "Flaxseeds", "Vegetables"],
+          "benefits": "Promotes digestive health and prolongs feelings of fullness."
+        }
+      ],
+      "nutritionalGuidance": "Incorporate snacks that are high in protein and healthy fats to keep hunger at bay. Avoid processed snacks with added sugars and opt for whole, nutrient-dense foods to support weight loss goals."
+    },
     "nutritions": {
       "calories": 150,
       "carbs": 10,
@@ -63,15 +177,42 @@
     },
     "ingredients": ["Greek yogurt", "Almonds", "Walnuts", "Honey"],
     "rating": 4.6,
-    "image": "https://i.ibb.co.com/FqQmXHW/Greek-Yogurt-drizzled-with-Honey-and-Walnuts-Yiaourti-me-meli.jpg",
+    "image": "https://i.ibb.co/FqQmXHW/Greek-Yogurt-drizzled-with-Honey-and-Walnuts-Yiaourti-me-meli.jpg",
     "maker": "Slim Snacks",
     "price": 3.99
   },
   {
+    "mealId": 5,
     "planType": "Dairy Free",
     "mealType": "Breakfast",
     "mealName": "Smoothie Bowl",
     "description": "A refreshing dairy-free smoothie bowl blended with almond milk and topped with fresh banana slices, strawberries, and chia seeds, ideal for a nutritious, plant-based breakfast.",
+    "foodSuggestion": {
+      "dietFocus": "The Dairy Free plan eliminates all dairy products to accommodate lactose intolerance, allergies, or personal preferences, focusing on plant-based alternatives.",
+      "recommendedFoods": [
+        {
+          "category": "Plant-Based Milks",
+          "examples": ["Almond milk", "Soy milk", "Oat milk"],
+          "benefits": "Provides a creamy base for smoothies without the lactose found in dairy milk."
+        },
+        {
+          "category": "Fruits and Vegetables",
+          "examples": ["Bananas", "Strawberries", "Spinach"],
+          "benefits": "Rich in vitamins, minerals, and fiber, essential for overall health and digestion."
+        },
+        {
+          "category": "Seeds and Nuts",
+          "examples": ["Chia seeds", "Flaxseeds", "Almonds"],
+          "benefits": "Adds healthy fats, protein, and texture to meals, enhancing nutritional value."
+        },
+        {
+          "category": "Plant-Based Proteins",
+          "examples": ["Pea protein", "Hemp protein", "Nut butters"],
+          "benefits": "Ensures adequate protein intake without relying on dairy-based proteins."
+        }
+      ],
+      "nutritionalGuidance": "Focus on incorporating a variety of plant-based foods to ensure a balanced intake of essential nutrients. Utilize dairy alternatives to maintain calcium and vitamin D levels, and include proteins from legumes, nuts, and seeds."
+    },
     "nutritions": {
       "calories": 250,
       "carbs": 35,
@@ -80,15 +221,42 @@
     },
     "ingredients": ["Banana", "Almond milk", "Strawberries", "Chia seeds"],
     "rating": 4.8,
-    "image": "https://i.ibb.co.com/8Bj54Vg/Smoothie-Bowl-8.jpg",
+    "image": "https://i.ibb.co/8Bj54Vg/Smoothie-Bowl-8.jpg",
     "maker": "Vegan Delights",
     "price": 5.49
   },
   {
+    "mealId": 6,
     "planType": "Normal Diet",
     "mealType": "Lunch",
     "mealName": "Chicken Caesar Wrap",
     "description": "A hearty and delicious everyday lunch option, this wrap includes tender chicken breast, crisp lettuce, Caesar dressing, and a hint of Parmesan, wrapped in a wholesome wheat tortilla.",
+    "foodSuggestion": {
+      "dietFocus": "The Normal Diet plan is tailored for balanced nutrition, supporting general health and maintenance without specific dietary restrictions.",
+      "recommendedFoods": [
+        {
+          "category": "Lean Proteins",
+          "examples": ["Chicken breast", "Turkey", "Fish"],
+          "benefits": "Supports muscle maintenance and provides essential amino acids."
+        },
+        {
+          "category": "Whole Grains",
+          "examples": ["Whole wheat tortilla", "Brown rice", "Quinoa"],
+          "benefits": "Offers sustained energy through complex carbohydrates and fiber."
+        },
+        {
+          "category": "Vegetables",
+          "examples": ["Lettuce", "Tomatoes", "Bell peppers"],
+          "benefits": "Provides essential vitamins, minerals, and fiber for overall health."
+        },
+        {
+          "category": "Healthy Fats",
+          "examples": ["Olive oil", "Avocado", "Nuts"],
+          "benefits": "Supports heart health and enhances satiety."
+        }
+      ],
+      "nutritionalGuidance": "Maintain a balanced intake by including a mix of proteins, carbohydrates, and fats in each meal. Incorporate a variety of vegetables to ensure a wide range of nutrients and to keep meals interesting and flavorful."
+    },
     "nutritions": {
       "calories": 500,
       "carbs": 45,
@@ -97,7 +265,7 @@
     },
     "ingredients": ["Whole wheat wrap", "Chicken breast", "Lettuce", "Caesar dressing", "Parmesan cheese"],
     "rating": 4.2,
-    "image": "https://i.ibb.co.com/sJDjh7z/healthy-chicken-caesar-wrap-500x375.png",
+    "image": "https://i.ibb.co/sJDjh7z/healthy-chicken-caesar-wrap-500x375.png",
     "maker": "Everyday Eats",
     "price": 7.99
   }

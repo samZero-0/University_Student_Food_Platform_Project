@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const CreateMealCard = ({meal}) => {
@@ -26,7 +27,7 @@ const CreateMealCard = ({meal}) => {
             </div>
 
             <div className="mt-2 w-full mb-2">
-               <button className="btn bg-primary w-1/3 rounded-lg p-2 text-base">See More</button>
+               <Link to={`/MealPlanPage/${planType}`}><button  className="btn bg-primary w-1/3 rounded-lg p-2 text-base">See More</button></Link>
             </div>
             
             
