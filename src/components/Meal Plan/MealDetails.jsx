@@ -9,6 +9,7 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 
 const MealDetails = () => {
     const { mealId } = useParams();
+    console.log(mealId);
     const [food, setFood] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
     const [quantity, setQuantity] = useState(1);
@@ -20,9 +21,9 @@ const MealDetails = () => {
             fetch('/mealPlan.json')
                 .then((res) => res.json())
                 .then((data) => {
-                    const foundProduct = data.find((item) => item.foodId == mealId);
+                    const foundProduct = data.find((item) => item.mealId == mealId);
                     setFood(foundProduct);
-                    const related = data.filter(item => item.sellerName === foundProduct?.sellerName && item.foodId !== mealId);
+                    const related = data.filter(item => item.sellerName === foundProduct?.sellerName && item.mealId !== mealId);
                     setRelatedItems(related);
                     setLoading(false);
                 });
@@ -33,7 +34,7 @@ const MealDetails = () => {
    
 
     const handleAddToCart = () => {
-        toast.success(`${food.foodName} added to cart!`, {
+        toast.success(`${food.mealName} added to cart!`, {
             position: 'top-center',
             autoClose: 1500,
             closeOnClick: true,
@@ -66,7 +67,7 @@ const MealDetails = () => {
                     </div>
                     <div className="w-full lg:w-1/2 p-10" data-aos="fade-left">
                         <h1 className="text-xl font-bold ">{food.mealName}</h1>
-                        <p className="text-gray-500 text-sm">by <span className="text-yellow-700">{food.sellerName}</span></p>
+                        {/* <p className="text-gray-500 text-sm">by <span className="text-yellow-700">{food.sellerName}</span></p> */}
                         <div className="flex items-center mb-2">
                             <ReactStars size={24} value={food.rating} edit={false} />
                             <span className="ml-2 font-bold text-lg">{food.rating}</span>
@@ -80,10 +81,10 @@ const MealDetails = () => {
                         <div className="border-t border-gray-200 pt-2 mb-2">
                             <p><strong>Nutrition:</strong></p>
                             <ul className="list-disc list-inside space-y-1 text-sm">
-                                Calories: {food.nutrition.calories},
-                                Protein: {food.nutrition.protein},
-                                Carbohydrates: {food.nutrition.carbohydrates},
-                                Fat: {food.nutrition.fat}
+                                Calories: {food.nutritions.calories},
+                                Protein: {food.nutritions.protein},
+                                Carbohydrates: {food.nutritions.carbohydrates},
+                                Fat: {food.nutritions.fats}
                             </ul>
                         </div>
                         <div className="flex items-center justify-between font-bold text-xl mb-2">
@@ -99,15 +100,15 @@ const MealDetails = () => {
                             
                         </div>
 
-                        {/* <div className="font-bold text-lg mb-4">
-                            <span>Total Amount: {totalAmount} Tk.</span>
-                        </div> */}
+                        <div className="font-bold text-lg mb-4">
+                            <span>Total Amount: {totalAmount.toFixed(2)} Tk.</span>
+                        </div>
 
                         <p><strong>Additional Info:</strong> {food.additionalInfo}</p>
 
                         <div className="w-full my-5 flex gap-12 items-center">
                         <button onClick={handleAddToCart} className="btn bg-primary text-white px-4 py-2 rounded-md w-1/3 text-xl">Add to Cart</button>
-                          <span className="text-green-500 text-2xl font-bold">{totalAmount} Tk.</span>
+                          <span className="text-green-500 text-2xl font-bold">{totalAmount.toFixed(2)} Tk.</span>
                         </div>
 
                     </div>
@@ -116,7 +117,7 @@ const MealDetails = () => {
                 <p>Loading...</p>
             )}
 
-            {food && (
+            {/* {food && (
                 <div className="border-t border-gray-200 pt-4 mt-6">
                     <h2 className="text-2xl font-bold mb-2">Reviews</h2>
                     {food.reviews.length > 0 ? (
@@ -130,9 +131,9 @@ const MealDetails = () => {
                         <p>No reviews yet.</p>
                     )}
                 </div>
-            )}
+            )} */}
 
-            <div className="w-full rounded-xl mt-10">
+            {/* <div className="w-full rounded-xl mt-10">
                 <div className="p-3 flex justify-center">
                     <span className="text-2xl font-bold">Browse More Dishes from {food?.sellerName}</span>
                 </div>
@@ -151,7 +152,7 @@ const MealDetails = () => {
                         <span className="text-xl ml-3">Loading {food?.sellerName} dishes...</span>
                     </div>
                 )}
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -66,7 +66,7 @@ const MealPlanDetails = () => {
                                 <img src={meal.image} alt={meal.mealName} className="w-full h-[250px] object-cover rounded-md mb-3" />
                                 <h2 className="text-xl font-bold mb-1">{meal.mealName}</h2>
                                 <p className="text-gray-700">{meal.description}</p>
-                                <Link to={`mealDetails/${meal.mealId}`}><button  className="btn bg-primary my-5">Order Now</button></Link>
+                                <Link to={`/mealDetails/${meal.mealId}`}><button  className="btn bg-primary my-5">Order Now</button></Link>
                             </div>
                         ))}
                     </div>

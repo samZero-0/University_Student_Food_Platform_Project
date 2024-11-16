@@ -42,7 +42,8 @@
     "rating": 4.5,
     "image": "https://i.ibb.co/GPRx07T/Oatmeal-with-berries2.webp",
     "maker": "Healthy Start Kitchen",
-    "price": 123
+    "price": 123,
+    "discount": 10
   },
 
 
@@ -91,7 +92,8 @@
     "rating": 4.7,
     "image": "https://i.ibb.co/12pX328/grilled-chicken.jpg",
     "maker": "Power Meals Co.",
-    "price": 8.99
+    "price": 8.99,
+    "discount": 10
   },
   {
     "mealId": 3,
@@ -135,7 +137,8 @@
     "rating": 4.4,
     "image": "https://i.ibb.co/z72ZjcR/Zucchini-Noodles-with-Marinara-Sauce.jpg",
     "maker": "Light Eats",
-    "price": 6.49
+    "price": 6.49,
+    "discount": 10
   },
   {
     "mealId": 4,
@@ -179,7 +182,8 @@
     "rating": 4.6,
     "image": "https://i.ibb.co/FqQmXHW/Greek-Yogurt-drizzled-with-Honey-and-Walnuts-Yiaourti-me-meli.jpg",
     "maker": "Slim Snacks",
-    "price": 3.99
+    "price": 3.99,
+    "discount": 10
   },
   {
     "mealId": 5,
@@ -223,7 +227,8 @@
     "rating": 4.8,
     "image": "https://i.ibb.co/8Bj54Vg/Smoothie-Bowl-8.jpg",
     "maker": "Vegan Delights",
-    "price": 5.49
+    "price": 5.49,
+    "discount": 10
   },
   {
     "mealId": 6,
@@ -267,6 +272,8 @@
     "rating": 4.2,
     "image": "https://i.ibb.co/sJDjh7z/healthy-chicken-caesar-wrap-500x375.png",
     "maker": "Everyday Eats",
-    "price": 7.99
+    "price": 7.99,
+    "discount": 10
+
   }
 ]
