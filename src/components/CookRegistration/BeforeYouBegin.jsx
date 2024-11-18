@@ -92,44 +92,61 @@ const BeforeYouBegin = () => {
         </div>
 
     
-            <span className="text-2xl font-bold mt-10">What we check for Approval</span>
-        </div>
+           <div className="flex flex-col w-1/2 mt-5">
 
-        <div className="py-10 w-full h-[650px]">
-          <div className="w-full h-full overflow-hidden flex">
-            {/* Image 1 */}
-            <div
-              className="w-1/2 relative"
-              style={{
-                backgroundImage: "url('/kitchen.jpg')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-              <span className="relative text-white text-3xl z-10">
-                Kitchen Rules
-              </span>
+           <span className="text-2xl font-bold mt-10">What we check for Approval</span>
+            <div className="flex flex-col gap-4">
+            <span className="text-lg py-2 mt-4">🗹 Clean kitchen photos</span>
+            <span className="text-lg py-2">🗹 Safe food handling</span>
+            <span className="text-lg py-2">🗹 Accurate nutritional data</span>
+            <span className="text-lg py-2"> 🗹 Adherence to healthy food standards</span>
             </div>
 
-            {/* Image 2 */}
-            <div
-              className="w-1/2 relative"
-              style={{
-                backgroundImage: "url('/menu.webp')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-              <span className="relative text-white text-3xl z-10">
-                Menu Applicance
-              </span>
-            </div>
-          </div>
+           </div>
         </div>
+
+       
+
+        <div className="diff aspect-[16/9]">
+  <div className="diff-item-1">
+    <div
+      style={{
+        backgroundImage: "url('/kitchen1.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundBlendMode: 'overlay',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+      }}
+      className="bg-primary text-primary-content grid place-content-center text-9xl font-bold "
+    >
+      Kitchen <div className="flex flex-col gap-4 ">
+        <span className="text-7xl text-primary">Standards</span>
+        <span className="text-xl text-white w-1/2">Confirmation that food is prepared in a clean, sanitized environment.</span>
+        <span className="text-xl text-white w-1/2"> Submission of photos of the kitchen/preparation area (if required by the system).</span>
+      </div>
+    </div>
+  </div>
+  <div
+    style={{
+      backgroundImage: "url('/menu1.webp')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundBlendMode: 'overlay',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    }}
+    className="diff-item-2"
+  >
+    <div className="bg-base-200 bg-opacity-10 grid place-content-center text-9xl font-black">
+      Menu <div className="flex flex-col gap-4 ">
+        <span className="text-7xl text-white">Comliance</span>
+        <span className="text-xl text-primary-content w-1/2">Agreement to adhere to the platform’s healthy food criteria (e.g., use of fresh ingredients, limited use of sugar, low-fat cooking methods).</span>
+        <span className="text-xl text-primary-content w-1/2"> Nutritional breakdown for each menu item, including calorie count, macronutrients (carbs, proteins, fats), and allergens.</span>
+      </div>
+    </div>
+  </div>
+  <div className="diff-resizer"></div>
+</div>
+
 
         <div className="w-full flex justify-center mt-16">
           <Link to="/cookReg" className="w-full flex justify-center">
