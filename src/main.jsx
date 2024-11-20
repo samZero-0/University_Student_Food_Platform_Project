@@ -18,6 +18,7 @@ import ContexProvider from './contextApi/ContexProvider.jsx';
 import MealPlanner from './components/Meal Plan/MealPlanPage.jsx';
 import MealPlanDetails from './components/Meal Plan/MealPlanDetails.jsx';
 import MealDetails from './components/Meal Plan/MealDetails.jsx';
+import ViewCartDetails from './pages/cart/ViewCartDetails.jsx';
 
 
 const router = createBrowserRouter([
@@ -67,6 +68,9 @@ const router = createBrowserRouter([
     element: <CookLayout />,
     children: [
       { path: '', element: <FoodDetails /> },
+      { path: '/details/:foodId/viewcartdetails', 
+        element: <ViewCartDetails/> 
+      },
     ],
   },
   {

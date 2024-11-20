@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import ScaleLoader from "react-spinners/ScaleLoader";
+import { Context } from "../../contextApi/Context";
 
 const FoodDetails = () => {
+    const {carts,setCarts,quantity,setQuantity,
+        
+        }= useContext(Context);
     const { foodId } = useParams();
     const [food, setFood] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
-    const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -30,9 +33,12 @@ const FoodDetails = () => {
     }, [foodId]);
 
 
-   
+    const discountedPrice = food ? food.price - (food.price * (food.discount / 100)) : 0;
+    const actualPrice = food ? food.price * quantity : 0;
+    const totalAmount = food? discountedPrice * quantity : 0;
 
-    const handleAddToCart = () => {
+    const handleAddToCart = (food) => {
+        setCarts([...carts,food]);
         toast.success(`${food.foodName} added to cart!`, {
             position: 'top-center',
             autoClose: 1500,
@@ -47,10 +53,7 @@ const FoodDetails = () => {
         setQuantity(prevQuantity => Math.max(1, prevQuantity + change));
     };
 
-    const discountedPrice = food ? food.price - (food.price * (food.discount / 100)) : 0;
-    const actualPrice = food ? food.price * quantity : 0;
 
-    const totalAmount = food? discountedPrice * quantity : 0;
 
     return (
         <div className="container mx-auto px-4 py-6 w-10/12 ">
@@ -106,7 +109,7 @@ const FoodDetails = () => {
                         <p><strong>Additional Info:</strong> {food.additionalInfo}</p>
 
                         <div className="w-full my-5 flex gap-12 items-center">
-                        <button onClick={handleAddToCart} className="btn bg-primary text-white px-4 py-2 rounded-md w-1/3 text-xl">Add to Cart</button>
+                        <Link to='/details/:foodId/viewcartdetails' onClick={()=>handleAddToCart(food)} className="btn bg-primary text-white px-4 py-2 rounded-md w-1/3 text-xl">Add to Cart</Link>
                           <span className="text-green-500 text-2xl font-bold">{totalAmount} Tk.</span>
                         </div>
 

@@ -12,6 +12,8 @@ import WhyTryUs from './components/HowItWorks/WhyTryUs'
 import Testimonials from './components/HowItWorks/Testimonials'
 import Footer from './components/HowItWorks/Footer'
 
+
+
 function App() {
 
   return (
