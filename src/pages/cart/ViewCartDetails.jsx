@@ -15,6 +15,7 @@ const ViewCartDetails = () => {
 
   const currentStage = "Pending Cook Confirmation"; //this will dynamic
   const deliveryFee = 100;
+  
   const subtotal = carts.reduce((total, item) => {
     const itemDiscountedPrice = item?.price - (item?.price * (item?.discount / 100));
     return total + itemDiscountedPrice * quantity;
@@ -185,7 +186,7 @@ const ViewCartDetails = () => {
             <div className="mt-2 px-6 flex gap-4">
               <Link className="btn btn-outline btn-error w-1/2" to='/bkash'>
               <button className="flex items-center gap-2"> 
-                <img src="/public/BKash.png" className="h-[30px] w-[30px] "></img>
+                <img src="/BKash.png" className="h-[30px] w-[30px] "></img>
               Pay with bKash</button>
               </Link>
               <Link className="btn btn-outline w-1/2" to='/card'>
