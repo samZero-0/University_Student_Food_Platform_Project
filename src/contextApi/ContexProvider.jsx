@@ -19,6 +19,8 @@ const ContexProvider = ({children}) => {
     // here will go states or data variables
     const [carts, setCarts] = useState([]);
     const [quantity, setQuantity] = useState(1);
+    const [subtotal,setSubtotal] =useState(0);
+    const [shipmentTotal,setShipmentTotal] =useState(0);
     
 
 
@@ -27,6 +29,10 @@ const ContexProvider = ({children}) => {
         setCarts,
         quantity,
         setQuantity,
+        subtotal,
+        setSubtotal,
+        shipmentTotal,
+        setShipmentTotal
     };
 
     return (

@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import ScaleLoader from "react-spinners/ScaleLoader";
+import { Context } from "../../contextApi/Context";
 
 const MealDetails = () => {
     const { mealId } = useParams();
     console.log(mealId);
     const [food, setFood] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
-    const [quantity, setQuantity] = useState(1);
+    // const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(true);
+
+    const {carts,setCarts,quantity,setQuantity}= useContext(Context);
 
     useEffect(() => {
         AOS.init({ duration: 800 });
@@ -33,7 +36,8 @@ const MealDetails = () => {
 
    
 
-    const handleAddToCart = () => {
+    const handleAddToCart = (food) => {
+        setCarts([...carts,food]);
         toast.success(`${food.mealName} added to cart!`, {
             position: 'top-center',
             autoClose: 1500,
@@ -107,7 +111,12 @@ const MealDetails = () => {
                         <p><strong>Additional Info:</strong> {food.additionalInfo}</p>
 
                         <div className="w-full my-5 flex gap-12 items-center">
-                        <button onClick={handleAddToCart} className="btn bg-primary text-white px-4 py-2 rounded-md w-1/3 text-xl">Add to Cart</button>
+
+                       <Link className="btn bg-primary text-white px-4 py-2 rounded-md w-1/3 text-xl" to='/details/:foodId/viewcartdetails'>
+                       <button onClick={()=>handleAddToCart(food)} >Add to Cart</button>
+                       </Link>
+
+
                           <span className="text-green-500 text-2xl font-bold">{totalAmount.toFixed(2)} Tk.</span>
                         </div>
 

@@ -11,17 +11,20 @@ import { Context } from "../../contextApi/Context";
 
 
 const ViewCartDetails = () => {
-  const { carts, quantity } = useContext(Context);
+  const { carts, quantity, setSubtotal,setShipmentTotal } = useContext(Context);
 
   const currentStage = "Pending Cook Confirmation"; //this will dynamic
   const deliveryFee = 100;
   const subtotal = carts.reduce((total, item) => {
     const itemDiscountedPrice = item?.price - (item?.price * (item?.discount / 100));
     return total + itemDiscountedPrice * quantity;
+    
   }, 0);
 
-  const shipmentTotal = subtotal + deliveryFee;
+  setSubtotal(subtotal);
 
+  const shipmentTotal = subtotal + deliveryFee;
+  setShipmentTotal(shipmentTotal);
 
 
   
@@ -135,7 +138,7 @@ const ViewCartDetails = () => {
               {carts.map((item, index) => (
                 <div key={index} className="flex justify-between border-b py-2">
                   <span><img src={item.image} className="w-16 h-12 rounded-md" alt="" /></span>
-                  <span>{item.foodName} (x{quantity})</span>
+                  <span>{item.foodName || item.mealName} (x{quantity})</span>
                   <span>৳{((item.price - (item.price * (item.discount / 100))) * quantity).toFixed(2)}</span>
                 </div>
               ))}
@@ -160,7 +163,7 @@ const ViewCartDetails = () => {
             </div>
             {carts?.map((item, index) => (
               <div key={index} className="py-2 p-6">
-                <p className="font-medium">{item?.foodName} ({quantity} Piece{quantity > 1 ? "s" : ""})</p>
+                <p className="font-medium">{item?.foodName || item?.mealName} ({quantity} Piece{quantity > 1 ? "s" : ""})</p>
               </div>
             ))}
             <p className="text-sm border-b-2 py-1 px-6 text-gray-500">Delivery: Friday, November 1</p>
@@ -180,9 +183,18 @@ const ViewCartDetails = () => {
             {/* Payment Options */}
             <h3 className="text-lg font-medium mt-6 px-6">Do You Want to Pay Now?</h3>
             <div className="mt-2 px-6 flex gap-4">
-              <button className="btn btn-outline btn-error w-1/2"><IoIosCash className="text-xl" />Pay with bKash</button>
+              <button className="btn btn-outline btn-error w-1/2"> 
+                <img src="/public/BKash.png" className="h-[30px] w-[30px] "></img>
+              Pay with bKash</button>
               <button className="btn btn-outline w-1/2"><CiCreditCard2 className="text-xl" />Pay with Card</button>
+              {/* have to remove this button in future when auth is implemented adn add this it into guest user only */}
+              
             </div>
+
+           <div className="py-5 ml-5 w-11/12">
+           <Link to='/checkout'>
+           <button className="btn btn-outline w-full ">Checkout</button></Link>
+           </div>
 
             <div className="text-center mt-4 p-6">
               <button className="btn btn-outline btn-accent w-full">Cancel Shipment</button>
