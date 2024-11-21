@@ -1,54 +1,73 @@
 import { useContext } from "react";
 import { GiPhone } from "react-icons/gi";
-import { Link } from "react-router-dom";
 import { Context } from "../contextApi/Context";
-
-const BkashPayment = () => {
-
-    const {shipmentTotal} = useContext(Context);
+import PropTypes from "prop-types";
+const BkashPayment = ({ closeModal }) => {
+    const { shipmentTotal } = useContext(Context);
 
     return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center md:items-center items-end z-50">
+            <div className="bg-[#E2136E] p-6 rounded-lg shadow-lg w-full max-w-md relative">
+                
+                {/* Close Button */}
+                <button
+                    onClick={closeModal}
+                    className="absolute top-0 right-0 btn btn-ghost text-gray-500 text-xl hover:bg-none"
+                >
+                    ✖
+                </button>
 
-        <div className="flex justify-center items-center">
-
-            <div className="flex flex-col gap-4 md:w-1/3  mt-20 bg-[#E2136E] rounded-lg items-center">
-                <div>
-                    <img src='/bkashHeaderLogo.png' alt="" className="mt-2 mb-3" />
+                {/* Header with BKash Logo */}
+                <div className="flex justify-center">
+                    <img src='/bkashHeaderLogo.png' alt="Bkash Logo" className="mt-2 mb-3" />
                 </div>
 
-                <div className="flex flex-col gap-3 md:w-2/3 shadow-xl bg-[#f51d7c] rounded-xl p-3 items-center mb-5 text-xl">
-                    <h1 className="text-white font-semibold">Merchant: <span className="font-light"> Kazi Samin Nawal</span> </h1>
-                    <h1 className="text-white font-semibold">Invoice no.:  <span className="font-light"> 45896745896</span> </h1>
-                    <h1 className="text-white font-semibold"> Amount:  <span className="font-light">৳ {shipmentTotal}</span></h1>
+                {/* Invoice Details */}
+                <div className="flex flex-col gap-4 bg-[#f51d7c] rounded-xl p-4 text-white text-center">
+                    <h1 className="font-semibold">Merchant: <span className="font-light"> Kazi Samin Nawal</span></h1>
+                    <h1 className="font-semibold">Invoice No.: <span className="font-light"> 45896745896</span></h1>
+                    <h1 className="font-semibold">Amount: <span className="font-light">৳ {shipmentTotal}</span></h1>
                 </div>
 
-                <div className="mb-5 text-xl">
-                    <h1 className="text-white font-semibold">Your BKash Account Number: </h1>
-
-                    <input type="text"  className="p-2 rounded-lg bg-white mt-3 md:w-[320px]" placeholder=" 01XXXXXXXXX"/>
+                {/* BKash Account Number */}
+                <div className="mb-4 text-xl">
+                    <label htmlFor="bkashAccount" className="block text-white font-semibold mb-2">Your BKash Account Number:</label>
+                    <input
+                        type="text"
+                        id="bkashAccount"
+                        className="p-3 rounded-lg bg-white mt-2 w-full"
+                        placeholder="01XXXXXXXXX"
+                    />
                 </div>
 
-                <div className="flex gap-3 text-gray-300 text-lg">
-                    <input type="checkbox" />
-                    <h1>I agree to the terms and service</h1>
+                {/* Terms and Conditions */}
+                <div className="flex items-center gap-2 text-gray-300 text-lg">
+                    <input type="checkbox" id="terms" />
+                    <label htmlFor="terms" className="text-white">I agree to the terms and services</label>
                 </div>
 
-                <div className="flex gap-3 text-white w-1/2 mb-5">
-                    <button className="btn bg-transparent text-white w-1/2">Proceed</button>
-                   <Link to='/categories'  className="btn bg-transparent text-white w-1/2">
-                   <button>Close</button></Link>
+                {/* Buttons */}
+                <div className="flex gap-4 mt-6">
+                    <button className="btn bg-transparent text-white w-full py-2 rounded-md border border-white hover:bg-white hover:text-[#E2136E]">
+                        Proceed
+                    </button>
+                   
                 </div>
 
-                <div className="mb-5">
-                    <div className="flex gap-1 items-center"><GiPhone className="text-2xl"></GiPhone> 
-                    <span className="text-gray-300">16247</span>
+                {/* BKash Customer Service */}
+                <div className="mt-4 text-center text-gray-300">
+                    <div className="flex justify-center gap-2 items-center">
+                        <GiPhone className="text-2xl" />
+                        <span>16247</span>
                     </div>
                 </div>
-
             </div>
-            
         </div>
     );
+};
+
+BkashPayment.propTypes = {
+    closeModal: PropTypes.func.isRequired,
 };
 
 export default BkashPayment;

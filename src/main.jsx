@@ -127,7 +127,8 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ContexProvider>
-      <RouterProvider router={router} />
+      <RouterProvider router={router} >
+      </RouterProvider>
     </ContexProvider>
   </StrictMode>
 );

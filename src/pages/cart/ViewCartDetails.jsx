@@ -1,17 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BarLoader } from "react-spinners";
-import { IoIosCash } from "react-icons/io";
 import { CiCreditCard2 } from "react-icons/ci";
 import { FaCheckCircle } from "react-icons/fa";
 import { FiCheck } from "react-icons/fi";
 import { BiDish } from "react-icons/bi";
 import { MdOutlineDeliveryDining } from "react-icons/md";
 import { Context } from "../../contextApi/Context";
+import BkashPayment from "../bkashPayment";
+import CardPayment from "./CardPayment";
 
 
 const ViewCartDetails = () => {
-  const { carts, quantity, setSubtotal,setShipmentTotal } = useContext(Context);
+  const { carts, quantity, setSubtotal, setShipmentTotal } = useContext(Context);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+
+  const openModal = (method) => {
+    setModalContent(method);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setModalContent(null);
+  };
+
 
   const currentStage = "Pending Cook Confirmation"; //this will dynamic
   const deliveryFee = 100;
@@ -19,23 +33,28 @@ const ViewCartDetails = () => {
   const subtotal = carts.reduce((total, item) => {
     const itemDiscountedPrice = item?.price - (item?.price * (item?.discount / 100));
     return total + itemDiscountedPrice * quantity;
-    
+
   }, 0);
 
   setSubtotal(subtotal);
 
   const shipmentTotal = subtotal + deliveryFee;
   setShipmentTotal(shipmentTotal);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
 
-  
   return (
-    <div className="min-h-screen bg-gray-50 py-6"  data-aos="fade-up" >
+    <div className="min-h-screen bg-gray-50 py-6" data-aos="fade-up" >
       <div className="container mx-auto px-4">
         <h1 className="text-2xl font-bold mb-6 text-center">My Orders</h1>
         {/* Order Progress Tracker */}
-        <div className="flex justify-center items-center mb-8 gap-4 md:gap-8    " data-aos="zoom-in-up" data-aos-easing="linear"
-     data-aos-duration="1500">
+        <div className="flex justify-center flex-wrap items-center mb-8 gap-4 md:gap-8    " data-aos="zoom-in-up" data-aos-easing="linear"
+          data-aos-duration="1500">
           <div className="flex items-center gap-2">
             <FaCheckCircle className="text-2xl text-green-500" />
             <span className="text-sm font-semibold">Order Placed</span>
@@ -46,8 +65,8 @@ const ViewCartDetails = () => {
               currentStage === "Pending Cook Confirmation" ||
                 currentStage === "Cook Preparing" ||
                 currentStage === "Pending Delivery"
-                ? "#36D7B7" 
-                : "#D1D5DB" 
+                ? "#36D7B7"
+                : "#D1D5DB"
             }
             width={60}
             height={4}
@@ -56,18 +75,18 @@ const ViewCartDetails = () => {
           <div className="flex items-center gap-2">
             <BiDish
               className={`text-2xl ${currentStage === "Pending Cook Confirmation" ||
-                  currentStage === "Cook Preparing" ||
-                  currentStage === "Pending Delivery"
-                  ? "text-green-500"
-                  : "text-gray-400"
+                currentStage === "Cook Preparing" ||
+                currentStage === "Pending Delivery"
+                ? "text-green-500"
+                : "text-gray-400"
                 }`}
             />
             <span
               className={`text-sm font-semibold ${currentStage === "Pending Cook Confirmation" ||
-                  currentStage === "Cook Preparing" ||
-                  currentStage === "Pending Delivery"
-                  ? "text-green-500"
-                  : "text-gray-400"
+                currentStage === "Cook Preparing" ||
+                currentStage === "Pending Delivery"
+                ? "text-green-500"
+                : "text-gray-400"
                 }`}
             >
               Pending Cook Confirmation
@@ -77,8 +96,8 @@ const ViewCartDetails = () => {
             color={
               currentStage === "Cook Preparing" ||
                 currentStage === "Pending Delivery"
-                ? "#36D7B7" 
-                : "#D1D5DB" 
+                ? "#36D7B7"
+                : "#D1D5DB"
             }
             width={60}
             height={4}
@@ -87,16 +106,16 @@ const ViewCartDetails = () => {
           <div className="flex items-center gap-2">
             <FiCheck
               className={`text-2xl ${currentStage === "Cook Preparing" ||
-                  currentStage === "Pending Delivery"
-                  ? "text-green-500"
-                  : "text-gray-400"
+                currentStage === "Pending Delivery"
+                ? "text-green-500"
+                : "text-gray-400"
                 }`}
             />
             <span
               className={`text-sm font-semibold ${currentStage === "Cook Preparing" ||
-                  currentStage === "Pending Delivery"
-                  ? "text-green-500"
-                  : "text-gray-400"
+                currentStage === "Pending Delivery"
+                ? "text-green-500"
+                : "text-gray-400"
                 }`}
             >
               Cook Preparing
@@ -113,14 +132,14 @@ const ViewCartDetails = () => {
           <div className="flex items-center gap-2">
             <MdOutlineDeliveryDining
               className={`text-2xl ${currentStage === "Pending Delivery"
-                  ? "text-green-500"
-                  : "text-gray-400"
+                ? "text-green-500"
+                : "text-gray-400"
                 }`}
             />
             <span
               className={`text-sm font-semibold ${currentStage === "Pending Delivery"
-                  ? "text-green-500"
-                  : "text-gray-400"
+                ? "text-green-500"
+                : "text-gray-400"
                 }`}
             >
               Pending Delivery
@@ -184,6 +203,7 @@ const ViewCartDetails = () => {
             {/* Payment Options */}
             <h3 className="text-lg font-medium mt-6 px-6">Do You Want to Pay Now?</h3>
             <div className="mt-2 px-6 flex gap-4">
+<<<<<<< HEAD
               <Link className="btn btn-outline btn-error w-1/2" to='/bkash'>
               <button className="flex items-center gap-2"> 
                 <img src="/BKash.png" className="h-[30px] w-[30px] "></img>
@@ -192,20 +212,49 @@ const ViewCartDetails = () => {
               <Link className="btn btn-outline w-1/2" to='/card'>
               <button className="flex gap-2 items-center" ><CiCreditCard2 className="text-xl" />Pay with Card</button>
               </Link>
+=======
+              <button
+                className="btn btn-outline btn-error w-1/2 flex items-center gap-2"
+                onClick={() => openModal("bKash")}
+              >
+                <img src="/BKash.png" className="md:h-[30px] h-[12px] md:w-[30px] w-[12px] inline-block" alt="bKash" />
+                <p>Pay with bKash</p>
+              </button>
+              <button
+                className="btn btn-outline w-1/2 flex gap-2 items-center"
+                onClick={() => openModal("Card")}
+              >
+                <CiCreditCard2 className="md:text-xl text-sm" />
+                Pay with Card
+              </button>
+
+>>>>>>> 5851363efab841ba0a188841f0d8faa1c3be69be
               {/* have to remove this button in future when auth is implemented adn add this it into guest user only */}
-              
+
             </div>
 
-           <div className="py-5 ml-5 w-11/12">
-           <Link to='/checkout'>
-           <button className="btn btn-outline w-full ">Checkout</button></Link>
-           </div>
+            <div className="py-5 ml-5 w-11/12">
+              <Link to='/checkout'>
+                <button className="btn btn-outline w-full ">Checkout</button></Link>
+            </div>
 
             <div className="text-center mt-4 p-6">
               <button className="btn btn-outline btn-accent w-full">Cancel Shipment</button>
             </div>
           </div>
         </div>
+        {/* Modal */}
+        {isModalVisible && (
+          <>
+          {modalContent === "bKash" && <BkashPayment closeModal={closeModal} />}
+          {modalContent === "Card" && <CardPayment closeModal={closeModal} />}
+          
+          </>
+           
+            
+           
+         
+        )}
 
         <div className="text-center mt-8">
           <Link to="/categories" className="btn text-white rounded-3xl btn-neutral text-lg px-8">

@@ -16,6 +16,8 @@ const ContexProvider = ({children}) => {
           AOS.refresh();
         };
       }, []);
+
+    
     // here will go states or data variables
     const [carts, setCarts] = useState([]);
     const [quantity, setQuantity] = useState(1);
