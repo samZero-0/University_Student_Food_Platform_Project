@@ -1,11 +1,18 @@
+/* eslint-disable react/prop-types */
+import { FaCcVisa, FaCcMastercard, FaCcJcb, FaCcAmex, FaQuestionCircle } from 'react-icons/fa';
 
-import { FaCcVisa, FaCcMastercard, FaCcJcb, FaCcAmex, FaQuestionCircle } from 'react-icons/fa'
-
-export default function CardPayment() {
+export default function CardPayment({ closeModal }) {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-6">Invoice</h2>
+    <div className="fixed  inset-0 bg-black bg-opacity-50 flex justify-center md:items-center items-end z-50">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm relative">
+        {/* Close Button */}
+        <button
+          onClick={closeModal}
+          className="absolute top-4 right-4 text-gray-500 hover:text-red-500"
+        >
+          ✖
+        </button>
+        <h2 className="text-2xl font-bold mb-6 text-center">Invoice</h2>
         <div className="flex justify-center space-x-4 mb-6">
           <FaCcVisa className="text-3xl text-blue-600" />
           <FaCcMastercard className="text-3xl text-red-500" />
@@ -60,12 +67,12 @@ export default function CardPayment() {
               <FaQuestionCircle className="absolute right-3 top-9 text-gray-400" />
             </div>
           </div>
-          <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          <button className="w-full bg-secondary btn text-white py-2 px-4 rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-
+          primary focus:ring-offset-2">
             Next
           </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
-
