@@ -20,6 +20,8 @@ import MealPlanDetails from './components/Meal Plan/MealPlanDetails.jsx';
 import MealDetails from './components/Meal Plan/MealDetails.jsx';
 import ViewCartDetails from './pages/cart/ViewCartDetails.jsx';
 import CheckoutPage from './pages/CheckoutForm.jsx';
+import BkashPayment from './pages/bkashPayment.jsx';
+import CardPayment from './pages/cart/CardPayment.jsx';
 
 
 const router = createBrowserRouter([
@@ -68,6 +70,20 @@ const router = createBrowserRouter([
     element: <CookLayout />,
     children: [
       { path: '', element: <CheckoutPage></CheckoutPage> },
+    ],
+  },
+  {
+    path: '/bkash',
+    element: <CookLayout />,
+    children: [
+      { path: '', element: <BkashPayment></BkashPayment> },
+    ],
+  },
+  {
+    path: '/card',
+    element: <CookLayout />,
+    children: [
+      { path: '', element: <CardPayment></CardPayment> },
     ],
   },
   {

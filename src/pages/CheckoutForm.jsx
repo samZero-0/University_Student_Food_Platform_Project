@@ -1,11 +1,15 @@
 
 
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { FaCreditCard,  FaTruck } from "react-icons/fa"
 import { Context } from "../contextApi/Context";
 import { Link } from "react-router-dom";
 
 export default function CheckoutPage() {
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   const [paymentMethod, setPaymentMethod] = useState("credit-card");
   const { carts, quantity, subtotal, shipmentTotal } = useContext(Context);
     console.log(carts);

@@ -28,7 +28,7 @@ const BeforeYouBegin = () => {
           <img
             src="/student.webp"
             alt=""
-            className="h-[100px] w-1/8 opacity-90 shadow-md"
+            className="h-[100px] w-1/8 opacity-90 "
           />
           <div className="flex flex-col gap-2">
             <span className="text-2xl font-semibold">University Enrollment</span>
@@ -44,7 +44,7 @@ const BeforeYouBegin = () => {
           <img
             src="/food-safety.webp"
             alt=""
-            className="h-[100px] w-1/8 opacity-90 shadow-md"
+            className="h-[100px] w-1/8 opacity-90 "
           />
           <div className="flex flex-col gap-2">
             <span className="text-2xl font-semibold">Food Quality and Safety</span>
@@ -60,7 +60,7 @@ const BeforeYouBegin = () => {
           <img
             src="/price.png"
             alt=""
-            className="h-[100px] w-1/8 opacity-90 shadow-md"
+            className="h-[100px] w-1/8 opacity-90 "
           />
           <div className="flex flex-col gap-2">
             <span className="text-2xl font-semibold">Pricing Guidelines</span>
@@ -76,7 +76,7 @@ const BeforeYouBegin = () => {
           <img
             src="/delivery.jpg"
             alt=""
-            className="h-[100px] w-1/8 opacity-90 shadow-md"
+            className="h-[100px] w-1/8 opacity-90 "
           />
           <div className="flex flex-col gap-2">
             <span className="text-2xl font-semibold">
@@ -107,7 +107,7 @@ const BeforeYouBegin = () => {
 
        
 
-        <div className="diff aspect-[16/9]">
+        <div className="diff aspect-[16/9] mt-10">
   <div className="diff-item-1">
     <div
       style={{
@@ -136,7 +136,7 @@ const BeforeYouBegin = () => {
     }}
     className="diff-item-2"
   >
-    <div className="bg-base-200 bg-opacity-10 grid place-content-center text-9xl font-black">
+    <div className="bg-base-200 bg-opacity-10 grid place-content-center text-9xl font-black ">
       Menu <div className="flex flex-col gap-4 ">
         <span className="text-7xl text-white">Comliance</span>
         <span className="text-xl text-primary-content w-1/2">Agreement to adhere to the platform’s healthy food criteria (e.g., use of fresh ingredients, limited use of sugar, low-fat cooking methods).</span>

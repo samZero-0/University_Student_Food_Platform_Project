@@ -11,11 +11,15 @@ import States from './components/states/States'
 import WhyTryUs from './components/HowItWorks/WhyTryUs'
 import Testimonials from './components/HowItWorks/Testimonials'
 import Footer from './components/HowItWorks/Footer'
+import { useEffect } from 'react'
 
 
 
 function App() {
-
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Navbar/>

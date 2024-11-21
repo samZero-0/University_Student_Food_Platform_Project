@@ -13,7 +13,7 @@ const Navbar = () => {
             <div className="navbar">
                 <div className="navbar-start">
                     <img src="/logo-main.png" alt="" className='w-[60px] h-[40px] hidden md:block ' />
-                    <a className="btn btn-ghost text-xl">PlateMate</a>
+                    <Link to='/' className="btn btn-ghost text-xl">PlateMate</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
