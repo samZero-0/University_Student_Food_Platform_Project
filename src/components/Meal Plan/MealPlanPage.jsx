@@ -41,9 +41,9 @@ export default function MealPlanner() {
 
             <div className="flex  flex-col items-center my-5">
               <h1 className="font-semibold text-2xl">Create Your Meal Plan</h1>
-              <h1 className="font-light text-base w-1/3 text-center my-5">Personalize and elevate your daily dietary routines for a healthier, more balanced lifestyle</h1>
+              <h1 className="font-light text-base lg:w-1/3 text-center my-5">Personalize and elevate your daily dietary routines for a healthier, more balanced lifestyle</h1>
 
-              <div className="grid grid-cols-3 gap-6 w-full text-center">
+              <div className="grid md:grid-cols-3 gap-6 w-full text-center">
                 {
                  meals.map((meal,index) => <CreateMealCard key={index} meal={meal}></CreateMealCard>)
                 }
@@ -63,7 +63,7 @@ export default function MealPlanner() {
         <div className="card-body">
           <h2 className="card-title">Weekly Meal Planner</h2>
           <p>Plan your meals for the entire week</p>
-          <div className="grid grid-cols-7 gap-4 ">
+          <div className="grid md:grid-cols-7 gap-4 ">
             {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
               <div key={day} className="space-y-2 ">
                 <h3 className="font-semibold text-center">{day}</h3>
@@ -84,44 +84,49 @@ export default function MealPlanner() {
         <div className="card-body text-center">
           <h2 className="card text-3xl font-bold my-5 ">Recipe Suggestions</h2>
           <p className="my-3">Explore new recipes for your meal plan</p>
-          <Marquee pauseOnHover={true} speed={100}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            {[
-              { name: "Grilled Chicken Salad", image: "https://i.ibb.co.com/12pX328/grilled-chicken.jpg" },
-              { name: "Fish Curry", image: "https://i.ibb.co.com/zSLF0TT/fish-currry.jpg" },
-              { name: "Pancakes", image: "https://i.ibb.co.com/M28NHdn/pancake.jpg" },
-            ].map((recipe) => (
-              <div key={recipe.name} className="card bg-base-200 cursor-pointer">
-                <figure><img src={recipe.image} alt={recipe.name} className="w-full h-[250px] object-cover" /></figure>
-                <div className="card-body p-2">
-                  <p className="text-sm font-medium">{recipe.name}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          </Marquee>
+          <Marquee pauseOnHover={true} speed={200} className="w-full">
+  <div className="flex gap-4">
+    {[
+      { name: "Grilled Chicken Salad", image: "https://i.ibb.co/12pX328/grilled-chicken.jpg" },
+      { name: "Fish Curry", image: "https://i.ibb.co/zSLF0TT/fish-currry.jpg" },
+      { name: "Pancakes", image: "https://i.ibb.co/M28NHdn/pancake.jpg" },
+    ].map((recipe) => (
+      <div key={recipe.name} className="card bg-base-200 cursor-pointer w-full">
+        <figure>
+          <img src={recipe.image} alt={recipe.name} className="w-full h-[250px] object-cover" />
+        </figure>
+        <div className="card-body p-2">
+          <p className="text-sm font-medium">{recipe.name}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</Marquee>
+
         </div>
         
       </div>
 
       {/* Nutritional Information */}
       <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title">Nutritional Information</h2>
-          <p>Track your daily nutritional intake</p>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={nutritionData}>
-              <XAxis dataKey="day" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="calories" fill="#8884d8" />
-              <Bar dataKey="protein" fill="#82ca9d" />
-              <Bar dataKey="carbs" fill="#ffc658" />
-              <Bar dataKey="fat" fill="#ff8042" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+      <div className="card-body">
+  <h2 className="card-title">Nutritional Information</h2>
+  <p>Track your daily nutritional intake</p>
+  <div className="w-full h-[200px] md:h-[300px]">
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={nutritionData}>
+        <XAxis dataKey="day" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="calories" fill="#8884d8" />
+        <Bar dataKey="protein" fill="#82ca9d" />
+        <Bar dataKey="carbs" fill="#ffc658" />
+        <Bar dataKey="fat" fill="#ff8042" />
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+</div>
+
       </div>
 
      
