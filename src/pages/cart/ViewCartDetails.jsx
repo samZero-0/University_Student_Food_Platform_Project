@@ -203,16 +203,9 @@ const ViewCartDetails = () => {
             {/* Payment Options */}
             <h3 className="text-lg font-medium mt-6 px-6">Do You Want to Pay Now?</h3>
             <div className="mt-2 px-6 flex gap-4">
-<<<<<<< HEAD
-              <Link className="btn btn-outline btn-error w-1/2" to='/bkash'>
-              <button className="flex items-center gap-2"> 
-                <img src="/BKash.png" className="h-[30px] w-[30px] "></img>
-              Pay with bKash</button>
-              </Link>
-              <Link className="btn btn-outline w-1/2" to='/card'>
-              <button className="flex gap-2 items-center" ><CiCreditCard2 className="text-xl" />Pay with Card</button>
-              </Link>
-=======
+
+              
+
               <button
                 className="btn btn-outline btn-error w-1/2 flex items-center gap-2"
                 onClick={() => openModal("bKash")}
@@ -226,10 +219,7 @@ const ViewCartDetails = () => {
               >
                 <CiCreditCard2 className="md:text-xl text-sm" />
                 Pay with Card
-              </button>
-
->>>>>>> 5851363efab841ba0a188841f0d8faa1c3be69be
-              {/* have to remove this button in future when auth is implemented adn add this it into guest user only */}
+              </button>              {/* have to remove this button in future when auth is implemented adn add this it into guest user only */}
 
             </div>
 
