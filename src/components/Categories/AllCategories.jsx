@@ -81,8 +81,9 @@ const AllCategories = () => {
         </div>
       ) : (
         <>
-          <h1 className="text-3xl font-bold mt-10">{selectedCategory}</h1>
-          <div className="flex flex-col  items-center ">
+        <div className="flex flex-col  items-center ">
+          <h1 className="text-3xl font-bold mt-10 mb-10">{selectedCategory}</h1>
+          
           <div className="grid md:grid-cols-4 grid-cols-1 gap-10 mt-5 motion-scale-in-[0.48] motion-translate-x-in-[-50%] motion-translate-y-in-[-2%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-duration-[1.82s]/scale motion-duration-[1.58s]/translate motion-delay-[0.06s]/translate motion-duration-[1.52s]/opacity motion-duration-[1.24s]/blur motion-delay-[0.06s]/blur motion-ease-spring-snappy">
             {filteredFoods.map((food, idx) => (
               <Category key={idx} food={food} />

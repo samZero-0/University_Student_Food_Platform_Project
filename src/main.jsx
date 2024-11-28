@@ -22,6 +22,12 @@ import ViewCartDetails from './pages/cart/ViewCartDetails.jsx';
 import CheckoutPage from './pages/CheckoutForm.jsx';
 import BkashPayment from './pages/bkashPayment.jsx';
 import CardPayment from './pages/cart/CardPayment.jsx';
+import UserProfile from './pages/profile/UserProfile.jsx';
+import ProfileLayout from './layouts/ProfileLayout.jsx';
+import Notification from './components/ProfileComponents/Notification.jsx';
+import Settings from './components/ProfileComponents/Settings.jsx';
+import OrderHistory from './components/OrderHistory/OrderHistory.jsx';
+import ContactPage from './components/Contact US/ContactPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -119,6 +125,32 @@ const router = createBrowserRouter([
     element: <CookLayout />,
     children: [
       { path: '', element: <MealDetails /> },
+    ],
+  },
+  {
+    
+    path: '/orderHistory',
+    element: <CookLayout />,
+    children: [
+      { path: '', element: <OrderHistory /> },
+    ],
+  },
+  {
+    
+    path: '/contact',
+    element: <CookLayout />,
+    children: [
+      { path: '', element: <ContactPage /> },
+    ],
+  },
+  {
+    
+    path: '/profile',
+    element: <ProfileLayout />,
+    children: [
+      { path: '', element: <UserProfile></UserProfile>},
+      {path: '/profile/notification', element: <Notification></Notification>},
+      {path: '/profile/settings', element: <Settings></Settings>},
     ],
   },
 ]);

@@ -83,21 +83,21 @@ const Navbar = () => {
                                     tabIndex={0}
                                     className="menu  dropdown-content bg-base-200 rounded-box z-[1] mt-2  w-52 p-2 shadow">
                                     <li>
-                                        <a>
+                                        <Link to='/profile'>
                                             <FaUserAlt className="mr-2" />
                                             Profile
-                                        </a>
+                                            </Link>
                                     </li>
                                     
                                     <li><a><FaHome className="mr-2" />Cook Dashboard</a></li>
-                                    <li><a><FaBell className="mr-2" />Notification</a></li>
+                                    <li><Link to='/profile/notification'><FaBell className="mr-2" />Notification</Link></li>
                                     <li><a><FaTag className="mr-2" />Discount&Promo</a></li>
-                                    <li><a><FaShoppingCart className="mr-2" />MyOrders</a></li>
+                                    <li><Link to='/orderHistory'><FaShoppingCart className="mr-2" />MyOrders</Link></li>
                                     <li><a><FaHistory className="mr-2" />Payment History</a></li>
-                                    <li><a><FaCog className="mr-2" />Settings</a></li>
-                                    <li><a><FaPhone className="mr-2" />Contact Us</a></li>
-                                    <li><a><FaSmile className="mr-2" />Feedback</a></li>
-                                    <li><a><FaFileSignature className="mr-2" />Terms & Conditions</a></li>
+                                    <li><Link to='/profile/settings'><FaCog className="mr-2" />Settings</Link></li>
+                                    <li><Link to='/contact'><FaPhone className="mr-2" />Contact Us</Link></li>
+                                    {/* <li><a><FaSmile className="mr-2" />Feedback</a></li>
+                                    <li><a><FaFileSignature className="mr-2" />Terms & Conditions</a></li> */}
                                     <li><a><FaSignOutAlt className="mr-2" />Logout</a></li>
                                 </ul>
                             </div>
