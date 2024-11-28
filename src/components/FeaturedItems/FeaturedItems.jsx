@@ -3,7 +3,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const FeaturedItems = () => {
   return (
-    <div className="md:w-10/12 lg:w-8/12 mx-auto mt-20 mb-5">
+    <div className="md:w-10/12 lg:w-8/12 mx-auto mt-20 mb-5 p-3 md:p-0">
       <div className="flex flex-col items-center">
         <span className="text-4xl font-bold mt-10 mb-5">Featured Items</span>
         <span className="text-gray-500 mb-8 text-center w-10/12">
@@ -20,7 +20,7 @@ const FeaturedItems = () => {
         interval={3000}
         className="max-w-full"
       >
-        <div className="relative h-[400px] md:h-[450px] overflow-hidden rounded-lg">
+        <div className="relative h-[360px] md:h-[450px] overflow-hidden rounded-lg ">
           <img src="/slide-1.jpg" className="w-full h-full object-cover" alt="Breakfast" />
           <div className="absolute bottom-5 left-5 text-white">
             <span className="text-2xl font-semibold">Breakfast</span>

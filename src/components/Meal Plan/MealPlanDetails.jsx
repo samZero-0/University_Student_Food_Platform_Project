@@ -35,26 +35,26 @@ const MealPlanDetails = () => {
                         <span className="text-xl font-bold">Recommendations: </span>
                     </div>
 
-                    <div className="my-5">
-                        <table className="table-auto w-full border border-gray-300">
+                    <div className="my-5 overflow-x-auto h-[350px]">
+                        <table className="table-auto w-full border border-gray-300 text-sm sm:text-base">
                             <thead>
                                 <tr>
-                                    <th className="px-4 py-2 border">Food Category</th>
-                                    <th className="px-4 py-2 border">Examples</th>
-                                    <th className="px-4 py-2 border">Benefits</th>
+                                    <th className="px-2 sm:px-4 py-1 sm:py-2 border w-1/4">Food Category</th>
+                                    <th className="px-2 sm:px-4 py-1 sm:py-2 border w-1/4">Examples</th>
+                                    <th className="px-2 sm:px-4 py-1 sm:py-2 border w-1/2">Benefits</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {meals[0].foodSuggestion.recommendedFoods.map((food, index) => (
                                     <tr key={index} className="border">
-                                        <td className="px-4 py-2 border">{food.category}</td>
-                                        <td className="px-4 py-2 border">{food.examples.join(', ')}</td>
-                                        <td className="px-4 py-2 border">{food.benefits}</td>
+                                        <td className="px-2 sm:px-4 py-1 sm:py-2 border">{food.category}</td>
+                                        <td className="px-2 sm:px-4 py-1 sm:py-2 border">{food.examples.join(', ')}</td>
+                                        <td className="px-2 sm:px-4 py-1 sm:py-2 border">{food.benefits}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                    </div>
+</div>
 
                     <div className="w-full my-10">
                         <h1 className="text-xl font-semibold">You can try these items...</h1>

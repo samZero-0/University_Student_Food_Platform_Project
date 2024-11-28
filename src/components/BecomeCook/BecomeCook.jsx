@@ -3,7 +3,7 @@ import GreenButton from "../hero/GreenButton";
 
 const BecomeCook = () => {
     return (
-        <div className="md:w-11/12 md:mx-auto mt-28 mb-5">
+        <div className="md:w-11/12 md:mx-auto mt-28 mb-5 p-2 mb:p-0 ">
 
             <div
                 style={{
@@ -12,6 +12,7 @@ const BecomeCook = () => {
                     backgroundPosition: 'center',
                     height: '600px',
                     position: 'relative',
+                    
                     
                 }}
             >
@@ -23,11 +24,12 @@ const BecomeCook = () => {
                         left: 0,
                         width: '100%',
                         height: '100%',
+                        
                     }}
                 >
 
                    <span className="text-white text-4xl font-bold">Join With Us!</span>
-                   <span className=" text-gray-400">Share your love of Homecooked meals as a cook</span>
+                   <span className=" text-gray-400 text-center">Share your love of Homecooked meals as a cook</span>
                    <div className="border p-2 border-primary rounded-xl">
                    <NavLink to="/joinAsCook"><button className="bg-primary flex justify-center  item-center btn border-none rounded-xl font-bold">Register Now <GreenButton /> </button></NavLink> 
 

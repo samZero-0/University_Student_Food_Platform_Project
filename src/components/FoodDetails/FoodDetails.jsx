@@ -63,7 +63,7 @@ const FoodDetails = () => {
                     <ScaleLoader color="#a0e2ff" />
                 </div>
             ) : food ? (
-                <div className="bg-gray-100 h-[580px]  shadow-lg rounded-lg overflow-hidden flex lg:flex-row flex-col  ">
+                <div className="bg-gray-100 md:h-[580px]  shadow-lg rounded-lg overflow-hidden flex lg:flex-row flex-col  ">
                     <div className="w-full p-10  lg:w-1/2">
                         <img src={food.image} alt={food.foodName} className="object-cover rounded-2xl h-full w-full" data-aos="fade-right" />
                     </div>
@@ -108,9 +108,9 @@ const FoodDetails = () => {
 
                         <p><strong>Additional Info:</strong> {food.additionalInfo}</p>
 
-                        <div className="w-full my-5 flex gap-12 items-center">
-                        <Link to='/details/:foodId/viewcartdetails' onClick={()=>handleAddToCart(food)} className="btn bg-primary text-white px-4 py-2 rounded-md w-1/3 text-xl">Add to Cart</Link>
-                          <span className="text-green-500 text-2xl font-bold">{totalAmount} Tk.</span>
+                        <div className="w-full my-5 flex gap-3 md:gap-12 items-center ">
+                        <Link to='/details/:foodId/viewcartdetails' onClick={()=>handleAddToCart(food)} className="btn bg-primary text-white px-4 py-2 rounded-md   md:w-1/3 md:text-xl text-lg">Add to Cart</Link>
+                          <span className="text-green-500 text-lg md:text-2xl font-bold">{totalAmount} Tk.</span>
                         </div>
 
                     </div>

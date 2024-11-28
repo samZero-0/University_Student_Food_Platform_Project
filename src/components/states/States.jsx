@@ -27,10 +27,10 @@ const States = () => {
                 <h1 className='text-3xl font-bold' data-aos="fade-up">Stats </h1>
                 <p className='text-gray-500 mt-2' data-aos="fade-up">Explore the stats of PlateMate</p>
             </div>
-            <section className="mt-20 md:mb-10 mb-4 md:w-11/12 md:p-3 p-10 mx-auto md:flex md:justify-center gap-8">
+            <section className="md:mt-20 md:mb-10 mb-4 md:w-11/12 md:p-3 p-10 mx-auto md:flex md:justify-center gap-8">
 
                 {/* New Orders */}
-                <div className="bg-gray-50 shadow-lg p-6 mb-3 rounded-lg w-64" data-aos="fade-right">
+                <div className="bg-gray-50 shadow-lg p-6 mb-3 rounded-lg md:w-64" data-aos="fade-right">
                     <div className="flex items-center mb-4">
                         <div className="bg-green-100 p-3 rounded-full">
                             <FaBoxOpen className="text-green-500 text-3xl" />
@@ -49,7 +49,7 @@ const States = () => {
                 </div>
 
                 {/* New Customers */}
-                <div className="bg-gray-50 shadow-lg p-6 mb-3 rounded-lg w-64" data-aos="fade-up-right">
+                <div className="bg-gray-50 shadow-lg p-6 mb-3 rounded-lg md:w-64" data-aos="fade-up-right">
                     <div className="flex items-center mb-4">
                         <div className="bg-blue-100 p-3 rounded-full">
                             <FaUserPlus className="text-blue-500 text-3xl" />
@@ -68,7 +68,7 @@ const States = () => {
                 </div>
 
                 {/* Online Orders */}
-                <div className="bg-gray-50 shadow-lg p-6 mb-3 rounded-lg w-64" data-aos="fade-up-left">
+                <div className="bg-gray-50 shadow-lg p-6 mb-3 rounded-lg md:w-64" data-aos="fade-up-left">
                     <div className="flex items-center mb-4">
                         <div className="bg-orange-100 p-3 rounded-full">
                             <MdOutlineShoppingBag className="text-orange-500 text-3xl" />
@@ -87,7 +87,7 @@ const States = () => {
                 </div>
 
                 {/* Offline Orders */}
-                <div className="bg-gray-50 shadow-lg p-6 mb-3 rounded-lg w-64" data-aos="fade-left">
+                <div className="bg-gray-50 shadow-lg p-6 mb-3 rounded-lg md:w-64" data-aos="fade-left">
                     <div className="flex items-center mb-4">
                         <div className="bg-purple-100 p-3 rounded-full">
                             <PiShoppingCartSimpleDuotone className="text-purple-500 text-3xl" />
