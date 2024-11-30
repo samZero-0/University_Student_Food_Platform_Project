@@ -28,6 +28,7 @@ import Notification from './components/ProfileComponents/Notification.jsx';
 import Settings from './components/ProfileComponents/Settings.jsx';
 import OrderHistory from './components/OrderHistory/OrderHistory.jsx';
 import ContactPage from './components/Contact US/ContactPage.jsx';
+import AuthProvider from './contextApi/AuthProvider.jsx';
 
 
 const router = createBrowserRouter([
@@ -158,9 +159,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <AuthProvider>
     <ContexProvider>
       <RouterProvider router={router} >
       </RouterProvider>
     </ContexProvider>
+    </AuthProvider>
   </StrictMode>
 );

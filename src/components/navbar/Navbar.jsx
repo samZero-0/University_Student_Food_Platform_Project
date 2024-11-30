@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
 import { MdOutlineFastfood } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
-import { FaBell, FaCog, FaFileSignature, FaHistory, FaHome, FaPhone, FaShoppingCart, FaSignOutAlt, FaSmile, FaTag, FaUserAlt } from "react-icons/fa";
-// import { AiOutlineLogin } from "react-icons/ai";
+import { FaBell, FaCog, FaFileSignature, FaHistory, FaHome, FaPhone, FaShoppingCart, FaSignOutAlt, FaSmile, FaTag, FaUserAlt, } from "react-icons/fa";
+import { AiOutlineLogin } from "react-icons/ai";
+import { AuthContext } from "../../contextApi/AuthProvider";
 
 const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);
-
+    const {user,logOut} = useContext(AuthContext);
+    
     return (
         <section className="sticky top-0 z-50 bg-white backdrop-blur-md bg-white/60">
             <section className="md:w-11/12 md:mx-auto">
@@ -37,9 +39,22 @@ const Navbar = () => {
                         <NavLink to="/categories" className="btn btn-ghost mr-5 hidden lg:flex">
                             <MdOutlineFastfood className="text-lg" /> Categories
                         </NavLink>
+
+
                         {/* <NavLink to='/login' className="btn bg-[#a0e2ff] hidden lg:flex"><AiOutlineLogin className="text-xl" />Login/Signup</NavLink> */}
+
+                        {user && user.email? (
+                   ''
+                ) : (
+                    <NavLink to='/login' className="btn bg-[#a0e2ff] hidden lg:flex"><AiOutlineLogin className="text-xl" />Login/Signup</NavLink>
+                )}
+
+
+
                         {/* profile cart div */}
-                        <div className="flex space-x-2">
+
+                        {
+                            user && user.email? <div className="flex space-x-2">
                             <div className="dropdown dropdown-end">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                     <div className="indicator">
@@ -71,13 +86,15 @@ const Navbar = () => {
                                 </div>
                             </div>
                             <div className="dropdown dropdown-end">
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                
+                                
+                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
                                         <img
                                             alt="Tailwind CSS Navbar component"
-                                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                            src={user.photoURL} />
                                     </div>
-                                </div>
+                                </div> 
                                 
                                 <ul
                                     tabIndex={0}
@@ -98,10 +115,11 @@ const Navbar = () => {
                                     <li><Link to='/contact'><FaPhone className="mr-2" />Contact Us</Link></li>
                                     {/* <li><a><FaSmile className="mr-2" />Feedback</a></li>
                                     <li><a><FaFileSignature className="mr-2" />Terms & Conditions</a></li> */}
-                                    <li><a><FaSignOutAlt className="mr-2" />Logout</a></li>
+                                    <li><button onClick={logOut}><FaSignOutAlt className="mr-2" />Logout</button></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>:''
+                        }
 
 
 
