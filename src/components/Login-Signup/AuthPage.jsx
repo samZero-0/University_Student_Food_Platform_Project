@@ -6,6 +6,7 @@ import GLOBE from "vanta/dist/vanta.globe.min";
 import { AuthContext } from '../../contextApi/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import { toast, ToastContainer } from 'react-toastify';
+import { FaGoogle } from "react-icons/fa";
 
 const AuthPage = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -13,7 +14,7 @@ const AuthPage = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
-  const {createAccount,setUser,signIn} = useContext(AuthContext)
+  const {createAccount,setUser,signIn,googleSignin} = useContext(AuthContext)
 
   useEffect(() => {
     const birdsEffect = BIRDS({
@@ -78,6 +79,18 @@ const AuthPage = () => {
 
     
   };
+
+  const handleGoogleLogin =()=>{
+    googleSignin()
+      .then(res => {
+        navigate(location?.state ? location.state : "/");
+        toast("Login successful");
+        console.log(res.user);
+      })
+      .catch(err => {
+        toast.error("Login failed: " + err.message);
+      });
+  }
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -258,6 +271,11 @@ const AuthPage = () => {
               >
                 Login
               </button>
+
+              <div className='flex justify-center py-5'>
+              <button onClick={handleGoogleLogin} className='btn'><FaGoogle></FaGoogle>Log in with Google</button>
+              </div>
+
             </form>
           )}
 

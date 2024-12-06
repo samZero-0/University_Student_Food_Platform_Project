@@ -29,12 +29,15 @@ import Settings from './components/ProfileComponents/Settings.jsx';
 import OrderHistory from './components/OrderHistory/OrderHistory.jsx';
 import ContactPage from './components/Contact US/ContactPage.jsx';
 import AuthProvider from './contextApi/AuthProvider.jsx';
+import Dashboard from './pages/Admin/Dashboard.jsx';
+import DashboardLayout from './layouts/DashboardLayout.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    
     children: [],
   },
   {
@@ -142,6 +145,14 @@ const router = createBrowserRouter([
     element: <CookLayout />,
     children: [
       { path: '', element: <ContactPage /> },
+    ],
+  },
+  {
+    
+    path: '/admin',
+    element: <DashboardLayout />,
+    children: [
+      { path: '', element:<Dashboard></Dashboard> },
     ],
   },
   {

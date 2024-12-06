@@ -9,12 +9,14 @@ import { MdOutlineDeliveryDining } from "react-icons/md";
 import { Context } from "../../contextApi/Context";
 import BkashPayment from "../bkashPayment";
 import CardPayment from "./CardPayment";
+import { AuthContext } from "../../contextApi/AuthProvider";
 
 
 const ViewCartDetails = () => {
   const { carts, quantity, setSubtotal, setShipmentTotal } = useContext(Context);
   const [isModalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState(null);
+  const {user} = useContext(AuthContext);
 
   const openModal = (method) => {
     setModalContent(method);
@@ -202,31 +204,35 @@ const ViewCartDetails = () => {
 
             {/* Payment Options */}
             <h3 className="text-lg font-medium mt-6 px-6">Do You Want to Pay Now?</h3>
-            <div className="mt-2 px-6 flex gap-4">
+
+
+           {
+             user && user.email?  <div className="mt-2 px-6 flex gap-4">
 
               
 
-              <button
-                className="btn btn-outline btn-error w-1/2 flex items-center gap-2"
-                onClick={() => openModal("bKash")}
-              >
-                <img src="/BKash.png" className="md:h-[30px] h-[12px] md:w-[30px] w-[12px] inline-block" alt="bKash" />
-                <p>Pay with bKash</p>
-              </button>
-              <button
-                className="btn btn-outline w-1/2 flex gap-2 items-center"
-                onClick={() => openModal("Card")}
-              >
-                <CiCreditCard2 className="md:text-xl text-sm" />
-                Pay with Card
-              </button>              {/* have to remove this button in future when auth is implemented adn add this it into guest user only */}
+             <button
+               className="btn btn-outline btn-error w-1/2 flex items-center gap-2"
+               onClick={() => openModal("bKash")}
+             >
+               <img src="/BKash.png" className="md:h-[30px] h-[12px] md:w-[30px] w-[12px] inline-block" alt="bKash" />
+               <p>Pay with bKash</p>
+             </button>
+             <button
+               className="btn btn-outline w-1/2 flex gap-2 items-center"
+               onClick={() => openModal("Card")}
+             >
+               <CiCreditCard2 className="md:text-xl text-sm" />
+               Pay with Card
+             </button>             
 
-            </div>
+           </div>
 
-            <div className="py-5 ml-5 w-11/12">
-              <Link to='/checkout'>
-                <button className="btn btn-outline w-full ">Checkout</button></Link>
-            </div>
+            : <div className="py-5 ml-5 w-11/12">
+            <Link to='/checkout'>
+              <button className="btn btn-outline w-full ">Checkout</button></Link>
+          </div>
+           }
 
             <div className="text-center mt-4 p-6">
               <button className="btn btn-outline btn-accent w-full">Cancel Shipment</button>
