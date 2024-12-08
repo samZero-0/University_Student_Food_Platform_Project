@@ -33,6 +33,7 @@ import Dashboard from './pages/Admin/Dashboard.jsx';
 import DashboardLayout from './layouts/DashboardLayout.jsx';
 import AdminUserManagement from './pages/Admin/AdminUserManagement.jsx';
 import AdminOrderManagement from './pages/Admin/AdminOrderManagement.jsx';
+import AddCategories from './pages/Admin/AddCategories.jsx';
 
 
 const router = createBrowserRouter([
@@ -157,6 +158,7 @@ const router = createBrowserRouter([
       { path: '', element:<Dashboard></Dashboard> },
       { path: 'users', element:<AdminUserManagement></AdminUserManagement> },
       { path: 'orders', element:<AdminOrderManagement></AdminOrderManagement>},
+      { path: 'addCategories', element:<AddCategories></AddCategories>},
     ],
   },
   {

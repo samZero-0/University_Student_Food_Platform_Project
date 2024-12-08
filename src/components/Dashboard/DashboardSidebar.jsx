@@ -28,17 +28,17 @@ const DashboardSidebar = () => {
           <SidebarItem icon={FaHome} text="Dashboard" active={true} />
           <Link to='/admin/users'><SidebarItem icon={FaUsers} text="Users" /></Link>
           <Link to='/admin/orders'><SidebarItem icon={FaShoppingCart} text="Orders" /></Link>
-          <SidebarItem icon={FaUtensils} text="Restaurants" />
-          <SidebarItem icon={FaChartBar} text="Analytics" />
+          <Link to='/admin/addCategories'>  <SidebarItem icon={FaUtensils} text="Add Categories" /></Link>
+          <Link to='/admin/applications'><SidebarItem icon={FaChartBar} text="Applications" /></Link>
           <SidebarItem icon={FaCog} text="Settings" />
         </ul>
       </nav>
-      <div className="p-4 border-t border-gray-200">
+     <Link to='/'> <div className="p-4 border-t border-gray-200">
         <button className="flex items-center text-red-500 hover:text-red-600 transition-colors">
           <FaSignOutAlt className="w-5 h-5 mr-3" />
           <span className="font-medium">Logout</span>
         </button>
-      </div>
+      </div></Link>
     </div>
   );
 };
