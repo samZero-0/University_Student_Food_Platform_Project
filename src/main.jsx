@@ -31,6 +31,8 @@ import ContactPage from './components/Contact US/ContactPage.jsx';
 import AuthProvider from './contextApi/AuthProvider.jsx';
 import Dashboard from './pages/Admin/Dashboard.jsx';
 import DashboardLayout from './layouts/DashboardLayout.jsx';
+import AdminUserManagement from './pages/Admin/AdminUserManagement.jsx';
+import AdminOrderManagement from './pages/Admin/AdminOrderManagement.jsx';
 
 
 const router = createBrowserRouter([
@@ -153,6 +155,8 @@ const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       { path: '', element:<Dashboard></Dashboard> },
+      { path: 'users', element:<AdminUserManagement></AdminUserManagement> },
+      { path: 'orders', element:<AdminOrderManagement></AdminOrderManagement>},
     ],
   },
   {

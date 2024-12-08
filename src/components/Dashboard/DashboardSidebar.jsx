@@ -8,6 +8,7 @@ import {
   FaCog, 
   FaSignOutAlt 
 } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const SidebarItem = ({ icon: Icon, text, active }) => (
   <li className={`flex items-center p-2 rounded-lg cursor-pointer transition-colors ${active ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
@@ -25,8 +26,8 @@ const DashboardSidebar = () => {
       <nav className="flex-grow p-4">
         <ul className="space-y-2">
           <SidebarItem icon={FaHome} text="Dashboard" active={true} />
-          <SidebarItem icon={FaUsers} text="Users" />
-          <SidebarItem icon={FaShoppingCart} text="Orders" />
+          <Link to='/admin/users'><SidebarItem icon={FaUsers} text="Users" /></Link>
+          <Link to='/admin/orders'><SidebarItem icon={FaShoppingCart} text="Orders" /></Link>
           <SidebarItem icon={FaUtensils} text="Restaurants" />
           <SidebarItem icon={FaChartBar} text="Analytics" />
           <SidebarItem icon={FaCog} text="Settings" />
