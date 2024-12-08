@@ -1,5 +1,5 @@
 import { Link, Navigate, NavLink } from "react-router-dom";
-import GreenButton from "../hero/GreenButton";
+import GreenButton from "../../hero/GreenButton";
 
 const BecomeCook = () => {
     return (

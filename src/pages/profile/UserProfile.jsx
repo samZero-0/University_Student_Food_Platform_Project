@@ -1,6 +1,6 @@
 import { Camera, ChevronDown } from 'lucide-react';
 import { useContext, useState } from 'react';
-import { AuthContext } from '../../contextApi/AuthProvider';
+import { AuthContext } from '../../provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import { toast, ToastContainer } from 'react-toastify';
 

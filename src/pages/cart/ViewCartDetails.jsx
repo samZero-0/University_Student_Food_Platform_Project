@@ -6,10 +6,10 @@ import { FaCheckCircle } from "react-icons/fa";
 import { FiCheck } from "react-icons/fi";
 import { BiDish } from "react-icons/bi";
 import { MdOutlineDeliveryDining } from "react-icons/md";
-import { Context } from "../../contextApi/Context";
+import { Context } from "../../provider/Context";
 import BkashPayment from "../bkashPayment";
 import CardPayment from "./CardPayment";
-import { AuthContext } from "../../contextApi/AuthProvider";
+import { AuthContext } from "../../provider/AuthProvider";
 
 
 const ViewCartDetails = () => {

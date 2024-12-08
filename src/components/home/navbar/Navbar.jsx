@@ -4,7 +4,7 @@ import { MdOutlineFastfood } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import { FaBell, FaCog, FaFileSignature, FaHistory, FaHome, FaPhone, FaShoppingCart, FaSignOutAlt, FaSmile, FaTag, FaUserAlt, } from "react-icons/fa";
 import { AiOutlineLogin } from "react-icons/ai";
-import { AuthContext } from "../../contextApi/AuthProvider";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);

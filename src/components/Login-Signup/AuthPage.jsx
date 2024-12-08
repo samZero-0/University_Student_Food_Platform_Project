@@ -3,7 +3,7 @@ import { FaUserAlt, FaLock, FaEnvelope } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import BIRDS from "vanta/dist/vanta.birds.min";
 import GLOBE from "vanta/dist/vanta.globe.min";
-import { AuthContext } from '../../contextApi/AuthProvider';
+import { AuthContext } from '../../provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import { toast, ToastContainer } from 'react-toastify';
 import { FaGoogle } from "react-icons/fa";

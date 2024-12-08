@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { GiPhone } from "react-icons/gi";
-import { Context } from "../contextApi/Context";
+import { Context } from "../provider/Context";
 import PropTypes from "prop-types";
 const BkashPayment = ({ closeModal }) => {
     const { shipmentTotal } = useContext(Context);

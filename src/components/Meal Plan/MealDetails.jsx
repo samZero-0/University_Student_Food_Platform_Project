@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import ScaleLoader from "react-spinners/ScaleLoader";
-import { Context } from "../../contextApi/Context";
+import { Context } from "../../provider/Context";
 
 const MealDetails = () => {
     const { mealId } = useParams();

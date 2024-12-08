@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useState } from "react"
 import { FaCreditCard,  FaTruck } from "react-icons/fa"
-import { Context } from "../contextApi/Context";
+import { Context } from "../provider/Context";
 import { Link } from "react-router-dom";
 
 export default function CheckoutPage() {
