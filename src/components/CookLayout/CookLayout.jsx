@@ -1,8 +1,9 @@
 
 // import Footer from '../HowItWorks/Footer';
 import { useEffect } from 'react';
-import Navbar from '../navbar/Navbar';
+
 import { Outlet } from 'react-router-dom';
+import Navbar from '../home/navbar/Navbar';
 
 const CookLayout = () => {
 

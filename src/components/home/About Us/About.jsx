@@ -1,6 +1,6 @@
 
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import GreenButton from "../../hero/GreenButton";
+import GreenButton from "../../home/hero/GreenButton";
 // import GreenButton from "../hero/GreenButton";
 import Aos from "aos";
 import 'aos/dist/aos.css'

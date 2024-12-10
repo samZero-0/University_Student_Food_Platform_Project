@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import Navbar from "../components/navbar/Navbar";
+import Navbar from "../components/home/navbar/Navbar";
 
 const ProfileLayout = () => {
     return (
