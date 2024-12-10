@@ -49,8 +49,17 @@ async function run() {
         });
 
         app.post('/orders', async (req, res) => {
+            
             const order = req.body;  
             const result = await orderCollection.insertOne(order);
+            res.send(result);
+        });
+
+        app.get('/orders/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = {userEmail: `${email}`}
+            const cursor = orderCollection.find(query);
+            const result = await cursor.toArray();
             res.send(result);
         });
 

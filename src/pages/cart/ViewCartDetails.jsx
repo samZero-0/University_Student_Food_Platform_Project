@@ -13,9 +13,9 @@ import { AuthContext } from "../../provider/AuthProvider";
 
 
 const ViewCartDetails = () => {
-  const { carts, quantity, setSubtotal, setShipmentTotal, } = useContext(Context);
-  const [isModalVisible, setModalVisible] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
+  const { carts, quantity, setSubtotal, setShipmentTotal,setModalContent,setModalVisible, isModalVisible, modalContent } = useContext(Context);
+  // const [isModalVisible, setModalVisible] = useState(false);
+  // const [modalContent, setModalContent] = useState(null);
   const {user} = useContext(AuthContext);
 
   const openModal = (method) => {

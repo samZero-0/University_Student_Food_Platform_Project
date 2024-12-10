@@ -7,6 +7,8 @@ import { useEffect } from 'react'
 
 
 const ContexProvider = ({children}) => {
+
+
     useEffect(() => {
         AOS.init({
           duration: 1000,  
@@ -23,7 +25,10 @@ const ContexProvider = ({children}) => {
     const [quantity, setQuantity] = useState(1);
     const [subtotal,setSubtotal] =useState(0);
     const [shipmentTotal,setShipmentTotal] =useState(0);
-
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [modalContent, setModalContent] = useState(null);
+    
+    
     const checkoutComplete = (user) => {
       console.log('Preparing to submit order...');
       setTimeout(() => {
@@ -46,7 +51,9 @@ const ContexProvider = ({children}) => {
           };
 
           console.log('Processed Data:', datas);
-
+          setModalVisible(false);
+          setModalContent(null);
+         
           fetch('https://platematebackend.vercel.app/orders', {
               method: "POST",
               headers: {
@@ -57,11 +64,15 @@ const ContexProvider = ({children}) => {
               .then((res) => res.json())
               .then((data) => {
                   console.log('Order submission response:', data);
+                  
               })
               .catch((err) => {
                   console.error('Error submitting order:', err);
               });
       }, 1000); // Add a 1-second delay
+
+      
+      
   };
     
 
@@ -76,6 +87,12 @@ const ContexProvider = ({children}) => {
         shipmentTotal,
         setShipmentTotal,
         checkoutComplete,
+        isModalVisible,
+        setModalVisible,
+        modalContent,
+        setModalContent
+
+
     };
 
     return (

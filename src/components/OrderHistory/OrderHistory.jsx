@@ -1,12 +1,25 @@
-import { BsThreeDots, BsStar } from 'react-icons/bs'
-import { IoMdClose } from 'react-icons/io'
-import { FaChevronDown } from 'react-icons/fa'
+import { BsThreeDots, BsStar } from 'react-icons/bs';
+import ReactStars from "react-rating-stars-component";
+import { FaChevronDown } from 'react-icons/fa';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { AuthContext } from "../../provider/AuthProvider";
 
 export default function OrderHistory() {
+  const { user } = useContext(AuthContext);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios.get(`https://platematebackend.vercel.app/orders/${user?.email}`)
+      .then((response) => {
+        setOrders(response.data);
+      });
+  }, [user]);
+
   return (
     <div className="max-w-4xl mx-auto p-6 font-sans">
       <h1 className="text-xl font-medium mb-6">
-        Your Orders <span className="bg-gray-100 px-2 py-1 rounded-full text-sm">1</span>
+        Your Orders <span className="bg-gray-100 px-2 py-1 rounded-full text-sm">{orders.length}</span>
       </h1>
 
       <div className="flex items-center justify-between mb-6">
@@ -16,73 +29,66 @@ export default function OrderHistory() {
           <button className="px-4 py-2 text-gray-600">Cancelled Orders</button>
         </div>
         <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg">
-          Past 3 Month
+          Past 3 Months
           <FaChevronDown className="text-sm" />
         </button>
       </div>
 
-      <div className="border rounded-lg p-6 space-y-6">
-        <div className="flex justify-between">
-          <div className="grid gap-1">
-            <div className="text-sm text-gray-600">Order placed</div>
-            <div>November 25, 2024</div>
-          </div>
-          <div className="grid gap-1">
-            <div className="text-sm text-gray-600">Total</div>
-            <div>150Tk</div>
-          </div>
-          <div className="grid gap-1">
-            <div className="text-sm text-gray-600">Ship to</div>
-            <div>Jane Smith</div>
-          </div>
-          <div className="grid gap-1 text-right">
-            <div className="text-sm text-gray-600">Order # 112-0822160-5390023</div>
-            <div className="space-x-4">
-              <button className="text-green-700 hover:underline">View order details</button>
-              <button className="text-green-700 hover:underline">View invoice</button>
+      {orders.map((order) => (
+        <div key={order._id} className="border rounded-lg p-6 space-y-6">
+          <div className="flex justify-between">
+            <div className="grid gap-1">
+              <div className="text-sm text-gray-600">Order placed</div>
+              <div>{new Date(order.orderDate).toLocaleDateString()}</div>
+            </div>
+            <div className="grid gap-1">
+              <div className="text-sm text-gray-600">Total</div>
+              <div>{order.shipmentTotal} Tk</div>
+            </div>
+            <div className="grid gap-1 text-right">
+              <div className="text-sm text-gray-600">Order ID</div>
+              <div>{order._id}</div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-yellow-50 border border-yellow-100 p-4 flex items-start">
-          <BsStar className="text-lg mt-1" />
-          <div className="ml-2">Please rate your experience with the seller</div>
-          <button className="ml-auto">
-            <IoMdClose className="text-lg" />
-          </button>
-        </div>
+          {order.items.map((item, index) => (
+            <div key={index} className="flex items-start gap-4 pt-4">
+              <img 
+                src={item.image} 
+                alt={item.foodName} 
+                className="w-24 h-24 object-cover rounded-lg"
+              />
+              <div className="flex-1">
+                <h3 className="font-medium mb-2">{item.foodName}</h3>
+                <div className="text-sm text-gray-600 mb-4">{item.price} Tk</div>
+                <div className="text-sm text-gray-600 mb-4">Quantity: {item.quantity}</div>
+                <div className="flex gap-2">
+                  <button className="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800">
+                    Buy it again
+                  </button>
 
-     
+                <div className='flex flex-col ml-5'>
+                  <span>Rate Your Experience</span>
 
-        <div className="flex items-start gap-4 pt-4">
-          <img 
-            src="https://i.ibb.co.com/twG8hmm/biryani.jpg" 
-            alt="Samsung 980 PRO SSD" 
-            className="w-24 h-24 object-cover rounded-lg"
-          />
-          <div className="flex-1">
-            <h3 className="font-medium mb-2">
-             Biryani
-            </h3>
-            <div className="text-sm text-gray-600 mb-4">
-              150 TK.
+                  <ReactStars
+    count={5}
+    // onChange={}
+    size={24}
+    activeColor="#ffd700"
+
+  />
+
+                </div>
+
+                  
+
+
+                </div>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <button className="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800">
-                Buy it again
-              </button>
-             
-              <button className="px-4 py-2 border rounded-lg hover:bg-gray-50">
-                Track package
-              </button>
-              <button className="p-2 border rounded-lg hover:bg-gray-50">
-                <BsThreeDots />
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
-      </div>
+      ))}
     </div>
-  )
+  );
 }
-

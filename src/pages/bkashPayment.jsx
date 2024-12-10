@@ -3,13 +3,28 @@ import { GiPhone } from "react-icons/gi";
 import { Context } from "../provider/Context";
 import PropTypes from "prop-types";
 import { AuthContext } from "../../src/provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const BkashPayment = ({ closeModal }) => {
+    const navigate = useNavigate();
     const { shipmentTotal,checkoutComplete } = useContext(Context);
     const {user} = useContext(AuthContext);
     console.log(user)
+
+
+    const handleProceed = ()=>{
+        checkoutComplete(user);
+        toast.success("Order Successsful")
+        setTimeout(() => {
+            navigate('/categories'); // Navigate to the homepage
+        }, 1000);
+        
+    }
+
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center md:items-center items-end z-50">
+            <ToastContainer></ToastContainer>
             <div className="bg-[#E2136E] p-6 rounded-lg shadow-lg w-full max-w-md relative">
                 
                 {/* Close Button */}
@@ -51,7 +66,7 @@ const BkashPayment = ({ closeModal }) => {
 
                 {/* Buttons */}
                 <div className="flex gap-4 mt-6">
-                    <button onClick={()=>checkoutComplete(user) }   className="btn bg-transparent text-white w-full py-2 rounded-md border border-white hover:bg-white hover:text-[#E2136E]">
+                    <button onClick={()=>handleProceed(user)}    className="btn bg-transparent text-white w-full py-2 rounded-md border border-white hover:bg-white hover:text-[#E2136E]">
                         Proceed
                     </button>
                    
