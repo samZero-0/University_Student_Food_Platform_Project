@@ -2,9 +2,12 @@ import { useContext } from "react";
 import { GiPhone } from "react-icons/gi";
 import { Context } from "../provider/Context";
 import PropTypes from "prop-types";
-const BkashPayment = ({ closeModal }) => {
-    const { shipmentTotal } = useContext(Context);
+import { AuthContext } from "../../src/provider/AuthProvider";
 
+const BkashPayment = ({ closeModal }) => {
+    const { shipmentTotal,checkoutComplete } = useContext(Context);
+    const {user} = useContext(AuthContext);
+    console.log(user)
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center md:items-center items-end z-50">
             <div className="bg-[#E2136E] p-6 rounded-lg shadow-lg w-full max-w-md relative">
@@ -48,7 +51,7 @@ const BkashPayment = ({ closeModal }) => {
 
                 {/* Buttons */}
                 <div className="flex gap-4 mt-6">
-                    <button className="btn bg-transparent text-white w-full py-2 rounded-md border border-white hover:bg-white hover:text-[#E2136E]">
+                    <button onClick={()=>checkoutComplete(user) }   className="btn bg-transparent text-white w-full py-2 rounded-md border border-white hover:bg-white hover:text-[#E2136E]">
                         Proceed
                     </button>
                    

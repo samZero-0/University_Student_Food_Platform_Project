@@ -13,7 +13,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 
 
 const ViewCartDetails = () => {
-  const { carts, quantity, setSubtotal, setShipmentTotal } = useContext(Context);
+  const { carts, quantity, setSubtotal, setShipmentTotal, } = useContext(Context);
   const [isModalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const {user} = useContext(AuthContext);
@@ -42,6 +42,18 @@ const ViewCartDetails = () => {
 
   const shipmentTotal = subtotal + deliveryFee;
   setShipmentTotal(shipmentTotal);
+
+  // useEffect(() => {
+  //   const calculatedSubtotal = carts.reduce((total, item) => {
+  //     const itemDiscountedPrice = item?.price - (item?.price * (item?.discount / 100));
+  //     return total + itemDiscountedPrice * quantity;
+  //   }, 0);
+  
+  //   setSubtotal(calculatedSubtotal);
+  //   setShipmentTotal(calculatedSubtotal + deliveryFee);
+  // }, [carts, quantity]);
+
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -49,6 +61,82 @@ const ViewCartDetails = () => {
     });
   }, []);
 
+
+  // const checkoutComplete = () => {
+  //   // Construct the data object to be sent to the backend
+  //   const datas = {
+  //     userEmail: user?.email,
+  //     shipmentTotal: shipmentTotal.toFixed(2),
+  //     items: carts.map((item) => ({
+  //       foodName: item.foodName || item.mealName,
+  //       quantity,
+  //       price: (item.price - (item.price * (item.discount / 100))).toFixed(2),
+  //       image: item.image,
+  //     })),
+  //     deliveryFee: deliveryFee.toFixed(2),
+  //     subtotal: subtotal.toFixed(2),
+  //     orderDate: new Date().toISOString(), // optional: include order date
+  //   };
+  
+  //   // Send the data to the backend
+  //   fetch('https://platematebackend.vercel.app/orders', {
+  //     method: "POST",
+  //     headers: {
+  //       'content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify(datas),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Error submitting order:", err);
+  //     });
+  // };
+
+  // const checkoutComplete = () => {
+  //   // Log initial states
+  //   console.log('Preparing to submit order...');
+    
+  //   setTimeout(() => {
+  //     console.log('Carts after delay:', carts);
+  //     console.log('Quantity:', quantity);
+  //     console.log('Subtotal:', subtotal);
+  
+  //     const datas = {
+  //       userEmail: user?.email,
+  //       shipmentTotal: shipmentTotal.toFixed(2),
+  //       items: carts.map((item) => ({
+  //         foodName: item.foodName || item.mealName,
+  //         quantity,
+  //         price: (item.price - (item.price * (item.discount / 100))).toFixed(2),
+  //         image: item.image,
+  //       })),
+  //       deliveryFee: deliveryFee.toFixed(2),
+  //       subtotal: subtotal.toFixed(2),
+  //       orderDate: new Date().toISOString(),
+  //     };
+  
+  //     console.log('Processed Data:', datas);
+  
+  //     fetch('https://platematebackend.vercel.app/orders', {
+  //       method: "POST",
+  //       headers: {
+  //         'content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify(datas),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log('Order submission response:', data);
+  //       })
+  //       .catch((err) => {
+  //         console.error('Error submitting order:', err);
+  //       });
+  //   }, 1000); // Add a 1-second delay
+  // };
+  
 
   return (
     <div className="min-h-screen bg-gray-50 py-6" data-aos="fade-up" >
@@ -210,7 +298,7 @@ const ViewCartDetails = () => {
              user && user.email?  <div className="mt-2 px-6 flex gap-4">
 
               
-
+             
              <button
                className="btn btn-outline btn-error w-1/2 flex items-center gap-2"
                onClick={() => openModal("bKash")}
@@ -218,6 +306,10 @@ const ViewCartDetails = () => {
                <img src="/BKash.png" className="md:h-[30px] h-[12px] md:w-[30px] w-[12px] inline-block" alt="bKash" />
                <p>Pay with bKash</p>
              </button>
+
+            
+
+
              <button
                className="btn btn-outline w-1/2 flex gap-2 items-center"
                onClick={() => openModal("Card")}

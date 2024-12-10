@@ -33,11 +33,24 @@ async function run() {
 
         const database = client.db('PlateMate');
         const categoryCollection = database.collection('categories');
+        const orderCollection = database.collection('orders');
 
 
         app.get('/categories', async (req, res) => {
             const cursor = categoryCollection.find();
             const result = await cursor.toArray();
+            res.send(result);
+        });
+
+        app.get('/orders', async (req, res) => {
+            const cursor = orderCollection.find();
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+        app.post('/orders', async (req, res) => {
+            const order = req.body;  
+            const result = await orderCollection.insertOne(order);
             res.send(result);
         });
 
