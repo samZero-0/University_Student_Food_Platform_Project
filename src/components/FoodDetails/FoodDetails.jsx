@@ -12,6 +12,7 @@ const FoodDetails = () => {
     const {carts,setCarts,quantity,setQuantity,
         
         }= useContext(Context);
+
     const { foodId } = useParams();
     const [food, setFood] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
@@ -38,7 +39,7 @@ const FoodDetails = () => {
     const totalAmount = food? discountedPrice * quantity : 0;
 
     const handleAddToCart = (food) => {
-        setCarts([...carts,food]);
+        setCarts([food]);
         toast.success(`${food.foodName} added to cart!`, {
             position: 'top-center',
             autoClose: 1500,

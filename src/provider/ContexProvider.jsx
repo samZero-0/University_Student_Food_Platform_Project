@@ -53,6 +53,7 @@ const ContexProvider = ({children}) => {
           console.log('Processed Data:', datas);
           setModalVisible(false);
           setModalContent(null);
+          setCarts(null)
          
           fetch('https://platematebackend.vercel.app/orders', {
               method: "POST",
