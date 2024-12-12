@@ -7,7 +7,9 @@ const AllCategories = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
-    fetch('foods.json')
+    fetch('https://platematebackend.vercel.app/foods',{
+      
+    })
       .then(res => res.json())
       .then(data => setCategories(data));
   }, []);

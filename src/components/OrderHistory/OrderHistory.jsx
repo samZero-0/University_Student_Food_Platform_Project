@@ -17,7 +17,7 @@ export default function OrderHistory() {
   }, [user]);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 font-sans">
+    <div className="max-w-7xl mx-auto p-6 font-sans flex flex-col gap-12">
       <h1 className="text-xl font-medium mb-6">
         Your Orders <span className="bg-gray-100 px-2 py-1 rounded-full text-sm">{orders.length}</span>
       </h1>
@@ -35,7 +35,7 @@ export default function OrderHistory() {
       </div>
 
       {orders.map((order) => (
-        <div key={order._id} className="border rounded-lg p-6 space-y-6">
+        <div key={order._id} className="border rounded-lg p-6 space-y-6   ">
           <div className="flex justify-between">
             <div className="grid gap-1">
               <div className="text-sm text-gray-600">Order placed</div>
@@ -52,19 +52,19 @@ export default function OrderHistory() {
           </div>
 
           {order.items.map((item, index) => (
-            <div key={index} className="flex items-start gap-4 pt-4">
+            <div key={index} className="flex items-center gap-4 pt-4">
               <img 
                 src={item.image} 
                 alt={item.foodName} 
-                className="w-24 h-24 object-cover rounded-lg"
+                className="w-52 h-52 object-cover rounded-lg"
               />
               <div className="flex-1">
-                <h3 className="font-medium mb-2">{item.foodName}</h3>
-                <div className="text-sm text-gray-600 mb-4">{item.price} Tk</div>
-                <div className="text-sm text-gray-600 mb-4">Quantity: {item.quantity}</div>
-                <div className="flex gap-2">
-                  <button className="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800">
-                    Buy it again
+                <h3 className="font-medium text-2xl mb-2">{item.foodName}</h3>
+                <div className="text-lg text-gray-600 mb-4">{item.price} Tk</div>
+                <div className="text-lg text-gray-600 mb-4">Quantity: {item.quantity}</div>
+                <div className="flex gap-2 ">
+                  <button className="px-4 py-2 bg-primary text-black rounded-lg hover:bg-green-800 font-semibold">
+                    Buy Again
                   </button>
 
                 <div className='flex flex-col ml-5'>

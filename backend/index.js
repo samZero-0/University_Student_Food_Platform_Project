@@ -34,6 +34,9 @@ async function run() {
         const database = client.db('PlateMate');
         const categoryCollection = database.collection('categories');
         const orderCollection = database.collection('orders');
+        const foodCollection = database.collection('foods');
+        const mealPlanCollection = database.collection('mealPlan');
+
 
 
         app.get('/categories', async (req, res) => {
@@ -59,6 +62,26 @@ async function run() {
             const email = req.params.email;
             const query = {userEmail: `${email}`}
             const cursor = orderCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+        app.get('/foods', async (req, res) => {
+            const cursor = foodCollection.find();
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+        app.post('/foods', async (req, res) => {
+            const food = req.body; 
+            const result = await foodCollection.insertOne(food);
+            res.send(result);
+
+        });
+
+
+        app.get('/mealPlan', async (req, res) => {
+            const cursor = mealPlanCollection.find();
             const result = await cursor.toArray();
             res.send(result);
         });

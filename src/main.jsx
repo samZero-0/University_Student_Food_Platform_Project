@@ -34,6 +34,8 @@ import DashboardLayout from './layouts/DashboardLayout.jsx';
 import AdminUserManagement from './pages/Admin/AdminUserManagement.jsx';
 import AdminOrderManagement from './pages/Admin/AdminOrderManagement.jsx';
 import AddCategories from './pages/Admin/AddCategories.jsx';
+import CookDashboard from './pages/Cook/CookDashboard.jsx';
+
 
 
 const router = createBrowserRouter([
@@ -101,11 +103,11 @@ const router = createBrowserRouter([
   },
   {
    
-    path: '/details/:foodId',
+    path: '/details/:_id',
     element: <CookLayout />,
     children: [
       { path: '', element: <FoodDetails /> },
-      { path: '/details/:foodId/viewcartdetails', 
+      { path: '/details/:_id/viewcartdetails', 
         element: <ViewCartDetails/> 
       },
     ],
@@ -170,6 +172,11 @@ const router = createBrowserRouter([
       {path: '/profile/notification', element: <Notification></Notification>},
       {path: '/profile/settings', element: <Settings></Settings>},
     ],
+  },
+  {
+    path: '/cookDashboard',
+    element: <CookDashboard></CookDashboard>,
+    
   },
 ]);
 

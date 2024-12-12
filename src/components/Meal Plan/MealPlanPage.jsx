@@ -9,7 +9,7 @@ export default function MealPlanner() {
   const [meals,setMeals] = useState([]);
 
   useEffect(()=>{
-    fetch('/mealPlan.json')
+    fetch('https://platematebackend.vercel.app/mealPlan')
     .then(res => res.json())
     .then(data => setMeals(data))
   },[])

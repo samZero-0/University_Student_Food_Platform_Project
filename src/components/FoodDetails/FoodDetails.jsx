@@ -9,11 +9,9 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import { Context } from "../../provider/Context";
 
 const FoodDetails = () => {
-    const {carts,setCarts,quantity,setQuantity,
-        
-        }= useContext(Context);
+    const {carts,setCarts,quantity,setQuantity }= useContext(Context);
 
-    const { foodId } = useParams();
+    const { _id } = useParams();
     const [food, setFood] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -21,17 +19,17 @@ const FoodDetails = () => {
     useEffect(() => {
         AOS.init({ duration: 800 });
         setTimeout(() => {
-            fetch('../foods.json')
+            fetch(`https://platematebackend.vercel.app/foods/`)
                 .then((res) => res.json())
                 .then((data) => {
-                    const foundProduct = data.find((item) => item.foodId == foodId);
+                    const foundProduct = data.find((item) => item._id == _id );
                     setFood(foundProduct);
-                    const related = data.filter(item => item.sellerName === foundProduct?.sellerName && item.foodId !== foodId);
+                    const related = data.filter(item => item.sellerName === foundProduct?.sellerName && item._id !== _id );
                     setRelatedItems(related);
                     setLoading(false);
                 });
         }, 1000); 
-    }, [foodId]);
+    }, [_id]);
 
 
     const discountedPrice = food ? food.price - (food.price * (food.discount / 100)) : 0;
@@ -78,8 +76,8 @@ const FoodDetails = () => {
                         <p className="mb-2"><strong>Category:</strong> {food.category}</p>
                         <p className="mb-2"><strong>Description:</strong> {food.description}</p>
                         <div className="mb-2">
-                            <p><strong>Ingredients:</strong> {food.ingredients.join(', ')}</p>
-                            <p><strong>Allergens:</strong> {food.allergens.join(', ')}</p>
+                            <p><strong>Ingredients:</strong> {food.ingredients}</p>
+                            <p><strong>Allergens:</strong> {food.allergens}</p>
                         </div>
                         <div className="border-t border-gray-200 pt-2 mb-2">
                             <p><strong>Nutrition:</strong></p>
@@ -110,7 +108,7 @@ const FoodDetails = () => {
                         <p><strong>Additional Info:</strong> {food.additionalInfo}</p>
 
                         <div className="w-full my-5 flex gap-3 md:gap-12 items-center ">
-                        <Link to='/details/:foodId/viewcartdetails' onClick={()=>handleAddToCart(food)} className="btn bg-primary text-white px-4 py-2 rounded-md   md:w-1/3 md:text-xl text-lg">Add to Cart</Link>
+                        <Link to='/details/:_id/viewcartdetails' onClick={()=>handleAddToCart(food)} className="btn bg-primary text-white px-4 py-2 rounded-md   md:w-1/3 md:text-xl text-lg">Add to Cart</Link>
                           <span className="text-green-500 text-lg md:text-2xl font-bold">{totalAmount} Tk.</span>
                         </div>
 
@@ -143,7 +141,7 @@ const FoodDetails = () => {
                 {relatedItems.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 p-3">
                         {relatedItems.map((item) => (
-                            <div key={item.foodId} className="border rounded-lg shadow-md p-4">
+                            <div key={item._id} className="border rounded-lg shadow-md p-4">
                                 <img src={item.image} alt={item.foodName} className="h-[200px] w-full object-cover rounded-md mb-2" />
                                 <p className="text-lg font-bold">{item.foodName}</p>
                             </div>
