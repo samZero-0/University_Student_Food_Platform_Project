@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FiHome, FiList, FiStar, FiDollarSign, FiShoppingCart, FiPlusCircle } from 'react-icons/fi';
 import AllCategories from '../../components/Categories/AllCategories';
 import FoodListing from '../../components/Cook/FoodListing';
+import CookHome from './CookHome';
 
 
 
@@ -56,10 +57,11 @@ const CookDashboard = () => {
       case 'home':
         return (
           <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">Welcome to Your Cook Dashboard</h2>
-            <p className="text-gray-600">Here you can manage your food listings, view ratings, and track your sales.</p>
             
+            <CookHome></CookHome>
           </div>
+
+         
         );
       case 'listings':
         return (

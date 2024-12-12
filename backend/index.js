@@ -79,6 +79,15 @@ async function run() {
 
         });
 
+        app.get('/foods/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = {email: `${email}`}
+            const cursor = foodCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+
 
         app.get('/mealPlan', async (req, res) => {
             const cursor = mealPlanCollection.find();

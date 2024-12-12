@@ -106,7 +106,7 @@ const Navbar = () => {
                                             </Link>
                                     </li>
                                     
-                                    <li><a><FaHome className="mr-2" />Cook Dashboard</a></li>
+                                    <li><Link to='/cookDashboard'><FaHome className="mr-2" />Cook Dashboard</Link></li>
                                     <li><Link to='/profile/notification'><FaBell className="mr-2" />Notification</Link></li>
                                     <li><a><FaTag className="mr-2" />Discount&Promo</a></li>
                                     <li><Link to='/orderHistory'><FaShoppingCart className="mr-2" />MyOrders</Link></li>
