@@ -29,14 +29,21 @@ const ViewCartDetails = () => {
   };
 
 
-  const currentStage = "Pending Cook Confirmation"; //this will dynamic
-  const deliveryFee = 100;
+    const currentStage = "Pending Cook Confirmation"; //this will dynamic
+    const deliveryFee = 100;
   
-  const subtotal = carts.reduce((total, item) => {
-    const itemDiscountedPrice = item?.price - (item?.price * (item?.discount / 100));
-    return total + itemDiscountedPrice * quantity;
+  //   const subtotal = carts.reduce((total, item) => {
+  //   const itemDiscountedPrice = item?.price - (item?.price * (item?.discount / 100));
+  //   return total + itemDiscountedPrice * quantity;
 
-  }, 0);
+  // }, 0);
+
+  const subtotal = carts?.length
+  ? carts.reduce((total, item) => {
+      const itemDiscountedPrice = item?.price - (item?.price * (item?.discount / 100));
+      return total + itemDiscountedPrice * quantity;
+    }, 0)
+  : 0;
 
   setSubtotal(subtotal);
 
@@ -245,7 +252,7 @@ const ViewCartDetails = () => {
             <p className="text-sm text-gray-500">Status: <span className="text-primary">{currentStage}</span></p>
 
             <div className="mt-4">
-              {carts.map((item, index) => (
+              {carts?.map((item, index) => (
                 <div key={index} className="flex justify-between border-b py-2">
                   <span><img src={item.image} className="w-16 h-12 rounded-md" alt="" /></span>
                   <span>{item.foodName || item.mealName} (x{quantity})</span>

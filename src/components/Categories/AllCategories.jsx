@@ -5,13 +5,16 @@ import { FaSortAmountDownAlt } from "react-icons/fa";
 const AllCategories = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [loading, setLoading] = useState(true); //
 
   useEffect(() => {
+    setLoading(true);
     fetch('https://platematebackend.vercel.app/foods',{
       
     })
       .then(res => res.json())
       .then(data => setCategories(data));
+      setLoading(false);
   }, []);
 
   const uniqueCategories = Array.from(
@@ -38,6 +41,10 @@ const AllCategories = () => {
     });
     setCategories(sortedCategories);
   };
+
+  if(loading){
+    <h1>Loading</h1>
+  }
 
   return (
     <div className="md:w-11/12 md:mx-auto mt-20 mb-5">

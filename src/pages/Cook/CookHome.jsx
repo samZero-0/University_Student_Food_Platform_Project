@@ -20,7 +20,7 @@ export default function CookHome() {
     const [foodItems,setFoodItems] = useState([]);
 
     useEffect(()=>{
-        fetch(`https://platematebackend.vercel.app/foods/${user.email}`)
+        fetch(`https://platematebackend.vercel.app/foods/${user?.email}`)
         .then(res => res.json())
         .then(data => setFoodItems(data))
     },[])
@@ -43,12 +43,12 @@ export default function CookHome() {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-4">
             <img
-              src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=200"
+              src={user?.photoURL}
               alt="Chef"
               className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-lg"
             />
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Welcome back, {user.displayName}!</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Welcome back, {user?.displayName}!</h1>
               
             </div>
           </div>

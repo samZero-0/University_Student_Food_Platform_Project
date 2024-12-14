@@ -3,6 +3,7 @@ import { FiHome, FiList, FiStar, FiDollarSign, FiShoppingCart, FiPlusCircle } fr
 import AllCategories from '../../components/Categories/AllCategories';
 import FoodListing from '../../components/Cook/FoodListing';
 import CookHome from './CookHome';
+import { Link } from 'react-router-dom';
 
 
 
@@ -164,6 +165,14 @@ const CookDashboard = () => {
           >
             <FiShoppingCart className="mr-2" /> Sold Foods
           </a>
+
+          <Link to='/'
+            href="#"
+            className={`flex items-center py-2 px-4 ${activeTab === 'sold' ? 'bg-indigo-500' : ''}`}
+            onClick={() => setActiveTab('sold')}
+          >
+             Back to Home
+          </Link>
          
         </nav>
       </div>

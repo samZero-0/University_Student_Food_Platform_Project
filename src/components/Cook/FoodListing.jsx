@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Camera, Clock, Users, Utensils, AlertTriangle, Leaf, Info, Plus, ArrowRight, DollarSign } from 'lucide-react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
@@ -174,7 +174,7 @@ export default function App() {
                     </div>
                     <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                   </div>
-                )}
+                
               </div>
             </div>
           </div>

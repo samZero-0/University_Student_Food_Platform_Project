@@ -28,7 +28,6 @@ const ContexProvider = ({children}) => {
     const [shipmentTotal,setShipmentTotal] =useState(0);
     const [isModalVisible, setModalVisible] = useState(false);
     const [modalContent, setModalContent] = useState(null);
-
     const [cookRegistered, setCookRegistered] = useState(false);
     const [cooks,setCooks] = useState([]);
     const {user} =useContext(AuthContext)
@@ -74,7 +73,7 @@ const ContexProvider = ({children}) => {
           console.log('Processed Data:', datas);
           setModalVisible(false);
           setModalContent(null);
-          setCarts(null)
+          setCarts([])
          
           fetch('https://platematebackend.vercel.app/orders', {
               method: "POST",

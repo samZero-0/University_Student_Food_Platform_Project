@@ -8,13 +8,24 @@ import { AuthContext } from "../../provider/AuthProvider";
 export default function OrderHistory() {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
-
+  const  [loading,setLoading] = useState(false);
+  
   useEffect(() => {
+    setLoading(true)
     axios.get(`https://platematebackend.vercel.app/orders/${user?.email}`)
       .then((response) => {
         setOrders(response.data);
+        setLoading(false)
       });
+
+    
   }, [user]);
+
+  console.log(orders);
+
+  if(loading){
+    return <h1>loading</h1>
+  }
 
   return (
     <div className="max-w-7xl mx-auto p-6 font-sans flex flex-col gap-12">

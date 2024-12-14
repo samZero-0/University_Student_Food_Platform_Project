@@ -112,9 +112,9 @@ const MealDetails = () => {
 
                         <div className="w-full my-5 flex gap-12 items-center">
 
-                       <Link className="btn bg-primary text-white px-4 py-2 rounded-md w-1/3 text-xl" to='/details/:foodId/viewcartdetails'>
-                       <button onClick={()=>handleAddToCart(food)} >Add to Cart</button>
-                       </Link>
+                       <div onClick={()=>handleAddToCart(food)} className="btn bg-primary text-white px-4 py-2 rounded-md w-1/3 text-xl" >
+                       <button  >Add to Cart</button>
+                       </div>
 
 
                           <span className="text-green-500 text-2xl font-bold">{totalAmount.toFixed(2)} Tk.</span>

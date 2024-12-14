@@ -3,8 +3,9 @@ import { GiPhone } from "react-icons/gi";
 import { Context } from "../provider/Context";
 import PropTypes from "prop-types";
 import { AuthContext } from "../../src/provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const BkashPayment = ({ closeModal }) => {
     const navigate = useNavigate();
@@ -17,8 +18,10 @@ const BkashPayment = ({ closeModal }) => {
         checkoutComplete(user);
         toast.success("Order Successsful")
         setTimeout(() => {
-            navigate('/categories'); // Navigate to the homepage
-        }, 1000);
+            // window.location.href = '/categories'; 
+            navigate('/categories')
+            
+        },500);
         
     }
 
