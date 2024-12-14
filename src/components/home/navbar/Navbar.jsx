@@ -99,7 +99,7 @@ const Navbar = () => {
                                     <div className="w-10 rounded-full">
                                         <img
                                             alt="Tailwind CSS Navbar component"
-                                            src={user.photoURL} />
+                                            src={user.photoURL?.split('?')[0]} />
                                     </div>
                                 </div> 
                                 

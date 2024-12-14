@@ -22,7 +22,7 @@ const States = () => {
     }, []);
 
     return (
-        <section>
+        <section className=' overflow-hidden'>
             <div className='mt-20 text-center'>
                 <h1 className='text-3xl font-bold' data-aos="fade-up">Stats </h1>
                 <p className='text-gray-500 mt-2' data-aos="fade-up">Explore the stats of PlateMate</p>
