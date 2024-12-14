@@ -35,6 +35,7 @@ import AdminUserManagement from './pages/Admin/AdminUserManagement.jsx';
 import AdminOrderManagement from './pages/Admin/AdminOrderManagement.jsx';
 import AddCategories from './pages/Admin/AddCategories.jsx';
 import CookDashboard from './pages/Cook/CookDashboard.jsx';
+import CookApplications from './pages/Admin/CookApplications.jsx';
 
 
 
@@ -161,6 +162,7 @@ const router = createBrowserRouter([
       { path: 'users', element:<AdminUserManagement></AdminUserManagement> },
       { path: 'orders', element:<AdminOrderManagement></AdminOrderManagement>},
       { path: 'addCategories', element:<AddCategories></AddCategories>},
+      { path: 'applications', element:<CookApplications></CookApplications>},
     ],
   },
   {
