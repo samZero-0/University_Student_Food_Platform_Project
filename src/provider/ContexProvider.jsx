@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Context } from "./Context";
 import PropTypes from "prop-types";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react'
+import { AuthContext } from "./AuthProvider";
 
 
 const ContexProvider = ({children}) => {
@@ -27,6 +28,26 @@ const ContexProvider = ({children}) => {
     const [shipmentTotal,setShipmentTotal] =useState(0);
     const [isModalVisible, setModalVisible] = useState(false);
     const [modalContent, setModalContent] = useState(null);
+
+    const [cookRegistered, setCookRegistered] = useState(false);
+    const [cooks,setCooks] = useState([]);
+    const {user} =useContext(AuthContext)
+    
+    
+        useEffect(() => {
+          
+            fetch('https://platematebackend.vercel.app/cookList')
+                .then(res => res.json())
+                .then(data => {
+                    setCooks(data);               
+                    const isRegistered = data.some(cook => cook.email === user?.email);
+                    setCookRegistered(isRegistered); 
+                })
+                .catch(err => {
+                    console.error("Error fetching cook list:", err);
+                });
+        }, [user]); 
+        
     
     
     const checkoutComplete = (user) => {
@@ -91,7 +112,8 @@ const ContexProvider = ({children}) => {
         isModalVisible,
         setModalVisible,
         modalContent,
-        setModalContent
+        setModalContent,
+        cookRegistered
 
 
     };

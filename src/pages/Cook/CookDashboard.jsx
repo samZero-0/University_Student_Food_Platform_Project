@@ -7,6 +7,7 @@ import CookHome from './CookHome';
 
 
 const CookDashboard = () => {
+  
   const [activeTab, setActiveTab] = useState('home');
   const [foodItems, setFoodItems] = useState([]);
   const [newFoodItem, setNewFoodItem] = useState({
@@ -26,31 +27,31 @@ const CookDashboard = () => {
     additionalInfo: '',
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewFoodItem({ ...newFoodItem, [name]: value });
-  };
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setNewFoodItem({ ...newFoodItem, [name]: value });
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFoodItems([...foodItems, newFoodItem]);
-    setNewFoodItem({
-      category: '',
-      foodName: '',
-      price: '',
-      description: '',
-      image: '',
-      ingredients: '',
-      allergens: '',
-      calories: '',
-      fat: '',
-      protein: '',
-      carbs: '',
-      preparationTime: '',
-      servingSize: '',
-      additionalInfo: '',
-    });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setFoodItems([...foodItems, newFoodItem]);
+  //   setNewFoodItem({
+  //     category: '',
+  //     foodName: '',
+  //     price: '',
+  //     description: '',
+  //     image: '',
+  //     ingredients: '',
+  //     allergens: '',
+  //     calories: '',
+  //     fat: '',
+  //     protein: '',
+  //     carbs: '',
+  //     preparationTime: '',
+  //     servingSize: '',
+  //     additionalInfo: '',
+  //   });
+  // };
 
   const renderTabContent = () => {
     switch (activeTab) {

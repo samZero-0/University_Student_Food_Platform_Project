@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { Check, X, Clock, DollarSign, Mail, User, School, ChefHat, MapPin } from 'lucide-react';
+import { toast, ToastContainer } from 'react-toastify';
+import swal from 'sweetalert';
+
 
 export default function CookApplications() {
   const [requests, setRequests] = useState([]);
+  
 
 
 
@@ -12,22 +16,73 @@ export default function CookApplications() {
     .then(data => setRequests(data))
  },[])
 
-  const handleApprove = (id) => {
-    // Handle approve logic here
-    console.log('Approved:', id);
-    // You would typically make an API call here
-    setRequests(requests.filter(req => req._id !== id));
+  const handleApprove = (id,name,studentId,email) => {
+   
+    const data = {name,email,studentId}
+
+    fetch('https://platematebackend.vercel.app/cookList',{
+        method: 'POST',
+        headers: {
+            'content-type' : 'application/json'
+
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      toast.success("Application Approved")
+      setRequests(requests.filter(req => req._id !== id));
+    })
+
+    fetch(`https://platematebackend.vercel.app/cookRequests/${id}`,{
+      method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      
+    })
+
+
+
+    
   };
 
   const handleDecline = (id) => {
-    // Handle decline logic here
-    console.log('Declined:', id);
-    // You would typically make an API call here
-    setRequests(requests.filter(req => req._id !== id));
+
+    swal({
+      title: "Are you sure?",
+      text: "Are you sure that you want to Decline the Application?",
+      icon: "warning",
+      dangerMode: true,
+    })
+    .then(willDelete => {
+      if (willDelete) {
+        fetch(`https://platematebackend.vercel.app/cookRequests/${id}`,{
+          method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          setRequests(requests.filter(req => req._id !== id));
+          
+        })
+        swal("Deleted!", "Application Declined", "success");
+      }
+    });
+
+
+
+
+    
+   
+    
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+      <ToastContainer></ToastContainer>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -110,7 +165,7 @@ export default function CookApplications() {
               <div className="p-6 bg-gray-50 border-t">
                 <div className="flex space-x-3">
                   <button
-                    onClick={() => handleApprove(request._id)}
+                    onClick={() => handleApprove(request._id,request.fullName,request.studentId,request.email)}
                     className="flex-1 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
                   >
                     <Check className="w-4 h-4 mr-2" />

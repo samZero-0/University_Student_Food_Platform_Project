@@ -6,9 +6,16 @@ import { FaBell, FaCog, FaFileSignature, FaHistory, FaHome, FaPhone, FaShoppingC
 import { AiOutlineLogin } from "react-icons/ai";
 import { AuthContext } from "../../../provider/AuthProvider";
 
+import { Context } from "../../../provider/Context";
+
 const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);
     const {user,logOut} = useContext(AuthContext);
+    
+    
+   const {cookRegistered} = useContext(Context);
+
+
     
     return (
         <section className="sticky top-0 z-50 bg-white backdrop-blur-md bg-white/60">
@@ -106,7 +113,15 @@ const Navbar = () => {
                                             </Link>
                                     </li>
                                     
-                                    <li><Link to='/cookDashboard'><FaHome className="mr-2" />Cook Dashboard</Link></li>
+                                    
+                                    {
+                                        cookRegistered? <li><Link to='/cookDashboard'><FaHome className="mr-2" />Cook Dashboard</Link></li> : ''
+                                    }
+
+
+
+
+
                                     <li><Link to='/profile/notification'><FaBell className="mr-2" />Notification</Link></li>
                                     <li><a><FaTag className="mr-2" />Discount&Promo</a></li>
                                     <li><Link to='/orderHistory'><FaShoppingCart className="mr-2" />MyOrders</Link></li>

@@ -37,6 +37,7 @@ async function run() {
         const foodCollection = database.collection('foods');
         const mealPlanCollection = database.collection('mealPlan');
         const cookReqCollection = database.collection('cookRequests');
+        const cookListCollection = database.collection('cookList');
 
 
 
@@ -107,6 +108,26 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result);
         });
+
+        app.post('/cookList',async(req,res)=>{
+            const data = req.body;
+            const result = await cookListCollection.insertOne(data);
+            res.send(result);
+        })
+
+        app.get('/cookList', async (req, res) => {
+            const cursor = cookListCollection.find();
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+        app.delete('/cookRequests/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const result = await cookReqCollection.deleteOne(query);
+            res.send(result);
+        })
+
 
 
     } finally {

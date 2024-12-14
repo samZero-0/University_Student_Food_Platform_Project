@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // import { GoUpload } from "react-icons/go";
 // import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
+import { AuthContext } from '../../provider/AuthProvider';
 
 export default function Component() {
+  const {user} = useContext(AuthContext);
   useEffect(() => {
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
@@ -91,13 +93,14 @@ export default function Component() {
               />
             </div>
             <div className="form-control">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">University Email</label>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
               <input
                 type="email"
                 id="email"
                 name="email"
+                value={user?.email}
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="your id@iub.edu.bd"
+                placeholder="Your Email"
               />
             </div>
             <div className="form-control">

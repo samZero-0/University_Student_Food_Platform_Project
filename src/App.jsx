@@ -11,11 +11,15 @@ import States from './components/home/states/States'
 import WhyTryUs from './components/home/HowItWorks/WhyTryUs'
 import Testimonials from './components/home/HowItWorks/Testimonials'
 import Footer from './components/home/HowItWorks/Footer'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
+import { Context } from './provider/Context'
 
 
 
 function App() {
+
+  const {cookRegistered} = useContext(Context);
+
   useEffect(() => {
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
@@ -30,7 +34,9 @@ function App() {
       <About></About>
       <FeaturedItems></FeaturedItems>
       <WhyTryUs/>
-      <BecomeCook></BecomeCook>
+      { cookRegistered? '': <BecomeCook></BecomeCook>
+        
+      }
       <Outlet></Outlet>
       <Testimonials />
       <Footer />
