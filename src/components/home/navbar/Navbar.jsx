@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
 import { MdOutlineFastfood } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
-import { FaBell, FaCog, FaFileSignature, FaHistory, FaHome, FaPhone, FaShoppingCart, FaSignOutAlt, FaSmile, FaTag, FaUserAlt, } from "react-icons/fa";
+import { FaBell, FaCog, FaHistory, FaHome, FaPhone, FaShoppingCart, FaSignOutAlt, FaSmile, FaTag, FaUserAlt, } from "react-icons/fa";
 import { AiOutlineLogin } from "react-icons/ai";
 import { AuthContext } from "../../../provider/AuthProvider";
 
@@ -16,7 +16,9 @@ const Navbar = () => {
     
    const {cookRegistered,carts, shipmentTotal} = useContext(Context);
 
+    console.log(shipmentTotal);
 
+    
     
     return (
         <section className="sticky top-0 z-50 bg-white backdrop-blur-md bg-white/60">
@@ -87,7 +89,7 @@ const Navbar = () => {
                                     className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
                                     <div className="card-body">
                                         <span className="text-lg font-bold">{carts? carts.length : '0'} Items</span>
-                                        <span className="text-info">Subtotal: ${shipmentTotal}</span>
+                                        {/* <span className="text-info">Subtotal: ${shipmentTotal}</span> */}
 
                                         <div className="card-actions">
                                                         {carts && carts.length > 0 ? (

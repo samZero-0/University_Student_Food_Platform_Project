@@ -7,6 +7,8 @@ import { AuthContext } from '../../provider/AuthProvider';
 
 export default function Component() {
   const {user} = useContext(AuthContext);
+  const [loading,setLoading] = useState(false);
+
   useEffect(() => {
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
@@ -36,6 +38,7 @@ export default function Component() {
   // };
 
   const handleSubmit = (e) => {
+    setLoading(true)
     e.preventDefault();
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
@@ -52,6 +55,7 @@ export default function Component() {
   .then(res => res.json())
   .then(data => {
       toast.success('Application Sent Successfully');
+      setLoading(false)
       console.log(data);
       e.target.reset();
 
@@ -179,7 +183,7 @@ export default function Component() {
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-black bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Submit Application
+                { loading? <span className="loading loading-spinner loading-md"></span> :  'Submit Application'}
               </button>
             
           </div>

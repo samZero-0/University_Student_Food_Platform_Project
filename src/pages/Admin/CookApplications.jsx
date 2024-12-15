@@ -6,18 +6,20 @@ import swal from 'sweetalert';
 
 export default function CookApplications() {
   const [requests, setRequests] = useState([]);
+  const [loading,setLoading] = useState(false)
   
 
 
 
  useEffect(()=>{
+    
     fetch(`https://platematebackend.vercel.app/cookRequests`)
     .then(res => res.json())
     .then(data => setRequests(data))
  },[])
 
   const handleApprove = (id,name,studentId,email) => {
-   
+    setLoading(true)
     const data = {name,email,studentId}
 
     fetch('https://platematebackend.vercel.app/cookList',{
@@ -32,6 +34,7 @@ export default function CookApplications() {
     .then(data => {
       console.log(data);
       toast.success("Application Approved")
+      setLoading(false)
       setRequests(requests.filter(req => req._id !== id));
     })
 
@@ -41,6 +44,7 @@ export default function CookApplications() {
     .then(res => res.json())
     .then(data => {
       console.log(data)
+      setLoading(false)
       
     })
 
@@ -65,6 +69,7 @@ export default function CookApplications() {
         .then(res => res.json())
         .then(data => {
           console.log(data)
+          
           setRequests(requests.filter(req => req._id !== id));
           
         })
@@ -169,7 +174,7 @@ export default function CookApplications() {
                     className="flex-1 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
                   >
                     <Check className="w-4 h-4 mr-2" />
-                    Approve
+                    {loading? <span className="loading loading-spinner loading-md"></span>:'Approve'}
                   </button>
                   
                   <button
@@ -177,7 +182,7 @@ export default function CookApplications() {
                     className="flex-1 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
                   >
                     <X className="w-4 h-4 mr-2" />
-                    Decline
+                    {loading? <span className="loading loading-spinner loading-md"></span>:'Decline'}
                   </button>
                 </div>
               </div>

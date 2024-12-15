@@ -9,7 +9,7 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import { Context } from "../../provider/Context";
 
 const FoodDetails = () => {
-    const {carts,setCarts,quantity,setQuantity }= useContext(Context);
+    const {carts,setCarts,quantity,setQuantity,setSubtotal,setShipmentTotal }= useContext(Context);
 
     const { _id } = useParams();
     const [food, setFood] = useState(null);
@@ -48,10 +48,13 @@ const FoodDetails = () => {
         });
     };
 
+
     const handleQuantityChange = (change) => {
         setQuantity(prevQuantity => Math.max(1, prevQuantity + change));
     };
 
+    
+  
 
 
     return (

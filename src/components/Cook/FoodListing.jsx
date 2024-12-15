@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Camera, Clock, Users, Utensils, AlertTriangle, Leaf, Info, Plus, ArrowRight, DollarSign } from 'lucide-react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
@@ -8,6 +8,7 @@ export default function App() {
     const {user} = useContext((AuthContext));
 
     console.log(user.email);
+    const [loading,setLoading] = useState(false);
 
   
 
@@ -16,6 +17,7 @@ export default function App() {
   
 
     const handleSubmit = (e) => {
+      setLoading(true)
       e.preventDefault();
       const form = e.target;
   
@@ -32,6 +34,7 @@ export default function App() {
       const reviews = [];
       const additionalInfo = 'aaaa';
       const availability = 'available';
+      const description = form.description.value;
   
       const nutrition = {
           calories: form.calories.value,
@@ -66,7 +69,8 @@ export default function App() {
           servingSize,
           reviews,
           additionalInfo,
-          availability
+          availability,
+          description
       };
   
       fetch('https://platematebackend.vercel.app/foods', {
@@ -78,9 +82,16 @@ export default function App() {
       })
       .then(res => res.json())
       .then(data => {
+          setLoading(false)
           toast.success('Added food');
           console.log(data);
-      });
+          form.reset();
+      })
+      .catch(error => {
+        setLoading(false);
+        toast.error('Failed to add food');
+        console.error(error);
+    });
   };
   
 
@@ -124,7 +135,7 @@ export default function App() {
                   type="text"
                   name="foodName"
                   placeholder="e.g., Grilled Salmon"
-                 
+                  required
                   className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
                 />
               </div>
@@ -139,7 +150,7 @@ export default function App() {
                     type="number"
                     name="price"
                     placeholder="0.00"
-                    
+                    required
                     className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">TK</span>
@@ -152,7 +163,7 @@ export default function App() {
                 <Camera className="w-4 h-4 mr-2 text-orange-500" />
                 Image
               </label>
-              <input type="url" name='image' placeholder='Enter image url' />
+              <input type="url" name='image' placeholder='Enter image url' required/>
               <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-orange-500 transition-colors">
                 
                
@@ -190,7 +201,7 @@ export default function App() {
                 name="ingredients"
                 rows="3"
                 placeholder="List your ingredients here..."
-                
+                required
                 className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
               />
             </div>
@@ -204,10 +215,27 @@ export default function App() {
                 type="text"
                 name="allergens"
                 placeholder="e.g., Nuts, Dairy, Shellfish"
-               
+                required
                 className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
               />
             </div>
+
+
+            <div >
+              <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
+                
+                Description
+              </label>
+              <input
+                type="text"
+                name="description"
+                placeholder="Write brief description about your food"
+                required
+                className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
+              />
+            </div>
+
+
           </div>
 
           {/* Nutrition Facts */}
@@ -223,6 +251,7 @@ export default function App() {
       type="number"
       name="fat"
       className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
+      required
     />
   </div>
 
@@ -234,6 +263,7 @@ export default function App() {
       type="number"
       name="protein"
       className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
+      required
     />
   </div>
 
@@ -245,6 +275,7 @@ export default function App() {
       type="number"
       name="carbs"
       className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
+      required
     />
   </div>
 
@@ -256,6 +287,7 @@ export default function App() {
       type="number"
       name="calories"
       className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
+      required
     />
   </div>
 </div>
@@ -271,7 +303,7 @@ export default function App() {
                 type="text"
                 name="servingSize"
                 placeholder="e.g., 1 cup, 200g"
-                
+                required
                 className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
               />
             </div>
@@ -288,8 +320,8 @@ export default function App() {
                 type="number"
                 name="preparationTime"
                 placeholder="30"
-               
                 className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
+                required
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">min</span>
             </div>
@@ -301,7 +333,7 @@ export default function App() {
               type="submit"
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-black bg-[#76fb74] hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
             >
-              Create Listing
+              {loading? <span className="loading loading-spinner loading-md"></span>:'Create Listing'}
               <ArrowRight className="ml-2 w-4 h-4" />
             </button>
           </div>

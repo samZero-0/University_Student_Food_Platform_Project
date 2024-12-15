@@ -13,8 +13,8 @@ const AuthPage = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-
   const {createAccount,setUser,signIn,googleSignin} = useContext(AuthContext)
+  const [loading,setLoading] = useState(false);
 
   useEffect(() => {
     const birdsEffect = BIRDS({
@@ -61,6 +61,7 @@ const AuthPage = () => {
   };
 
   const handleLogin = (e) => {
+    setLoading(true)
     e.preventDefault();
 
     const form = e.target;
@@ -72,27 +73,33 @@ const AuthPage = () => {
         setUser(res.user);
         navigate(location?.state ? location.state : "/");
         toast("Login successful");
+        setLoading(false)
       })
       .catch(err => {
         toast.error(`Login Failed: ${err.message}`);
+        setLoading(false)
       });
 
     
   };
 
   const handleGoogleLogin =()=>{
+    setLoading(true)
     googleSignin()
       .then(res => {
         navigate(location?.state ? location.state : "/");
         toast("Login successful");
+        setLoading(false)
         console.log(res.user);
       })
       .catch(err => {
         toast.error("Login failed: " + err.message);
+        setLoading(false)
       });
   }
 
   const handleSignUp = (e) => {
+    setLoading(true)
     e.preventDefault();
 
     const form = e.target;
@@ -111,16 +118,20 @@ const AuthPage = () => {
           updateProfile(currentUser, { displayName: fullName ,photoURL :photoUrl })
             .then(() => {
               navigate('/');
+              setLoading(false)
             })
             .catch(err => {
               toast.error(`Registration Failed: ${err}`);
+              setLoading(false)
             })
         })
         .catch((error) => {
           toast.error(`Registration Failed: ${error}`);
+          setLoading(false)
         });
     } else {
       setError('Password must have an uppercase letter, lowercase letter, and a length of at least 6 characters.');
+      setLoading(false)
     }
 
 
@@ -226,12 +237,14 @@ const AuthPage = () => {
                   />
                 </label>
               </div>
+
               <button
                 type="submit"
                 className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-700 transition duration-300"
               >
-                Sign Up
+                {loading? <span className="loading loading-spinner loading-md"></span>:'Sign Up'}
               </button>
+
               {error && <div className="text-sm font-bold text-red-500 py-5">{error}</div>}
             </form>
           ) : (
@@ -265,11 +278,13 @@ const AuthPage = () => {
                   />
                 </label>
               </div>
+
+
               <button
                 type="submit"
                 className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-700 transition duration-300"
               >
-                Login
+                {loading? <span className="loading loading-spinner loading-md"></span> :'Log in'}
               </button>
 
               <div className='flex justify-center py-5'>
