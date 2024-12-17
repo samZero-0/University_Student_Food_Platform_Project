@@ -3,23 +3,26 @@ import { Info } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 import CreateMealCard from "./CreateMealCard"
 import Marquee from "react-fast-marquee";
+import DietPlanner from "./DietPlanner";
+
 
 export default function MealPlanner() {
-  
-  const [meals,setMeals] = useState([]);
 
-  useEffect(()=>{
+  const [meals, setMeals] = useState([]);
+
+  useEffect(() => {
     fetch('https://platematebackend.vercel.app/mealPlan')
-    .then(res => res.json())
-    .then(data => setMeals(data))
-  },[])
+      .then(res => res.json())
+      .then(data => setMeals(data))
+  }, [])
 
   useEffect(() => {
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, []);
 
-  
+
+
 
   const nutritionData = [
     { day: "Mon", calories: 2100, protein: 100, carbs: 250, fat: 70 },
@@ -36,27 +39,30 @@ export default function MealPlanner() {
       <h1 className="text-4xl font-bold text-center mb-8">Your Personalized Meal Plan</h1>
 
 
-        {/* Meal Plan Customization */}
+
+      {/* Meal Plan Customization */}
       <div className="w-full rounded-xl   my-5 flex flex-col gap-3 p-3">
 
-            <div className="flex  flex-col items-center my-5">
-              <h1 className="font-semibold text-2xl">Create Your Meal Plan</h1>
-              <h1 className="font-light text-base lg:w-1/3 text-center my-5">Personalize and elevate your daily dietary routines for a healthier, more balanced lifestyle</h1>
+        <div className="flex  flex-col items-center my-5">
 
-              <div className="grid md:grid-cols-3 gap-6 w-full text-center">
-                {
-                 meals.map((meal,index) => <CreateMealCard key={index} meal={meal}></CreateMealCard>)
-                }
+
+          <div className="grid md:grid-cols-3 gap-6 w-full text-center">
+            {
+              meals.map((meal, index) => <CreateMealCard key={index} meal={meal}></CreateMealCard>)
+            }
           </div>
 
 
-              </div>
+        </div>
 
-     </div>
-
-
+      </div>
 
 
+      <div className="flex flex-col items-center mt-10">
+        <h1 className="font-semibold text-2xl">Create Your Meal Plan</h1>
+        <h1 className="font-light text-base lg:w-1/3 text-center my-5">Personalize and elevate your daily dietary routines for a healthier, more balanced lifestyle</h1>
+        <DietPlanner />
+      </div>
 
       {/* Weekly Meal Planner */}
       <div className="card bg-base-100 shadow-xl">
@@ -79,62 +85,62 @@ export default function MealPlanner() {
       </div>
 
       {/* Recipe Suggestions */}
-    
+
 
       {/* Nutritional Information */}
       <div className="card bg-base-100 shadow-xl">
-      <div className="card-body">
-  <h2 className="card-title">Nutritional Information</h2>
-  <p>Track your daily nutritional intake</p>
-  <div className="w-full h-[200px] md:h-[300px]">
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart data={nutritionData}>
-        <XAxis dataKey="day" />
-        <YAxis />
-        <Tooltip />
-        <Bar dataKey="calories" fill="#8884d8" />
-        <Bar dataKey="protein" fill="#82ca9d" />
-        <Bar dataKey="carbs" fill="#ffc658" />
-        <Bar dataKey="fat" fill="#ff8042" />
-      </BarChart>
-    </ResponsiveContainer>
-  </div>
-</div>
+        <div className="card-body">
+          <h2 className="card-title">Nutritional Information</h2>
+          <p>Track your daily nutritional intake</p>
+          <div className="w-full h-[200px] md:h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={nutritionData}>
+                <XAxis dataKey="day" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="calories" fill="#8884d8" />
+                <Bar dataKey="protein" fill="#82ca9d" />
+                <Bar dataKey="carbs" fill="#ffc658" />
+                <Bar dataKey="fat" fill="#ff8042" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
 
       </div>
 
       <div className="card bg-base-100 shadow-xl">
-        
+
         <div className="card-body text-center">
           <h2 className="card text-3xl font-bold my-5 ">Recipe Suggestions</h2>
           <p className="my-3">Explore new recipes for your meal plan</p>
           <Marquee pauseOnHover={true} speed={120} className="w-full">
-  <div className="flex gap-4">
-    {[
-      { name: "Grilled Chicken Salad", image: "https://i.ibb.co/12pX328/grilled-chicken.jpg" },
-      { name: "Fish Curry", image: "https://i.ibb.co/zSLF0TT/fish-currry.jpg" },
-      { name: "Pancakes", image: "https://i.ibb.co/M28NHdn/pancake.jpg" },
-    ].map((recipe) => (
-      <div key={recipe.name} className="card bg-base-200 cursor-pointer w-full">
-        <figure>
-          <img src={recipe.image} alt={recipe.name} className="w-full h-[250px] object-cover" />
-        </figure>
-        <div className="card-body p-2">
-          <p className="text-sm font-medium">{recipe.name}</p>
-        </div>
-      </div>
-    ))}
-  </div>
-</Marquee>
+            <div className="flex gap-4">
+              {[
+                { name: "Grilled Chicken Salad", image: "https://i.ibb.co/12pX328/grilled-chicken.jpg" },
+                { name: "Fish Curry", image: "https://i.ibb.co/zSLF0TT/fish-currry.jpg" },
+                { name: "Pancakes", image: "https://i.ibb.co/M28NHdn/pancake.jpg" },
+              ].map((recipe) => (
+                <div key={recipe.name} className="card bg-base-200 cursor-pointer w-full">
+                  <figure>
+                    <img src={recipe.image} alt={recipe.name} className="w-full h-[250px] object-cover" />
+                  </figure>
+                  <div className="card-body p-2">
+                    <p className="text-sm font-medium">{recipe.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Marquee>
 
         </div>
-        
+
       </div>
 
-     
 
-     
-   
+
+
+
 
       {/* Tips and Resources */}
       <div className="card bg-base-100 shadow-xl">
