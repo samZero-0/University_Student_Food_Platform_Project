@@ -65,7 +65,7 @@ export default function MealPlanner() {
       </div>
 
       {/* Weekly Meal Planner */}
-      <div className="card bg-base-100 shadow-xl">
+      {/* <div className="card bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Weekly Meal Planner</h2>
           <p>Plan your meals for the entire week</p>
@@ -82,13 +82,13 @@ export default function MealPlanner() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Recipe Suggestions */}
 
 
       {/* Nutritional Information */}
-      <div className="card bg-base-100 shadow-xl">
+      {/* <div className="card bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Nutritional Information</h2>
           <p>Track your daily nutritional intake</p>
@@ -107,7 +107,7 @@ export default function MealPlanner() {
           </div>
         </div>
 
-      </div>
+      </div> */}
 
       <div className="card bg-base-100 shadow-xl">
 
