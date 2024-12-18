@@ -21,7 +21,7 @@ const MealDetails = () => {
     useEffect(() => {
         AOS.init({ duration: 800 });
         setTimeout(() => {
-            fetch('/mealPlan.json')
+            fetch('https://platematebackend.vercel.app/mealPlan')
                 .then((res) => res.json())
                 .then((data) => {
                     const foundProduct = data.find((item) => item.mealId == mealId);
