@@ -24,15 +24,15 @@ export default function MealPlanner() {
 
 
 
-  const nutritionData = [
-    { day: "Mon", calories: 2100, protein: 100, carbs: 250, fat: 70 },
-    { day: "Tue", calories: 2000, protein: 110, carbs: 230, fat: 65 },
-    { day: "Wed", calories: 2200, protein: 105, carbs: 260, fat: 75 },
-    { day: "Thu", calories: 1950, protein: 95, carbs: 240, fat: 60 },
-    { day: "Fri", calories: 2150, protein: 115, carbs: 255, fat: 70 },
-    { day: "Sat", calories: 2300, protein: 120, carbs: 270, fat: 80 },
-    { day: "Sun", calories: 2050, protein: 100, carbs: 245, fat: 65 },
-  ]
+  // const nutritionData = [
+  //   { day: "Mon", calories: 2100, protein: 100, carbs: 250, fat: 70 },
+  //   { day: "Tue", calories: 2000, protein: 110, carbs: 230, fat: 65 },
+  //   { day: "Wed", calories: 2200, protein: 105, carbs: 260, fat: 75 },
+  //   { day: "Thu", calories: 1950, protein: 95, carbs: 240, fat: 60 },
+  //   { day: "Fri", calories: 2150, protein: 115, carbs: 255, fat: 70 },
+  //   { day: "Sat", calories: 2300, protein: 120, carbs: 270, fat: 80 },
+  //   { day: "Sun", calories: 2050, protein: 100, carbs: 245, fat: 65 },
+  // ]
 
   return (
     <div className="container mx-auto p-4 space-y-8">

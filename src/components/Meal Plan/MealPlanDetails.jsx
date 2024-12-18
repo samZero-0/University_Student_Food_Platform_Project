@@ -8,7 +8,7 @@ const MealPlanDetails = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            fetch('../mealPlan.json')
+            fetch('https://platematebackend.vercel.app/mealPlan')
                 .then((res) => res.json())
                 .then((data) => {
                     const filteredMeals = data.filter((item) => item.planType === planType);

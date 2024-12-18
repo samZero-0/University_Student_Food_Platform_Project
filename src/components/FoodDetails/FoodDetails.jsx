@@ -7,6 +7,8 @@ import 'aos/dist/aos.css';
 import AOS from 'aos';
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { Context } from "../../provider/Context";
+
+
 const FoodDetails = () => {
     const { carts, setCarts } = useContext(Context);
     const [quantity, setQuantity] = useState(1); // Local quantity state
