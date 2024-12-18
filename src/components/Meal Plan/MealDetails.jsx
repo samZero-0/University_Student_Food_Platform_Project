@@ -11,37 +11,43 @@ import { Context } from "../../provider/Context";
 const MealDetails = () => {
     const { carts, setCarts } = useContext(Context);
     const [quantity, setQuantity] = useState(1);
-    const { _id } = useParams();
+    
     const [food, setFood] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        // Initialize AOS
-        AOS.init({ duration: 800 });
 
+    const { mealId } = useParams();
+
+    console.log(mealId);
+
+    useEffect(() => {
+        AOS.init({ duration: 800 });
+    
         const fetchData = async () => {
             try {
                 setLoading(true);
                 setError(null);
                 const response = await fetch(`https://platematebackend.vercel.app/mealPlan`);
-
+    
                 if (!response.ok) {
                     throw new Error('Failed to fetch meal data');
                 }
-
+    
                 const data = await response.json();
-                const foundProduct = data.find((item) => item._id === _id);
-
+                console.log(data);
+    
+                const foundProduct = data.find((item) => item.mealId === Number(mealId)); // Fix type issue
+    
                 if (!foundProduct) {
                     throw new Error('Meal not found');
                 }
-
+    
                 setFood(foundProduct);
                 const related = data.filter(item =>
                     item.sellerName === foundProduct.sellerName &&
-                    item._id !== _id
+                    item._id !== foundProduct._id
                 );
                 setRelatedItems(related);
             } catch (err) {
@@ -51,14 +57,10 @@ const MealDetails = () => {
                 setLoading(false);
             }
         };
-
-        const timeoutId = setTimeout(fetchData, 1000);
-
-        // Cleanup function
-        return () => {
-            clearTimeout(timeoutId);
-        };
-    }, [_id]);
+    
+        fetchData(); // Direct call, no timeout
+    }, [mealId]); // Dependency updated
+    
 
     const discountedPrice = food ? food.price - (food.price * (food.discount / 100)) : 0;
     const actualPrice = food ? food.price * quantity : 0;
@@ -67,7 +69,7 @@ const MealDetails = () => {
     const handleAddToCart = (food) => {
         if (!food) return;
 
-        const existingItemIndex = carts.findIndex(item => item._id === food._id);
+        const existingItemIndex = carts.findIndex(item => item._id == food._id);
 
         if (existingItemIndex >= 0) {
             const updatedCarts = [...carts];
@@ -123,7 +125,7 @@ const MealDetails = () => {
     return (
         <div className="container mx-auto px-4 py-6 w-10/12">
             <ToastContainer />
-            <div className="bg-gray-100 md:h-[580px] shadow-lg rounded-lg overflow-hidden flex lg:flex-row flex-col">
+            <div className="bg-gray-100 md:h-[680px] shadow-lg rounded-lg overflow-hidden flex lg:flex-row flex-col">
                 <div className="w-full p-10 lg:w-1/2">
                     <img
                         src={food.image}
@@ -137,7 +139,7 @@ const MealDetails = () => {
                     />
                 </div>
                 <div className="w-full lg:w-1/2 p-10" data-aos="fade-left">
-                    <h1 className="text-xl font-bold">{food.foodName}</h1>
+                    <h1 className="text-xl font-bold">{food.mealName}</h1>
                     <p className="text-gray-500 text-sm">by <span className="text-yellow-700">{food.sellerName}</span></p>
 
                     <div className="flex items-center mb-2">
@@ -224,13 +226,13 @@ const MealDetails = () => {
             <div className="w-full rounded-xl mt-10">
                 <div className="p-3 flex justify-center">
                     <span className="text-2xl font-bold">
-                        Browse More Dishes from {food.sellerName}
+                        Browse More Dishes 
                     </span>
                 </div>
                 {relatedItems.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 p-3">
                         {relatedItems.map((item) => (
-                            <Link to={`/meal/${item._id}`} key={item._id}>
+                            <Link to={`/mealDetails/${item.mealId}`} key={item._id}>
                                 <div className="border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
                                     <img
                                         src={item.image}
@@ -241,7 +243,7 @@ const MealDetails = () => {
                                             e.target.onerror = null;
                                         }}
                                     />
-                                    <p className="text-lg font-bold">{item.foodName}</p>
+                                    <p className="text-lg font-bold">{item.mealName}</p>
                                     <p className="text-gray-600">{item.price.toFixed(2)} Tk.</p>
                                 </div>
                             </Link>
