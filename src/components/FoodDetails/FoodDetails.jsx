@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,10 +7,9 @@ import 'aos/dist/aos.css';
 import AOS from 'aos';
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { Context } from "../../provider/Context";
-
 const FoodDetails = () => {
-    const {carts,setCarts,quantity,setQuantity,setSubtotal,setShipmentTotal }= useContext(Context);
-
+    const { carts, setCarts } = useContext(Context);
+    const [quantity, setQuantity] = useState(1); // Local quantity state
     const { _id } = useParams();
     const [food, setFood] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
@@ -22,22 +21,37 @@ const FoodDetails = () => {
             fetch(`https://platematebackend.vercel.app/foods/`)
                 .then((res) => res.json())
                 .then((data) => {
-                    const foundProduct = data.find((item) => item._id == _id );
+                    const foundProduct = data.find((item) => item._id == _id);
                     setFood(foundProduct);
-                    const related = data.filter(item => item.sellerName === foundProduct?.sellerName && item._id !== _id );
+                    const related = data.filter(item => item.sellerName === foundProduct?.sellerName && item._id !== _id);
                     setRelatedItems(related);
                     setLoading(false);
                 });
-        }, 1000); 
+        }, 1000);
     }, [_id]);
-
 
     const discountedPrice = food ? food.price - (food.price * (food.discount / 100)) : 0;
     const actualPrice = food ? food.price * quantity : 0;
-    const totalAmount = food? discountedPrice * quantity : 0;
+    const totalAmount = food ? discountedPrice * quantity : 0;
 
     const handleAddToCart = (food) => {
-        setCarts([...carts, food]);
+        const existingItemIndex = carts.findIndex(item =>
+            item._id === food._id
+        );
+
+        if (existingItemIndex >= 0) {
+            // If item exists, update its quantity
+            const updatedCarts = [...carts];
+            updatedCarts[existingItemIndex] = {
+                ...updatedCarts[existingItemIndex],
+                quantity: (updatedCarts[existingItemIndex].quantity || 1) + quantity
+            };
+            setCarts(updatedCarts);
+        } else {
+            // If item is new, add it with the selected quantity
+            setCarts([...carts, { ...food, quantity: quantity }]);
+        }
+
         toast.success(`${food.foodName} added to cart!`, {
             position: 'top-center',
             autoClose: 1500,
@@ -46,15 +60,14 @@ const FoodDetails = () => {
             hideProgressBar: true,
             theme: "colored",
         });
-    };
 
+        // Reset quantity after adding to cart
+        setQuantity(1);
+    };
 
     const handleQuantityChange = (change) => {
-        setQuantity(prevQuantity => Math.max(1, prevQuantity + change));
+        setQuantity(prev => Math.max(1, prev + change));
     };
-
-    
-  
 
 
     return (
@@ -93,16 +106,27 @@ const FoodDetails = () => {
                         </div>
                         <div className="flex items-center justify-between font-bold text-xl mb-2">
                             <span className="text-gray-400 line-through">{actualPrice} Tk.</span>
-                            
+
                         </div>
                         <div className="flex justify-between items-center mb-4 space-x-2">
-                            <div>
-                            <button onClick={() => handleQuantityChange(-1)} className="text-2xl p-2 border rounded">−</button>
-                            <span className="mx-2 font-semibold text-lg">{quantity}</span>
-                            <button onClick={() => handleQuantityChange(1)} className="text-2xl p-2 border rounded">+</button>
+                            <div className="flex items-center space-x-2">
+                                <button
+                                    onClick={() => handleQuantityChange(-1)}
+                                    className="text-2xl p-2 border rounded hover:bg-gray-100"
+                                    disabled={quantity <= 1}
+                                >
+                                    −
+                                </button>
+                                <span className="mx-2 font-semibold text-lg">{quantity}</span>
+                                <button
+                                    onClick={() => handleQuantityChange(1)}
+                                    className="text-2xl p-2 border rounded hover:bg-gray-100"
+                                >
+                                    +
+                                </button>
                             </div>
-                            
                         </div>
+
 
                         {/* <div className="font-bold text-lg mb-4">
                             <span>Total Amount: {totalAmount} Tk.</span>
@@ -110,9 +134,16 @@ const FoodDetails = () => {
 
                         <p><strong>Additional Info:</strong> {food.additionalInfo}</p>
 
-                        <div className="w-full my-5 flex gap-3 md:gap-12 items-center ">
-                        <button onClick={()=>handleAddToCart(food)} className="btn bg-primary text-white px-4 py-2 rounded-md   md:w-1/3 md:text-xl text-lg">Add to Cart</button>
-                          <span className="text-green-500 text-lg md:text-2xl font-bold">{totalAmount} Tk.</span>
+                        <div className="w-full my-5 flex gap-3 md:gap-12 items-center">
+                            <button
+                                onClick={() => handleAddToCart(food)}
+                                className="btn bg-primary text-white px-4 py-2 rounded-md md:w-1/3 md:text-xl text-lg"
+                            >
+                                Add to Cart
+                            </button>
+                            <span className="text-green-500 text-lg md:text-2xl font-bold">
+                                {totalAmount.toFixed(2)} Tk.
+                            </span>
                         </div>
 
                     </div>
