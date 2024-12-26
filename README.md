@@ -1,4 +1,5 @@
 # Student Food Platform[PlateMate](https://platemates.netlify.app/)
+Firbase Hosting Link: https://platemate-3c7a2.web.app/
 
 This is a full-stack web application that allows students to order food from local home-cooks. The application is built using React, Node.js, Express, and MongoDB.
 
