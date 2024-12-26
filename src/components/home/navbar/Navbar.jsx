@@ -45,28 +45,15 @@ const Navbar = () => {
                         </ul>
                     </div>
 
+
+                    
+
                     <div className="navbar-end">
                         <NavLink to="/categories" className="btn btn-ghost mr-5 hidden lg:flex">
                             <MdOutlineFastfood className="text-lg" /> Categories
                         </NavLink>
 
-
-                        {/* <NavLink to='/login' className="btn bg-[#a0e2ff] hidden lg:flex"><AiOutlineLogin className="text-xl" />Login/Signup</NavLink> */}
-
-                        {user && user.email? (
-                   ''
-                ) : (
-                    <NavLink to='/login' className="btn bg-[#a0e2ff] hidden lg:flex"><AiOutlineLogin className="text-xl" />Login/Signup</NavLink>
-                )}
-
-
-
-                        {/* profile cart div */}
-
-                        {
-                            user && user.email? <div className="flex space-x-2">
-
-                            <div className="dropdown dropdown-end">
+                        <div className="dropdown dropdown-end pl-3 pr-3">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                     <div className="indicator">
                                         <svg
@@ -106,6 +93,23 @@ const Navbar = () => {
                                     </div>
                                 </div>
                             </div>
+                        
+                        {/* <NavLink to='/login' className="btn bg-[#a0e2ff] hidden lg:flex"><AiOutlineLogin className="text-xl" />Login/Signup</NavLink> */}
+
+                        {user && user.email? (
+                   ''
+                ) : (
+                    <NavLink to='/login' className="btn bg-[#a0e2ff] hidden lg:flex"><AiOutlineLogin className="text-xl" />Login/Signup</NavLink>
+                )}
+
+
+
+                        {/* profile cart div */}
+
+                        {
+                            user && user.email? <div className="flex space-x-2">
+
+                            
 
                             <div className="dropdown dropdown-end">
                                 
