@@ -38,7 +38,7 @@ async function run() {
         const mealPlanCollection = database.collection('mealPlan');
         const cookReqCollection = database.collection('cookRequests');
         const cookListCollection = database.collection('cookList');
-
+        const guestOrdersCollection = database.collection('guestOrders')
 
 
         app.get('/categories', async (req, res) => {
@@ -89,7 +89,20 @@ async function run() {
             res.send(result);
         });
 
+        app.post('/guestOrders', async (req, res) => {
+            const order = req.body;  
+            const result = await guestOrdersCollection.insertOne(order);
+            res.send(result);
+        });
 
+        app.get('/guestOrders', async (req, res) => {
+            const cursor = guestOrdersCollection.find();
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+
+        
 
         app.get('/mealPlan', async (req, res) => {
             const cursor = mealPlanCollection.find();
