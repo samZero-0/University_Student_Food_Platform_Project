@@ -12,7 +12,7 @@ const ProfileLayout = () => {
                             to="/profile"
                             end
                             className={({ isActive }) =>
-                                `text-lg ${isActive ? "text-gray-400 " : "text-gray-600"}`
+                                `text-lg ${isActive ? "text-primary " : "text-gray-600"}`
                             }
                         >
                             My profile
@@ -21,7 +21,7 @@ const ProfileLayout = () => {
                         <NavLink
                             to="/profile/notification"
                             className={({ isActive }) =>
-                                `text-lg ${isActive ? "text-gray-400 " : "text-gray-600"}`
+                                `text-lg ${isActive ? "text-primary " : "text-gray-600"}`
                             }
                         >
                             Notification
@@ -30,7 +30,7 @@ const ProfileLayout = () => {
                         <NavLink
                             to="/profile/settings"
                             className={({ isActive }) =>
-                                `text-lg ${isActive ? "text-gray-400 " : "text-gray-600"}`
+                                `text-lg ${isActive ? "text-primary " : "text-gray-600"}`
                             }
                         >
                             Settings

@@ -36,6 +36,7 @@ import AdminOrderManagement from './pages/Admin/AdminOrderManagement.jsx';
 import AddCategories from './pages/Admin/AddCategories.jsx';
 import CookDashboard from './pages/Cook/CookDashboard.jsx';
 import CookApplications from './pages/Admin/CookApplications.jsx';
+import PaymentHistory from './pages/profile/PaymentHistory';
 
 
 
@@ -180,6 +181,10 @@ const router = createBrowserRouter([
     element: <CookDashboard></CookDashboard>,
     
   },
+  {
+    path: '/paymentHistory',
+    element: <PaymentHistory></PaymentHistory>,
+  }
 ]);
 
 

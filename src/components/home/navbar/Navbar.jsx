@@ -156,24 +156,24 @@ const Navbar = () => {
                                         tabIndex={0}
                                         className="menu dropdown-content bg-base-200 rounded-box z-[1] mt-2 w-52 p-2 shadow">
                                         <li>
-                                            <Link to='/profile' className="hover:bg-primary/10 transition-colors duration-300">
+                                            <NavLink to='/profile' className={navLinkClasses}>
                                                 <FaUserAlt className="mr-2" />
                                                 Profile
-                                            </Link>
+                                            </NavLink>
                                         </li>
                                         
                                         {cookRegistered && (
                                             <li>
-                                                <Link to='/cookDashboard' className="hover:bg-primary/10 transition-colors duration-300">
+                                                <NavLink to='/cookDashboard' className={navLinkClasses}>
                                                     <FaHome className="mr-2" />Cook Dashboard
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                         )}
 
                                         <li>
-                                            <Link to='/profile/notification' className="hover:bg-primary/10 transition-colors duration-300">
+                                            <NavLink to='/profile/notification' className={navLinkClasses}>
                                                 <FaBell className="mr-2" />Notification
-                                            </Link>
+                                            </NavLink>
                                         </li>
                                         <li>
                                             <a className="hover:bg-primary/10 transition-colors duration-300">
@@ -181,24 +181,24 @@ const Navbar = () => {
                                             </a>
                                         </li>
                                         <li>
-                                            <Link to='/orderHistory' className="hover:bg-primary/10 transition-colors duration-300">
+                                            <NavLink to='/orderHistory' className={navLinkClasses}>
                                                 <FaShoppingCart className="mr-2" />MyOrders
-                                            </Link>
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a className="hover:bg-primary/10 transition-colors duration-300">
+                                            <NavLink to='/paymentHistory' className={navLinkClasses}>
                                                 <FaHistory className="mr-2" />Payment History
-                                            </a>
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <Link to='/profile/settings' className="hover:bg-primary/10 transition-colors duration-300">
+                                            <NavLink to='/profile/settings' className={navLinkClasses}>
                                                 <FaCog className="mr-2" />Settings
-                                            </Link>
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <Link to='/contact' className="hover:bg-primary/10 transition-colors duration-300">
+                                            <NavLink to='/contact' className={navLinkClasses}>
                                                 <FaPhone className="mr-2" />Contact Us
-                                            </Link>
+                                            </NavLink>
                                         </li>
                                         <li>
                                             <button 
