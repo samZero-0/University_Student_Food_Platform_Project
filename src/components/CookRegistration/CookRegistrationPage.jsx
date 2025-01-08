@@ -1,24 +1,32 @@
-import { useState, useEffect, useContext } from 'react';
-// import { GoUpload } from "react-icons/go";
-// import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import  { useState, useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../provider/AuthProvider';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { AlertCircle, Loader2 } from 'lucide-react';
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
-export default function Component() {
-  const {user} = useContext(AuthContext);
-  const [loading,setLoading] = useState(false);
-
-  useEffect(() => {
-    // Scroll to the top when the component mounts
-    window.scrollTo(0, 0);
-  }, []);
+export default function EnhancedFoodServiceForm() {
+  const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const [mealPrices, setMealPrices] = useState([{ meal: '', price: '' }]);
-  // const fileInputRef = useRef(null); 
+  const [errors, setErrors] = useState({});
 
-  // const addMealPrice = () => {
-  //   setMealPrices([...mealPrices, { meal: '', price: '' }]);
-  // };
+  const validateForm = (formData) => {
+    const newErrors = {};
+    if (!formData.get('fullName').trim()) newErrors.fullName = 'Full name is required';
+    if (!formData.get('studentId').trim()) newErrors.studentId = 'Student ID is required';
+    if (!formData.get('practices').trim()) newErrors.practices = 'Food practices description is required';
+    if (!formData.get('hours').trim()) newErrors.hours = 'Available hours are required';
+    if (!formData.get('agreement')) newErrors.agreement = 'You must agree to maintain food quality standards';
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const updateMealPrice = (index, field, value) => {
     const newMealPrices = [...mealPrices];
@@ -26,170 +34,193 @@ export default function Component() {
     setMealPrices(newMealPrices);
   };
 
-  // const handleButtonClick = () => {
-  //   fileInputRef.current.click();
-  // };
+  const addMealPrice = () => {
+    setMealPrices([...mealPrices, { meal: '', price: '' }]);
+  };
 
-  // const handleFileChange = (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     console.log('Selected file:', file);
-  //   }
-  // };
+  const removeMealPrice = (index) => {
+    if (mealPrices.length > 1) {
+      const newMealPrices = mealPrices.filter((_, i) => i !== index);
+      setMealPrices(newMealPrices);
+    }
+  };
 
-  const handleSubmit = (e) => {
-    setLoading(true)
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const initialData = Object.fromEntries(formData.entries());
-    console.log(initialData);
     
+    if (!validateForm(formData)) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
 
-    fetch('https://platematebackend.vercel.app/cookRequests', {
-      method: "POST",
-      headers: {
+    setLoading(true);
+    const initialData = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('https://platematebackend.vercel.app/cookRequests', {
+        method: "POST",
+        headers: {
           'content-type': 'application/json'
-      },
-      body: JSON.stringify(initialData)
-  })
-  .then(res => res.json())
-  .then(data => {
-      toast.success('Application Sent Successfully');
-      setLoading(false)
-      console.log(data);
+        },
+        body: JSON.stringify(initialData)
+      });
+
+      if (!response.ok) throw new Error('Failed to submit application');
+
+      toast.success('Application submitted successfully!');
       e.target.reset();
-
-  });
-
-
+      setMealPrices([{ meal: '', price: '' }]);
+    } catch (error) {
+      toast.error('Failed to submit application. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="md:w-11/12 md:mx-auto mt-20 mb-5">
-      <ToastContainer /> 
-      <div className="max-w-2xl mx-auto bg-white rounded-lg overflow-hidden">
-      
-        <h1 className='text-3xl text-center font-bold py-5'>Register</h1>
-        <div className="px-6 py-4 bg-primary border-b border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800">Food Service Application</h2>
-          <p className="mt-1 text-sm text-gray-600">Please fill out the form below to apply as a food service provider.</p>
-        </div>
-        <form className="p-6 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div className="form-control">
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">Full Name</label>
-              <input
-                type="text"
-                id="fullName"
-                name="fullName"
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Enter your full name"
-              />
-            </div>
-            <div className="form-control">
-              <label htmlFor="studentId" className="block text-sm font-medium text-gray-700">Student ID</label>
-              <input
-                type="text"
-                id="studentId"
-                name="studentId"
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Enter your student ID"
-              />
-            </div>
-            <div className="form-control">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={user?.email}
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Your Email"
-              />
-            </div>
-            <div className="form-control">
-              <label htmlFor="practices" className="block text-sm font-medium text-gray-700">
-                Describe your food preparation and storage practices
-              </label>
-              <textarea
-                id="practices"
-                name="practices"
-                rows={4}
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Enter your practices here..."
-              ></textarea>
-            </div>
-            <div className="form-control">
-              <label className="block text-sm font-medium text-gray-700">Provide a sample of your meal</label>
-              {mealPrices.map((item, index) => (
-                <div key={index} className="flex space-x-2 mt-2">
-                  <input
-                    type="text"
-                    placeholder="Meal name"
-                    value={item.meal}
-                    name='mealName'
-                    onChange={(e) => updateMealPrice(index, 'meal', e.target.value)}
-                    className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Price"
-                    value={item.price}
-                    name='mealPrice'
-                    onChange={(e) => updateMealPrice(index, 'price', e.target.value)}
-                    className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  />
-                  
-                </div>
-              ))}
-              <div className='my-2'>
-                <input type="url" name='imgUrl' placeholder='Enter image url' className='border p-2 rounded-lg w-full'/>
+    <div className="container mx-auto px-4 py-8 max-w-3xl">
+      <Card className="shadow-lg">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-3xl font-bold text-center">Food Service Application</CardTitle>
+          <CardDescription className="text-center">
+            Join our community of food service providers
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="fullName">Full Name</Label>
+                <Input
+                  id="fullName"
+                  name="fullName"
+                  placeholder="Enter your full name"
+                  className={errors.fullName ? 'border-red-500' : ''}
+                />
+                {errors.fullName && (
+                  <Alert variant="destructive">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertDescription>{errors.fullName}</AlertDescription>
+                  </Alert>
+                )}
               </div>
-              {/* <button
-                type="button"
-                onClick={addMealPrice}
-                className="mt-2 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-black bg-accent hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Add Another Meal
-              </button> */}
+
+              <div className="space-y-2">
+                <Label htmlFor="studentId">Student ID</Label>
+                <Input
+                  id="studentId"
+                  name="studentId"
+                  placeholder="Enter your student ID"
+                  className={errors.studentId ? 'border-red-500' : ''}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={user?.email}
+                  readOnly
+                  className="bg-gray-50"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="practices">Food Preparation Practices</Label>
+                <Textarea
+                  id="practices"
+                  name="practices"
+                  placeholder="Describe your food preparation and storage practices..."
+                  className={errors.practices ? 'border-red-500' : ''}
+                  rows={4}
+                />
+              </div>
+
+              <div className="space-y-4">
+                <Label>Meal Options</Label>
+                {mealPrices.map((item, index) => (
+                  <div key={index} className="flex gap-2">
+                    <Input
+                      placeholder="Meal name"
+                      name={`mealName${index}`}
+                      value={item.meal}
+                      onChange={(e) => updateMealPrice(index, 'meal', e.target.value)}
+                    />
+                    <Input
+                      placeholder="Price"
+                      name={`mealPrice${index}`}
+                      value={item.price}
+                      onChange={(e) => updateMealPrice(index, 'price', e.target.value)}
+                    />
+                    {mealPrices.length > 1 && (
+                      <Button 
+                        type="button"
+                        variant="destructive"
+                        onClick={() => removeMealPrice(index)}
+                      >
+                        Remove
+                      </Button>
+                    )}
+                  </div>
+                ))}
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={addMealPrice}
+                  className="w-full"
+                >
+                  Add Another Meal
+                </Button>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="imgUrl">Image URL</Label>
+                <Input
+                  type="url"
+                  id="imgUrl"
+                  name="imgUrl"
+                  placeholder="Enter image URL for your meal"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="hours">Available Hours</Label>
+                <Input
+                  id="hours"
+                  name="hours"
+                  placeholder="e.g., Mon-Fri: 5PM-9PM, Sat-Sun: 12PM-8PM"
+                  className={errors.hours ? 'border-red-500' : ''}
+                />
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Checkbox id="agreement" name="agreement" />
+                <Label htmlFor="agreement" className="text-sm">
+                  I agree to maintain food quality standards
+                </Label>
+              </div>
             </div>
-            <div className="form-control">
-              <label htmlFor="hours" className="block text-sm font-medium text-gray-700">
-                Specify your available hours for meal preparation and delivery
-              </label>
-              <input
-                type="text"
-                id="hours"
-                name="hours"
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="e.g., Mon-Fri: 5PM-9PM, Sat-Sun: 12PM-8PM"
-              />
-            </div>
-          </div>
-          <div className="form-control !flex-row items-center">
-            <input
-              type="checkbox"
-              id="agreement"
-              name="agreement"
-              className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-            />
-            <label htmlFor="agreement" className="ml-2 block text-sm text-gray-700">
-              I agree to maintain food quality standards
-            </label>
-          </div>
-          <div className="form-control ">
-          
-              <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-black bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                { loading? <span className="loading loading-spinner loading-md"></span> :  'Submit Application'}
-              </button>
-            
-          </div>
-        </form>
-        
-      </div>
+
+            <Button 
+              type="submit" 
+              className="w-full bg-primary text-black hover:text-white"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                'Submit Application'
+              )}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
