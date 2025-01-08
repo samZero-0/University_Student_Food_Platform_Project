@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Camera, Clock, Users, Utensils, AlertTriangle, Leaf, Info, DollarSign } from 'lucide-react';
 import { AuthContext } from '../../provider/AuthProvider';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -98,7 +98,7 @@ export default function App() {
 
       const data = await response.json();
       setLoading(false);
-      
+
       if (response.ok) {
         toast.success('Food added successfully!');
         setFormData({
@@ -171,7 +171,7 @@ export default function App() {
                         <Info className="w-4 h-4 text-emerald-500" />
                         Food Name *
                       </Label>
-                      <Input 
+                      <Input
                         name="foodName"
                         value={formData.foodName}
                         onChange={handleInputChange}
@@ -185,7 +185,7 @@ export default function App() {
                         <DollarSign className="w-4 h-4 text-emerald-500" />
                         Price (TK) *
                       </Label>
-                      <Input 
+                      <Input
                         type="number"
                         name="price"
                         value={formData.price}
@@ -201,7 +201,7 @@ export default function App() {
                       <Camera className="w-4 h-4 text-emerald-500" />
                       Image URL *
                     </Label>
-                    <Input 
+                    <Input
                       type="url"
                       name="image"
                       value={formData.image}
@@ -320,28 +320,28 @@ export default function App() {
                     </div>
                   </CardContent>
                 </Card>
+                <div className="flex justify-end pt-6">
+                  <Button
+                    type="submit"
+                    className="bg-emerald-500 hover:bg-emerald-600"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Processing...
+                      </div>
+                    ) : (
+                      'Create Listing'
+                    )}
+                  </Button>
+                </div>
               </TabsContent>
-
-              <div className="flex justify-end pt-6">
-                <Button 
-                  type="submit" 
-                  className="bg-emerald-500 hover:bg-emerald-600"
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Processing...
-                    </div>
-                  ) : (
-                    'Create Listing'
-                  )}
-                </Button>
-              </div>
             </form>
           </Tabs>
         </CardContent>
       </Card>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }
