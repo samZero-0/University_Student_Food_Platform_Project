@@ -189,6 +189,10 @@ const router = createBrowserRouter([
   {
     path:'/discountPromo',
     element:<DiscountPromo></DiscountPromo>
+  },
+  {
+    path: '*',
+    element: <p>not found</p>,
   }
 ]);
 
