@@ -1,204 +1,331 @@
-import {  useEffect, useState } from 'react';
-import { Check, X, Clock, DollarSign, Mail, User, School, ChefHat, MapPin } from 'lucide-react';
-import { toast, ToastContainer } from 'react-toastify';
-import swal from 'sweetalert';
+import  { useEffect, useState } from 'react';
+import { Check, X, Clock, DollarSign, Mail, User, School, ChefHat, MapPin, Search, Filter } from 'lucide-react';
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardFooter, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Skeleton } from "@/components/ui/skeleton";
+import { toast ,ToastContainer } from "react-toastify";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-
-export default function CookApplications() {
+export  function CookApplications() {
   const [requests, setRequests] = useState([]);
-  const [loading,setLoading] = useState(false)
-  
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showDeclineDialog, setShowDeclineDialog] = useState(false);
+  const [selectedRequestId, setSelectedRequestId] = useState(null);
+  const [filterStatus, setFilterStatus] = useState('all');
 
+  useEffect(() => {
+    fetchRequests();
+  }, []);
 
-
- useEffect(()=>{
-    
-    fetch(`https://platematebackend.vercel.app/cookRequests`)
-    .then(res => res.json())
-    .then(data => setRequests(data))
- },[])
-
-  const handleApprove = (id,name,studentId,email) => {
-    setLoading(true)
-    const data = {name,email,studentId}
-
-    fetch('https://platematebackend.vercel.app/cookList',{
-        method: 'POST',
-        headers: {
-            'content-type' : 'application/json'
-
-        },
-        body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      toast.success("Application Approved")
-      setLoading(false)
-      setRequests(requests.filter(req => req._id !== id));
-    })
-
-    fetch(`https://platematebackend.vercel.app/cookRequests/${id}`,{
-      method: "DELETE"
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      setLoading(false)
-      
-    })
-
-
-
-    
+  const fetchRequests = async () => {
+    try {
+      const response = await fetch('https://platematebackend.vercel.app/cookRequests');
+      const data = await response.json();
+      setRequests(data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching requests:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to fetch cook requests. Please try again later.",
+      });
+      setLoading(false);
+    }
   };
 
-  const handleDecline = (id) => {
-
-    swal({
-      title: "Are you sure?",
-      text: "Are you sure that you want to Decline the Application?",
-      icon: "warning",
-      dangerMode: true,
-    })
-    .then(willDelete => {
-      if (willDelete) {
-        fetch(`https://platematebackend.vercel.app/cookRequests/${id}`,{
+  const handleApprove = async (id, name, studentId, email) => {
+    setLoading(true);
+    try {
+      const data = { name, email, studentId };
+      
+      await Promise.all([
+        fetch('https://platematebackend.vercel.app/cookList', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(data)
+        }),
+        fetch(`https://platematebackend.vercel.app/cookRequests/${id}`, {
           method: "DELETE"
         })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          
-          setRequests(requests.filter(req => req._id !== id));
-          
-        })
-        swal("Deleted!", "Application Declined", "success");
-      }
-    });
+      ]);
 
-
-
-
-    
-   
-    
+      setRequests(requests.filter(req => req._id !== id));
+      toast({
+        title: "Application Approved",
+        description: "The cook application has been successfully approved.",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to approve application. Please try again.",
+      });
+    }
+    setLoading(false);
   };
+
+  const handleDecline = async (id) => {
+    setSelectedRequestId(id);
+    setShowDeclineDialog(true);
+  };
+
+  const confirmDecline = async () => {
+    try {
+      await fetch(`https://platematebackend.vercel.app/cookRequests/${selectedRequestId}`, {
+        method: "DELETE"
+      });
+      
+      setRequests(requests.filter(req => req._id !== selectedRequestId));
+      toast({
+        title: "Application Declined",
+        description: "The cook application has been declined.",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to decline application. Please try again.",
+      });
+    }
+    setShowDeclineDialog(false);
+  };
+
+  const filteredRequests = requests.filter(request => 
+    request.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    request.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    request.studentId.toString().includes(searchTerm)
+  );
+
+  const StatsCard = ({ title, value, icon: Icon, colorClass }) => (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <CardTitle className="text-sm font-medium text-gray-500">{title}</CardTitle>
+        <Icon className={`h-4 w-4 ${colorClass}`} />
+      </CardHeader>
+      <CardContent>
+        <div className={`text-2xl font-bold ${colorClass}`}>{value}</div>
+      </CardContent>
+    </Card>
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-      <ToastContainer></ToastContainer>
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Food Seller Requests</h1>
-          <p className="mt-2 text-gray-600">Review and manage new food seller applications</p>
+      <div className="max-w-7xl mx-auto space-y-8">
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Food Seller Requests</h1>
+            <p className="mt-2 text-gray-600">Review and manage new food seller applications</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+              <Input
+                placeholder="Search requests..."
+                className="pl-8 w-64"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="gap-2">
+                  <Filter className="h-4 w-4" />
+                  Filter
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={() => setFilterStatus('all')}>
+                  All Requests
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setFilterStatus('pending')}>
+                  Pending Only
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+        <ToastContainer position="top-right" autoClose={3000} />
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <StatsCard
+            title="Pending Requests"
+            value={requests.length}
+            icon={Clock}
+            colorClass="text-orange-600"
+          />
+          <StatsCard
+            title="Approved Today"
+            value="12"
+            icon={Check}
+            colorClass="text-green-600"
+          />
+          <StatsCard
+            title="Declined Today"
+            value="3"
+            icon={X}
+            colorClass="text-red-600"
+          />
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="text-sm font-medium text-gray-500">Pending Requests</div>
-            <div className="mt-2 text-3xl font-semibold text-orange-600">{requests.length}</div>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="text-sm font-medium text-gray-500">Approved Today</div>
-            <div className="mt-2 text-3xl font-semibold text-green-600">12</div>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="text-sm font-medium text-gray-500">Declined Today</div>
-            <div className="mt-2 text-3xl font-semibold text-red-600">3</div>
-          </div>
-        </div>
-
-        {/* Request Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {requests.map((request) => (
-            <div key={request._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              {/* Card Image */}
-              <div className="relative h-48">
-                <img 
-                  src={request.imgUrl} 
-                  alt={request.mealName}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  New Request
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="overflow-hidden">
+                <div className="h-48">
+                  <Skeleton className="h-full w-full" />
                 </div>
-              </div>
-
-              {/* Card Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{request.mealName}</h3>
+                <CardHeader>
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-4 w-1/2" />
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {[1, 2, 3].map((j) => (
+                    <Skeleton key={j} className="h-4 w-full" />
+                  ))}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredRequests.map((request) => (
+              <Card key={request._id} className="overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="relative h-48">
+                  <img 
+                    src={request.imgUrl} 
+                    alt={request.mealName}
+                    className="w-full h-full object-cover"
+                  />
+                  <Badge 
+                    className="absolute top-4 right-4" 
+                    variant="secondary"
+                  >
+                    New Request
+                  </Badge>
+                </div>
                 
-                <div className="space-y-3">
-                  <div className="flex items-center text-gray-600">
-                    <User className="w-5 h-5 mr-3 text-gray-400" />
-                    <span>{request.fullName}</span>
-                  </div>
-                  
-                  <div className="flex items-center text-gray-600">
-                    <School className="w-5 h-5 mr-3 text-gray-400" />
-                    <span>Student ID: {request.studentId}</span>
-                  </div>
-                  
-                  <div className="flex items-center text-gray-600">
-                    <Mail className="w-5 h-5 mr-3 text-gray-400" />
-                    <span>{request.email}</span>
-                  </div>
-                  
-                  <div className="flex items-center text-gray-600">
-                    <DollarSign className="w-5 h-5 mr-3 text-gray-400" />
-                    <span>{request.mealPrice} BDT</span>
-                  </div>
-                  
-                  <div className="flex items-center text-gray-600">
-                    <Clock className="w-5 h-5 mr-3 text-gray-400" />
-                    <span>{request.hours}</span>
-                  </div>
-                </div>
+                <CardHeader>
+                  <CardTitle>{request.mealName}</CardTitle>
+                  <CardDescription>Food Seller Application</CardDescription>
+                </CardHeader>
 
-                <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                  <div className="flex items-start">
-                    <ChefHat className="w-5 h-5 mr-3 text-gray-400 mt-1" />
-                    <p className="text-gray-600 text-sm">{request.practices}</p>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <Avatar>
+                      <AvatarImage src={request.imgUrl} />
+                      <AvatarFallback>{request.fullName.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <p className="font-medium">{request.fullName}</p>
+                      <p className="text-sm text-gray-500">{request.email}</p>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Card Actions */}
-              <div className="p-6 bg-gray-50 border-t">
-                <div className="flex space-x-3">
-                  <button
-                    onClick={() => handleApprove(request._id,request.fullName,request.studentId,request.email)}
-                    className="flex-1 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
+                  <div className="space-y-2">
+                    <div className="flex items-center text-sm text-gray-600">
+                      <School className="w-4 h-4 mr-2" />
+                      <span>Student ID: {request.studentId}</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <DollarSign className="w-4 h-4 mr-2" />
+                      <span>{request.mealPrice} BDT</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Clock className="w-4 h-4 mr-2" />
+                      <span>{request.hours}</span>
+                    </div>
+                  </div>
+
+                  <Card className="bg-gray-50">
+                    <CardContent className="p-4">
+                      <div className="flex items-start gap-2">
+                        <ChefHat className="w-4 h-4 text-gray-400 mt-1" />
+                        <p className="text-sm text-gray-600">{request.practices}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CardContent>
+
+                <CardFooter className="flex gap-3">
+                  <Button
+                    className="flex-1"
+                    onClick={() => handleApprove(request._id, request.fullName, request.studentId, request.email)}
+                    disabled={loading}
                   >
                     <Check className="w-4 h-4 mr-2" />
-                    {loading? <span className="loading loading-spinner loading-md"></span>:'Approve'}
-                  </button>
-                  
-                  <button
+                    Approve
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    className="flex-1"
                     onClick={() => handleDecline(request._id)}
-                    className="flex-1 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+                    disabled={loading}
                   >
                     <X className="w-4 h-4 mr-2" />
-                    {loading? <span className="loading loading-spinner loading-md"></span>:'Decline'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {requests.length === 0 && (
-          <div className="text-center py-12">
-            <ChefHat className="mx-auto h-12 w-12 text-gray-400" />
-            <h3 className="mt-2 text-sm font-medium text-gray-900">No pending requests</h3>
-            <p className="mt-1 text-sm text-gray-500">All food seller requests have been processed.</p>
+                    Decline
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
           </div>
         )}
+
+        {!loading && filteredRequests.length === 0 && (
+          <Card className="py-12">
+            <CardContent className="flex flex-col items-center text-center">
+              <ChefHat className="h-12 w-12 text-gray-400 mb-4" />
+              <h3 className="text-lg font-medium text-gray-900">No pending requests</h3>
+              <p className="text-sm text-gray-500 mt-1">All food seller requests have been processed.</p>
+            </CardContent>
+          </Card>
+        )}
+
+        <AlertDialog open={showDeclineDialog} onOpenChange={setShowDeclineDialog}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently decline the food seller application.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={confirmDecline} className="bg-red-600 hover:bg-red-700">
+                Decline Application
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );
 }
+
+export default CookApplications;
