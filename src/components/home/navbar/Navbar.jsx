@@ -176,9 +176,9 @@ const Navbar = () => {
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <a className="hover:bg-primary/10 transition-colors duration-300">
+                                            <NavLink to='/discountPromo' className={navLinkClasses}>
                                                 <FaTag className="mr-2" />Discount&Promo
-                                            </a>
+                                            </NavLink>
                                         </li>
                                         <li>
                                             <NavLink to='/orderHistory' className={navLinkClasses}>

@@ -37,6 +37,7 @@ import AddCategories from './pages/Admin/AddCategories.jsx';
 import CookDashboard from './pages/Cook/CookDashboard.jsx';
 import CookApplications from './pages/Admin/CookApplications.jsx';
 import PaymentHistory from './pages/profile/PaymentHistory';
+import DiscountPromo from './pages/profile/DiscountPromo';
 
 
 
@@ -184,6 +185,10 @@ const router = createBrowserRouter([
   {
     path: '/paymentHistory',
     element: <PaymentHistory></PaymentHistory>,
+  },
+  {
+    path:'/discountPromo',
+    element:<DiscountPromo></DiscountPromo>
   }
 ]);
 
