@@ -1,197 +1,320 @@
 import { useContext, useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
-import ReactStars from "react-rating-stars-component";
-import { ToastContainer, toast } from 'react-toastify';
+import { useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
-import ScaleLoader from "react-spinners/ScaleLoader";
 import { Context } from "../../provider/Context";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Star,
+  Minus,
+  Plus,
+  Utensils,
+  AlertTriangle,
+  Heart,
+  ShoppingCart
+} from "lucide-react";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
 
+export default function FoodDetails() {
+  const { carts, setCarts } = useContext(Context);
+  const [quantity, setQuantity] = useState(1);
+  const { _id } = useParams();
+  const [food, setFood] = useState(null);
+  const [relatedItems, setRelatedItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const FoodDetails = () => {
-    const { carts, setCarts } = useContext(Context);
-    const [quantity, setQuantity] = useState(1); // Local quantity state
-    const { _id } = useParams();
-    const [food, setFood] = useState(null);
-    const [relatedItems, setRelatedItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        AOS.init({ duration: 800 });
-        setTimeout(() => {
-            fetch(`https://platematebackend.vercel.app/foods/`)
-                .then((res) => res.json())
-                .then((data) => {
-                    const foundProduct = data.find((item) => item._id == _id);
-                    setFood(foundProduct);
-                    const related = data.filter(item => item.sellerName === foundProduct?.sellerName && item._id !== _id);
-                    setRelatedItems(related);
-                    setLoading(false);
-                });
-        }, 1000);
-    }, [_id]);
-
-    const discountedPrice = food ? food.price - (food.price * (food.discount / 100)) : 0;
-    const actualPrice = food ? food.price * quantity : 0;
-    const totalAmount = food ? discountedPrice * quantity : 0;
-
-    const handleAddToCart = (food) => {
-        const existingItemIndex = carts.findIndex(item =>
-            item._id === food._id
-        );
-
-        if (existingItemIndex >= 0) {
-            // If item exists, update its quantity
-            const updatedCarts = [...carts];
-            updatedCarts[existingItemIndex] = {
-                ...updatedCarts[existingItemIndex],
-                quantity: (updatedCarts[existingItemIndex].quantity || 1) + quantity
-            };
-            setCarts(updatedCarts);
-        } else {
-            // If item is new, add it with the selected quantity
-            setCarts([...carts, { ...food, quantity: quantity }]);
-        }
-
-        toast.success(`${food.foodName} added to cart!`, {
-            position: 'top-center',
-            autoClose: 1500,
-            closeOnClick: true,
-            pauseOnHover: false,
-            hideProgressBar: true,
-            theme: "colored",
+  useEffect(() => {
+    AOS.init({ duration: 800 });
+    setTimeout(() => {
+      fetch(`https://platematebackend.vercel.app/foods/`)
+        .then((res) => res.json())
+        .then((data) => {
+          const foundProduct = data.find((item) => item._id == _id);
+          setFood(foundProduct);
+          const related = data.filter(
+            (item) => item.sellerName === foundProduct?.sellerName && item._id !== _id
+          );
+          setRelatedItems(related);
+          setLoading(false);
         });
+    }, 1000);
+  }, [_id]);
 
-        // Reset quantity after adding to cart
-        setQuantity(1);
-    };
+  const discountedPrice = food ? food.price - (food.price * (food.discount / 100)) : 0;
+  const actualPrice = food ? food.price * quantity : 0;
+  const totalAmount = food ? discountedPrice * quantity : 0;
 
-    const handleQuantityChange = (change) => {
-        setQuantity(prev => Math.max(1, prev + change));
-    };
+  const handleAddToCart = (food) => {
+    const existingItemIndex = carts.findIndex((item) => item._id === food._id);
 
+    if (existingItemIndex >= 0) {
+      const updatedCarts = [...carts];
+      updatedCarts[existingItemIndex] = {
+        ...updatedCarts[existingItemIndex],
+        quantity: (updatedCarts[existingItemIndex].quantity || 1) + quantity,
+      };
+      setCarts(updatedCarts);
+    } else {
+      setCarts([...carts, { ...food, quantity: quantity }]);
+    }
 
+    toast.success(`${food.foodName} added to cart!`, {
+      position: "top-center",
+      autoClose: 1500,
+      closeOnClick: true,
+      pauseOnHover: false,
+      hideProgressBar: true,
+      theme: "colored",
+    });
+
+    setQuantity(1);
+  };
+
+  const handleQuantityChange = (change) => {
+    setQuantity((prev) => Math.max(1, prev + change));
+  };
+
+  if (loading) {
     return (
-        <div className="container mx-auto px-4 py-6 w-10/12 ">
-            <ToastContainer />
-            {loading ? (
-                <div className="flex justify-center mt-20">
-                    <ScaleLoader color="#a0e2ff" />
-                </div>
-            ) : food ? (
-                <div className="bg-gray-100 md:h-[580px]  shadow-lg rounded-lg overflow-hidden flex lg:flex-row flex-col  ">
-                    <div className="w-full p-10  lg:w-1/2">
-                        <img src={food.image} alt={food.foodName} className="object-cover rounded-2xl h-full w-full" data-aos="fade-right" />
-                    </div>
-                    <div className="w-full lg:w-1/2 p-10" data-aos="fade-left">
-                        <h1 className="text-xl font-bold ">{food.foodName}</h1>
-                        <p className="text-gray-500 text-sm">by <span className="text-yellow-700">{food.sellerName}</span></p>
-                        <div className="flex items-center mb-2">
-                            <ReactStars size={24} value={food.rating} edit={false} />
-                            <span className="ml-2 font-bold text-lg">{food.rating}</span>
-                        </div>
-                        <p className="mb-2"><strong>Category:</strong> {food.category}</p>
-                        <p className="mb-2"><strong>Description:</strong> {food.description}</p>
-                        <div className="mb-2">
-                            <p><strong>Ingredients:</strong> {food.ingredients}</p>
-                            <p><strong>Allergens:</strong> {food.allergens}</p>
-                        </div>
-                        <div className="border-t border-gray-200 pt-2 mb-2">
-                            <p><strong>Nutrition:</strong></p>
-                            <ul className="list-disc list-inside space-y-1 text-sm">
-                                Calories: {food.nutrition.calories},
-                                Protein: {food.nutrition.protein},
-                                Carbohydrates: {food.nutrition.carbohydrates},
-                                Fat: {food.nutrition.fat}
-                            </ul>
-                        </div>
-                        <div className="flex items-center justify-between font-bold text-xl mb-2">
-                            <span className="text-gray-400 line-through">{actualPrice} Tk.</span>
-
-                        </div>
-                        <div className="flex justify-between items-center mb-4 space-x-2">
-                            <div className="flex items-center space-x-2">
-                                <button
-                                    onClick={() => handleQuantityChange(-1)}
-                                    className="text-2xl p-2 border rounded hover:bg-gray-100"
-                                    disabled={quantity <= 1}
-                                >
-                                    −
-                                </button>
-                                <span className="mx-2 font-semibold text-lg">{quantity}</span>
-                                <button
-                                    onClick={() => handleQuantityChange(1)}
-                                    className="text-2xl p-2 border rounded hover:bg-gray-100"
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
-
-
-                        {/* <div className="font-bold text-lg mb-4">
-                            <span>Total Amount: {totalAmount} Tk.</span>
-                        </div> */}
-
-                        <p><strong>Additional Info:</strong> {food.additionalInfo}</p>
-
-                        <div className="w-full my-5 flex gap-3 md:gap-12 items-center">
-                            <button
-                                onClick={() => handleAddToCart(food)}
-                                className="btn bg-primary text-white px-4 py-2 rounded-md md:w-1/3 md:text-xl text-lg"
-                            >
-                                Add to Cart
-                            </button>
-                            <span className="text-green-500 text-lg md:text-2xl font-bold">
-                                {totalAmount.toFixed(2)} Tk.
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-            ) : (
-                <p>Loading...</p>
-            )}
-
-            {food && (
-                <div className="border-t border-gray-200 pt-4 mt-6">
-                    <h2 className="text-2xl font-bold mb-2">Reviews</h2>
-                    {food.reviews.length > 0 ? (
-                        food.reviews.map((review, index) => (
-                            <div key={index} className="mb-2">
-                                <p><strong>{review.username}</strong>: {review.review}</p>
-                                <ReactStars size={20} value={review.rating} edit={false} />
-                            </div>
-                        ))
-                    ) : (
-                        <p>No reviews yet.</p>
-                    )}
-                </div>
-            )}
-
-            <div className="w-full rounded-xl mt-10">
-                <div className="p-3 flex justify-center">
-                    <span className="text-2xl font-bold">Browse More Dishes from {food?.sellerName}</span>
-                </div>
-                {relatedItems.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 p-3">
-                        {relatedItems.map((item) => (
-                            <div key={item._id} className="border rounded-lg shadow-md p-4">
-                                <img src={item.image} alt={item.foodName} className="h-[200px] w-full object-cover rounded-md mb-2" />
-                                <p className="text-lg font-bold">{item.foodName}</p>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="flex justify-center p-3">
-                        <ScaleLoader color="#a0e2ff" />
-                        <span className="text-xl ml-3">Loading {food?.sellerName} dishes...</span>
-                    </div>
-                )}
-            </div>
-        </div>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="w-10 h-10 border-2 border-t-transparent border-primary rounded-full animate-spin"></div>
+      </div>
     );
-};
+  }
 
-export default FoodDetails;
+  if (!food) {
+    return (
+      <Alert variant="destructive" className="max-w-lg mx-auto mt-8">
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>Food item not found.</AlertDescription>
+      </Alert>
+    );
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Image Section */}
+          <Card className="overflow-hidden" data-aos="fade-right">
+            <CardContent className="p-0">
+              <div className="relative">
+                <img
+                  src={food.image}
+                  alt={food.foodName}
+                  className="w-full h-[500px] object-cover"
+                />
+                {food.discount > 0 && (
+                  <Badge className="absolute top-4 right-4 bg-red-500">
+                    {food.discount}% OFF
+                  </Badge>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Details Section */}
+          <Card data-aos="fade-left">
+            <CardHeader>
+              <div className="flex justify-between items-start">
+                <div>
+                  <CardTitle className="text-2xl mb-2">{food.foodName}</CardTitle>
+                  <CardDescription>
+                    by{" "}
+                    <span className="text-primary font-medium">
+                      {food.sellerName}
+                    </span>
+                  </CardDescription>
+                </div>
+                <div className="flex items-center gap-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-5 h-5 ${
+                        i < food.rating
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </CardHeader>
+
+            <CardContent className="space-y-6">
+              <Tabs defaultValue="details" className="w-full">
+                <TabsList className="grid w-full grid-cols-3">
+                  <TabsTrigger value="details">Details</TabsTrigger>
+                  <TabsTrigger value="nutrition">Nutrition</TabsTrigger>
+                  <TabsTrigger value="reviews">Reviews</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="details" className="space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Utensils className="w-4 h-4 text-primary" />
+                      <span className="font-medium">Category:</span> {food.category}
+                    </div>
+                    <p className="text-gray-600">{food.description}</p>
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <AlertTriangle className="w-4 h-4 text-yellow-500" />
+                        <span className="font-medium">Allergens:</span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {food.allergens.map((allergen, idx) => (
+                          <Badge key={idx} variant="secondary">
+                            {allergen}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="nutrition" className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    {Object.entries(food.nutrition).map(([key, value]) => (
+                      <div
+                        key={key}
+                        className="bg-gray-50 p-4 rounded-lg text-center"
+                      >
+                        <p className="text-gray-600 capitalize">{key}</p>
+                        <p className="text-lg font-bold">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="reviews">
+                  {food.reviews.length > 0 ? (
+                    <div className="space-y-4">
+                      {food.reviews.map((review, idx) => (
+                        <Card key={idx}>
+                          <CardHeader>
+                            <CardTitle className="text-lg">
+                              {review.username}
+                            </CardTitle>
+                            <div className="flex items-center gap-1">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className={`w-4 h-4 ${
+                                    i < review.rating
+                                      ? "fill-yellow-400 text-yellow-400"
+                                      : "text-gray-300"
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          </CardHeader>
+                          <CardContent>{review.review}</CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-center text-gray-500 py-4">
+                      No reviews yet.
+                    </p>
+                  )}
+                </TabsContent>
+              </Tabs>
+
+              <div className="border-t pt-6 space-y-4">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-4">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleQuantityChange(-1)}
+                      disabled={quantity <= 1}
+                    >
+                      <Minus className="w-4 h-4" />
+                    </Button>
+                    <span className="text-xl font-semibold">{quantity}</span>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleQuantityChange(1)}
+                    >
+                      <Plus className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-gray-500 line-through">
+                      {actualPrice.toFixed(2)} Tk
+                    </p>
+                    <p className="text-2xl font-bold text-primary">
+                      {totalAmount.toFixed(2)} Tk
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <Button
+                    className="flex-1 bg-primary"
+                    onClick={() => handleAddToCart(food)}
+                  >
+                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    Add to Cart
+                  </Button>
+                  <Button className="" variant="outline" size="icon">
+                    <Heart className="w-4 h-4 text-primary" />
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Related Items Section */}
+        {relatedItems.length > 0 && (
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>More from {food.sellerName}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedItems.map((item) => (
+                  <Card key={item._id} className="overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.foodName}
+                      className="h-48 w-full object-cover"
+                    />
+                    <CardHeader>
+                      <CardTitle className="text-lg">{item.foodName}</CardTitle>
+                      <CardDescription>
+                        {item.price} Tk
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    </div>
+  );
+}
