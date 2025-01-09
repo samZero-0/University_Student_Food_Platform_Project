@@ -123,7 +123,7 @@ export default function EnhancedFoodServiceForm() {
                   id="email"
                   name="email"
                   value={user?.email}
-                  readOnly
+                  
                   className="bg-gray-50"
                 />
               </div>
