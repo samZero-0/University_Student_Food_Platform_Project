@@ -1,5 +1,5 @@
 import  { useState, useContext } from 'react';
-import { toast } from 'react-hot-toast';
+import { toast, ToastContainer } from 'react-hot-toast';
 import { AuthContext } from '../../provider/AuthProvider';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -221,6 +221,10 @@ export default function EnhancedFoodServiceForm() {
           </form>
         </CardContent>
       </Card>
+      <ToastContainer 
+        position="top-center"
+        autoClose={3000}
+      />
     </div>
   );
 }

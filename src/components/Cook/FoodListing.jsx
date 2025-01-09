@@ -153,19 +153,19 @@ export default function App() {
                         <Utensils className="w-4 h-4 text-emerald-500" />
                         Category *
                       </Label>
-                      <Select  name="category" 
+                      <select
+                        name="category"
                         value={formData.category}
-                        onChange={handleInputChange} required>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Lunch">🥗 Lunch</SelectItem>
-                          <SelectItem value="Main Courses">🍽️ Main Course</SelectItem>
-                          <SelectItem value="Dessert">🍰 Desserts</SelectItem>
-                          <SelectItem value="Snacks">🥤 Snacks</SelectItem>
-                        </SelectContent>
-                      </Select>
+                        onChange={handleInputChange}
+                        required
+                        className="w-full rounded-lg border-gray-200 focus:border-emerald-500 focus:ring focus:ring-emerald-200"
+                      >
+                        <option value="">Select a category</option>
+                        <option value="Lunch">🥗 Lunch</option>
+                        <option value="Main Courses">🍽️ Main Course</option>
+                        <option value="Dessert">🍰 Desserts</option>
+                        <option value="Snacks">🥤 Snacks</option>
+                      </select>
                     </div>
 
                     <div className="space-y-2">
