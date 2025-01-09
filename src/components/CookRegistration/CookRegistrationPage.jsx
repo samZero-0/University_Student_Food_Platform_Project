@@ -1,5 +1,5 @@
 import  { useState, useContext } from 'react';
-import { toast, ToastContainer } from 'react-hot-toast';
+import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../provider/AuthProvider';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
