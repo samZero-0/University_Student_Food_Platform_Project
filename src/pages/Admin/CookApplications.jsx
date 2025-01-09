@@ -171,7 +171,6 @@ export  function CookApplications() {
             </DropdownMenu>
           </div>
         </div>
-        <ToastContainer position="top-right" autoClose={3000} />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <StatsCard
@@ -324,6 +323,7 @@ export  function CookApplications() {
           </AlertDialogContent>
         </AlertDialog>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }

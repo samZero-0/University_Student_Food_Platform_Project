@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
@@ -315,6 +315,7 @@ export default function FoodDetails() {
           </Card>
         )}
       </div>
+      <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
 }

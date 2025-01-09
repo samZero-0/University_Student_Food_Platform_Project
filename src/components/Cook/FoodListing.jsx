@@ -153,7 +153,9 @@ export default function App() {
                         <Utensils className="w-4 h-4 text-emerald-500" />
                         Category *
                       </Label>
-                      <Select name="category" required>
+                      <Select  name="category" 
+                        value={formData.category}
+                        onChange={handleInputChange} required>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a category" />
                         </SelectTrigger>
