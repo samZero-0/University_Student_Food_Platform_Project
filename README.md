@@ -4,24 +4,53 @@ Firbase Hosting Link: https://platemate-3c7a2.web.app/
 This is a full-stack web application that allows students to order food from local home-cooks. The application is built using React, Node.js, Express, and MongoDB.
 
 
-## Features
+## ✨ Key Features
 
-- User authentication and authorization
-- User profiles with order history and favorite foods
-- Food search and filtering by category, price, and rating
-- Food details page with reviews and ratings
-- Meal planning feature to plan meals for the week
-- Secure payment processing using Stripe
-- Admin dashboard to manage users, foods, and orders
+### For Students
+- Browse diverse meal offerings from local home-cooks with detailed descriptions and photos
+- Filter food options by dietary preferences, cuisine types, price range, and delivery time
+- Receive AI-powered personalized meal recommendations based on dietary goals and preferences
+- Place orders with secure payment processing and real-time order tracking
+- Schedule meal deliveries or pickups according to your class schedule
+- Rate and review meals to help build a trustworthy community marketplace
 
-## Technologies Used
+### For Home-Cooks
+- Create a personalized cook profile showcasing your specialty cuisines and cooking style
+- List and manage your food offerings with flexible pricing and availability options
+- Access AI insights about popular meal types and trending dietary preferences in your area
+- Receive orders with streamlined acceptance and preparation workflow
+- Track earnings with comprehensive dashboard analytics
+- Build reputation through student reviews and ratings
 
-- Frontend: React, React Router, React Context API
-- Backend: Node.js, Express, MongoDB
-- Database: MongoDB
-- APIs:  Google Maps
-- Testing: Jest, Enzyme
-- Deployment: Netlify
+### AI Diet Suggestion System
+- Personalized nutrition recommendations based on student profiles and goals
+- Smart meal matching that considers dietary restrictions, allergies, and preferences
+- Weekly meal planning suggestions for balanced nutrition
+- Nutritional analytics to track macro and micronutrient intake over time
+- Diet goal setting and progress tracking
+
+### Platform Features
+- Secure user authentication and profile management
+- Real-time notifications for order updates and delivery status
+- Mobile-responsive design for seamless experience across all devices
+- Intuitive admin dashboard for platform oversight and management
+- Integrated messaging system for direct communication between students and cooks
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React.js with hooks for state management
+- React Router for navigation
+- Styled Components & Material UI for styling
+- Axios for API requests
+- React Query for data fetching and caching
+
+### Backend
+- Node.js & Express.js for server-side logic
+- MongoDB for database with Mongoose ODM
+- JWT for authentication
 
 ## Setup
 
