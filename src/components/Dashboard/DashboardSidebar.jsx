@@ -1,45 +1,184 @@
-
+import  { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { 
-  FaHome, 
-  FaUsers, 
-  FaShoppingCart, 
-  FaUtensils, 
-  FaChartBar, 
-  FaCog, 
-  FaSignOutAlt 
-} from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+  LayoutDashboard, 
+  Users, 
+  ShoppingCart, 
+  Utensils, 
+  BarChart, 
+  Settings, 
+  LogOut,
+  ChevronLeft,
+  Menu
+} from 'lucide-react';
+import { 
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const SidebarItem = ({ icon: Icon, text, active }) => (
-  <li className={`flex items-center p-2 rounded-lg cursor-pointer transition-colors ${active ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
-    <Icon className="w-5 h-5 mr-3" />
-    <span className="font-medium">{text}</span>
-  </li>
+const menuItems = [
+  { icon: LayoutDashboard, text: 'Dashboard', path: '/admin' },
+  { icon: Users, text: 'Users', path: '/admin/users' },
+  { icon: ShoppingCart, text: 'Orders', path: '/admin/orders' },
+  { icon: Utensils, text: 'Add Categories', path: '/admin/addCategories' },
+  { icon: BarChart, text: 'Applications', path: '/admin/applications' },
+  { icon: Settings, text: 'Settings', path: '/admin/settings' },
+];
+
+const SidebarItem = ({ icon: Icon, text, active, collapsed, onClick }) => (
+  <TooltipProvider delayDuration={0}>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div
+          onClick={onClick}
+          className={`
+            flex items-center p-3 rounded-lg cursor-pointer
+            transition-all duration-300 ease-in-out
+            group relative
+            ${active 
+              ? 'bg-primary text-primary-foreground shadow-lg' 
+              : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
+            }
+            ${collapsed ? 'justify-center' : 'justify-start'}
+          `}
+        >
+          <Icon className={`w-5 h-5 ${collapsed ? '' : 'mr-3'} transition-all duration-300`} />
+          <span className={`
+            font-medium whitespace-nowrap
+            transition-all duration-300
+            ${collapsed ? 'w-0 overflow-hidden opacity-0' : 'w-auto opacity-100'}
+          `}>
+            {text}
+          </span>
+          {active && (
+            <div className="absolute left-0 top-0 h-full w-1 bg-primary rounded-r-lg" />
+          )}
+        </div>
+      </TooltipTrigger>
+      {collapsed && <TooltipContent side="right">{text}</TooltipContent>}
+    </Tooltip>
+  </TooltipProvider>
 );
 
 const DashboardSidebar = () => {
-  return (
-    <div className="bg-white h-screen w-64 flex flex-col shadow-lg">
-      <div className="p-5 border-b border-gray-200">
-        <h2 className="text-2xl font-bold text-gray-800">Admin Panel</h2>
+  const [collapsed, setCollapsed] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const location = useLocation();
+
+  const SidebarContent = ({ isMobile = false }) => (
+    <div className={`
+      flex flex-col h-full
+      transition-all duration-300 ease-in-out
+      ${collapsed && !isMobile ? 'w-20' : 'w-64'}
+    `}>
+      {/* Header */}
+      <div className="p-4 border-b border-border flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <Avatar>
+            <AvatarImage src="/logo.png" alt="Logo" />
+            <AvatarFallback>AP</AvatarFallback>
+          </Avatar>
+          <h2 className={`
+            font-bold text-xl text-foreground
+            transition-all duration-300
+            ${collapsed && !isMobile ? 'w-0 opacity-0' : 'w-auto opacity-100'}
+          `}>
+            Admin Panel
+          </h2>
+        </div>
+        {/* {!isMobile && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setCollapsed(!collapsed)}
+            className="hidden  md:flex"
+          >
+            <ChevronLeft className={`w-5 h-4 transition-transform duration-300 ${collapsed ? 'rotate-180' : ''}`} />
+          </Button>
+        )} */}
       </div>
-      <nav className="flex-grow p-4">
-        <ul className="space-y-2">
-          <SidebarItem icon={FaHome} text="Dashboard" active={true} />
-          <Link to='/admin/users'><SidebarItem icon={FaUsers} text="Users" /></Link>
-          <Link to='/admin/orders'><SidebarItem icon={FaShoppingCart} text="Orders" /></Link>
-          <Link to='/admin/addCategories'>  <SidebarItem icon={FaUtensils} text="Add Categories" /></Link>
-          <Link to='/admin/applications'><SidebarItem icon={FaChartBar} text="Applications" /></Link>
-          <SidebarItem icon={FaCog} text="Settings" />
-        </ul>
-      </nav>
-     <Link to='/'> <div className="p-4 border-t border-gray-200">
-        <button className="flex items-center text-red-500 hover:text-red-600 transition-colors">
-          <FaSignOutAlt className="w-5 h-5 mr-3" />
-          <span className="font-medium">Logout</span>
-        </button>
-      </div></Link>
+
+      {/* Navigation */}
+      <ScrollArea className="flex-grow p-4">
+        <nav className="space-y-2">
+          {menuItems.map((item) => (
+            <Link to={item.path} key={item.text}>
+              <SidebarItem
+                icon={item.icon}
+                text={item.text}
+                active={location.pathname === item.path}
+                collapsed={collapsed && !isMobile}
+              />
+            </Link>
+          ))}
+        </nav>
+      </ScrollArea>
+
+      {/* Footer */}
+      <div className="p-4 border-t border-border">
+        <Link to="/">
+          <SidebarItem
+            icon={LogOut}
+            text="Logout"
+            collapsed={collapsed && !isMobile}
+            onClick={() => {
+              // Add your logout logic here
+              console.log('Logging out...');
+            }}
+          />
+        </Link>
+      </div>
     </div>
+  );
+
+  return (
+    <>
+      {/* Mobile Menu Button */}
+      <Button
+        variant="ghost"
+        size="icon"
+        className="fixed top-4 left-4 md:hidden z-50"
+        onClick={() => setIsMobileOpen(true)}
+      >
+        <Menu className="w-6 h-6" />
+      </Button>
+
+      {/* Mobile Sidebar */}
+      <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
+        <SheetContent side="left" className="p-0 w-80">
+          <SidebarContent isMobile={true} />
+        </SheetContent>
+      </Sheet>
+
+      {/* Desktop Sidebar */}
+      <div className="hidden md:block fixed inset-y-0 left-0 z-50">
+        <div className={`
+          h-screen bg-background border-r border-border
+          transition-all duration-300 ease-in-out
+          ${collapsed ? 'w-20' : 'w-64'}
+        `}>
+          <SidebarContent />
+        </div>
+      </div>
+
+      {/* Content Margin */}
+      <div className={`
+        transition-all duration-300 ease-in-out
+        md:ml-${collapsed ? '20' : '64'}
+      `}>
+        {/* Your main content goes here */}
+      </div>
+    </>
   );
 };
 

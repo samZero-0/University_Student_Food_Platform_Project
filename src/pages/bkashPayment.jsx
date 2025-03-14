@@ -27,7 +27,10 @@ const BkashPayment = ({ closeModal }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center md:items-center items-end z-50">
-            <ToastContainer></ToastContainer>
+            <ToastContainer 
+            position="top-center"
+            autoClose={3000}
+            ></ToastContainer>
             <div className="bg-[#E2136E] p-6 rounded-lg shadow-lg w-full max-w-md relative">
                 
                 {/* Close Button */}

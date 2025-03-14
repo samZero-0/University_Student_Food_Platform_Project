@@ -1,344 +1,353 @@
 import { useContext, useState } from 'react';
-import { Camera, Clock, Users, Utensils, AlertTriangle, Leaf, Info, Plus, ArrowRight, DollarSign } from 'lucide-react';
+import { Camera, Clock, Users, Utensils, AlertTriangle, Leaf, Info, DollarSign } from 'lucide-react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 
+<<<<<<< HEAD
 export default function CreateListing() {
+=======
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
+import { Progress } from "@/components/ui/progress";
 
-    const {user} = useContext((AuthContext));
+export default function App() {
+  const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const [formProgress, setFormProgress] = useState(0);
+  const [formData, setFormData] = useState({
+    category: '',
+    foodName: '',
+    price: '',
+    image: '',
+    ingredients: '',
+    allergens: '',
+    description: '',
+    fat: '',
+    protein: '',
+    carbs: '',
+    calories: '',
+    servingSize: '',
+    preparationTime: ''
+  });
+>>>>>>> 6273bec4e22911599145bb25b1c43cfd0ac8c72f
 
-    console.log(user.email);
-    const [loading,setLoading] = useState(false);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
 
-  
-
-  
-
-  
-
-    const handleSubmit = (e) => {
-      setLoading(true)
-      e.preventDefault();
-      const form = e.target;
-  
-      const foodName = form.foodName.value;
-      const category = form.category.value;
-      const price = form.price.value;
-      const image = form.image.value;
-      const status = "opens at 10 am";
-      const foodId = '20';
-      const sellerName = user.displayName;
-      const categoryThumbnail = 'https://i.ibb.co.com/ccdmPZt/main-Courses-thumb.jpg';
-      const discount = 10;
-      const servingSize = form.servingSize.value;
-      const reviews = [];
-      const additionalInfo = 'aaaa';
-      const availability = 'available';
-      const description = form.description.value;
-  
-      const nutrition = {
-          calories: form.calories.value,
-          protein: form.protein.value + 'g',
-          carbohydrates: form.carbs.value + 'g',
-          fat: form.fat.value + 'g',
-      };
-  
-      // Splitting ingredients and allergies into arrays
-      const ingredients = form.ingredients.value.split(',').map(item => item.trim());
-      const allergens = form.allergens.value.split(',').map(item => item.trim());
-      
-      const preparationTime = form.preparationTime.value;
-      const email = user.email;
-      
-  
-      const food = {
-          foodName,
-          category,
-          price,
-          image,
-          nutrition,
-          ingredients,
-          allergens,
-          preparationTime,
-          email,
-          status,
-          foodId,
-          sellerName,
-          categoryThumbnail,
-          discount,
-          servingSize,
-          reviews,
-          additionalInfo,
-          availability,
-          description
-      };
-  
-      fetch('https://platematebackend.vercel.app/foods', {
-          method: "POST",
-          headers: {
-              'content-type': 'application/json'
-          },
-          body: JSON.stringify(food)
-      })
-      .then(res => res.json())
-      .then(data => {
-          setLoading(false)
-          toast.success('Added food');
-          console.log(data);
-          form.reset();
-      })
-      .catch(error => {
-        setLoading(false);
-        toast.error('Failed to add food');
-        console.error(error);
-    });
+    // Calculate progress
+    const totalFields = Object.keys(formData).length;
+    const filledFields = Object.values({ ...formData, [name]: value }).filter(v => v !== '').length;
+    setFormProgress((filledFields / totalFields) * 100);
   };
-  
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const foodData = {
+      foodName: formData.foodName,
+      category: formData.category,
+      price: formData.price,
+      image: formData.image,
+      status: "opens at 10 am",
+      foodId: '20',
+      sellerName: user.displayName,
+      categoryThumbnail: 'https://i.ibb.co.com/ccdmPZt/main-Courses-thumb.jpg',
+      discount: 10,
+      servingSize: formData.servingSize,
+      reviews: [],
+      additionalInfo: 'aaaa',
+      availability: 'available',
+      description: formData.description,
+      nutrition: {
+        calories: formData.calories,
+        protein: formData.protein + 'g',
+        carbohydrates: formData.carbs + 'g',
+        fat: formData.fat + 'g',
+      },
+      ingredients: formData.ingredients.split(',').map(item => item.trim()),
+      allergens: formData.allergens.split(',').map(item => item.trim()),
+      preparationTime: formData.preparationTime,
+      email: user.email,
+    };
+
+    try {
+      const response = await fetch('https://platematebackend.vercel.app/foods', {
+        method: "POST",
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(foodData)
+      });
+
+      const data = await response.json();
+      setLoading(false);
+
+      if (response.ok) {
+        toast.success('Food added successfully!');
+        setFormData({
+          category: '',
+          foodName: '',
+          price: '',
+          image: '',
+          ingredients: '',
+          allergens: '',
+          description: '',
+          fat: '',
+          protein: '',
+          carbs: '',
+          calories: '',
+          servingSize: '',
+          preparationTime: ''
+        });
+        setFormProgress(0);
+      } else {
+        throw new Error(data.message || 'Failed to add food');
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.message || 'Failed to add food');
+      console.error('Error:', error);
+    }
+  };
 
   return (
-    <div className="min-h-screen  py-8 px-4 sm:px-6 lg:px-8">
-        <ToastContainer></ToastContainer>
-      <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
-        <div className="bg-[#76fb74] p-6">
-          <h2 className="text-3xl font-bold text-black">Create New Food Listing</h2>
-          <p className="text-black mt-2">Add your delicious dish to the menu</p>
-        </div>
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <Card className="max-w-7xl mx-auto">
+        <CardHeader className="bg-gradient-to-r from-green-400 to-emerald-500 text-white">
+          <CardTitle className="text-3xl">Create New Food Listing</CardTitle>
+          <CardDescription className="text-white/90">Add your delicious dish to the menu</CardDescription>
+          <Progress value={formProgress} className="mt-4 h-2 bg-white/20" />
+        </CardHeader>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-8">
-          {/* Basic Information */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div>
-                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Utensils className="w-4 h-4 mr-2 text-orange-500" />
-                  Category
-                </label>
-                <select
-                  name="category"
-                  
-                  className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-                >
-                  <option value="">Select a category</option>
-                  <option value="Lunch">🥗 Lunch</option>
-                  <option value="Main Courses">🍽️ Main Course</option>
-                  <option value="Dessert">🍰 Desserts</option>
-                  <option value="Snacks">🥤 Snacks</option>
-                </select>
-              </div>
+        <CardContent className="p-6">
+          <Tabs defaultValue="basic" className="space-y-6">
+            <TabsList className="grid grid-cols-3 gap-4 bg-gray-100 p-1">
+              <TabsTrigger value="basic">Basic Info</TabsTrigger>
+              <TabsTrigger value="ingredients">Ingredients & Details</TabsTrigger>
+              <TabsTrigger value="nutrition">Nutrition & Serving</TabsTrigger>
+            </TabsList>
 
-              <div>
-                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Info className="w-4 h-4 mr-2 text-orange-500" />
-                  Food Name
-                </label>
-                <input
-                  type="text"
-                  name="foodName"
-                  placeholder="e.g., Grilled Salmon"
-                  required
-                  className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-                />
-              </div>
-
-              <div>
-                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <DollarSign className="w-4 h-4 mr-2 text-orange-500" />
-                  Price
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    name="price"
-                    placeholder="0.00"
-                    required
-                    className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-                  />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">TK</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                <Camera className="w-4 h-4 mr-2 text-orange-500" />
-                Image
-              </label>
-              <input type="url" name='image' placeholder='Enter image url' required/>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-orange-500 transition-colors">
-                
-               
-                 
-                  <div className="space-y-1 text-center">
-                    <Plus className="mx-auto h-12 w-12 text-gray-400" />
-                    <div className="text-sm text-gray-600">
-                      <label htmlFor="image-upload" className="relative cursor-pointer rounded-md font-medium text-orange-600 hover:text-orange-500">
-                        Upload a file
-                        <input
-                          id="image-upload"
-                          name="image1"
-                          type="url"
-                          className="sr-only"
-                          
-                        />
-                      </label>
-                      <p className="pl-1">or drag and drop</p>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <TabsContent value="basic" className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label className="flex items-center gap-2">
+                        <Utensils className="w-4 h-4 text-emerald-500" />
+                        Category *
+                      </Label>
+                      <select
+                        name="category"
+                        value={formData.category}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full rounded-lg border-gray-200 focus:border-emerald-500 focus:ring focus:ring-emerald-200"
+                      >
+                        <option value="">Select a category</option>
+                        <option value="Lunch">🥗 Lunch</option>
+                        <option value="Main Courses">🍽️ Main Course</option>
+                        <option value="Dessert">🍰 Desserts</option>
+                        <option value="Snacks">🥤 Snacks</option>
+                      </select>
                     </div>
-                    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+
+                    <div className="space-y-2">
+                      <Label className="flex items-center gap-2">
+                        <Info className="w-4 h-4 text-emerald-500" />
+                        Food Name *
+                      </Label>
+                      <Input
+                        name="foodName"
+                        value={formData.foodName}
+                        onChange={handleInputChange}
+                        placeholder="e.g., Grilled Salmon"
+                        required
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="flex items-center gap-2">
+                        <DollarSign className="w-4 h-4 text-emerald-500" />
+                        Price (TK) *
+                      </Label>
+                      <Input
+                        type="number"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleInputChange}
+                        placeholder="0.00"
+                        required
+                      />
+                    </div>
                   </div>
-                
-              </div>
-            </div>
-          </div>
 
-          {/* Ingredients and Allergens */}
-          <div className="space-y-4">
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                <Leaf className="w-4 h-4 mr-2 text-orange-500" />
-                Ingredients
-              </label>
-              <textarea
-                name="ingredients"
-                rows="3"
-                placeholder="List your ingredients here..."
-                required
-                className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-              />
-            </div>
+                  <div className="space-y-2">
+                    <Label className="flex items-center gap-2">
+                      <Camera className="w-4 h-4 text-emerald-500" />
+                      Image URL *
+                    </Label>
+                    <Input
+                      type="url"
+                      name="image"
+                      value={formData.image}
+                      onChange={handleInputChange}
+                      placeholder="Enter image URL"
+                      required
+                    />
+                    <div className="mt-4 p-6 border-2 border-dashed rounded-lg border-gray-300 hover:border-emerald-500 transition-colors text-center">
+                      <Camera className="mx-auto h-12 w-12 text-gray-400" />
+                      <p className="text-sm text-gray-600 mt-2">
+                        Drag and drop or paste image URL above
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
 
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                <AlertTriangle className="w-4 h-4 mr-2 text-orange-500" />
-                Allergens
-              </label>
-              <input
-                type="text"
-                name="allergens"
-                placeholder="e.g., Nuts, Dairy, Shellfish"
-                required
-                className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-              />
-            </div>
+              <TabsContent value="ingredients" className="space-y-6">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label className="flex items-center gap-2">
+                      <Leaf className="w-4 h-4 text-emerald-500" />
+                      Ingredients *
+                    </Label>
+                    <Textarea
+                      name="ingredients"
+                      value={formData.ingredients}
+                      onChange={handleInputChange}
+                      placeholder="List your ingredients here (comma-separated)"
+                      required
+                      className="min-h-[100px]"
+                    />
+                  </div>
 
+                  <div className="space-y-2">
+                    <Label className="flex items-center gap-2">
+                      <AlertTriangle className="w-4 h-4 text-emerald-500" />
+                      Allergens *
+                    </Label>
+                    <Input
+                      name="allergens"
+                      value={formData.allergens}
+                      onChange={handleInputChange}
+                      placeholder="e.g., Nuts, Dairy, Shellfish (comma-separated)"
+                      required
+                    />
+                  </div>
 
-            <div >
-              <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                
-                Description
-              </label>
-              <input
-                type="text"
-                name="description"
-                placeholder="Write brief description about your food"
-                required
-                className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-              />
-            </div>
+                  <div className="space-y-2">
+                    <Label>Description *</Label>
+                    <Textarea
+                      name="description"
+                      value={formData.description}
+                      onChange={handleInputChange}
+                      placeholder="Write a brief description about your food"
+                      required
+                      className="min-h-[100px]"
+                    />
+                  </div>
+                </div>
+              </TabsContent>
 
+              <TabsContent value="nutrition" className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Nutrition Facts *</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {[
+                        { name: 'fat', label: 'Fat (g)' },
+                        { name: 'protein', label: 'Protein (g)' },
+                        { name: 'carbs', label: 'Carbs (g)' },
+                        { name: 'calories', label: 'Calories' }
+                      ].map(({ name, label }) => (
+                        <div key={name} className="space-y-2">
+                          <Label>{label}</Label>
+                          <Input
+                            type="number"
+                            name={name}
+                            value={formData[name]}
+                            onChange={handleInputChange}
+                            required
+                          />
+                        </div>
+                      ))}
+                    </div>
 
-          </div>
+                    <div className="mt-6 space-y-2">
+                      <Label className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-emerald-500" />
+                        Serving Size *
+                      </Label>
+                      <Input
+                        name="servingSize"
+                        value={formData.servingSize}
+                        onChange={handleInputChange}
+                        placeholder="e.g., 1 cup, 200g"
+                        required
+                      />
+                    </div>
 
-          {/* Nutrition Facts */}
-          <div className="bg-gray-50 p-6 rounded-xl">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Nutrition Facts</h3>
-
-            <div className='flex gap-5'>
-  <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
-    Fat
-  </label>
-  <div className="relative">
-    <input
-      type="number"
-      name="fat"
-      className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-      required
-    />
-  </div>
-
-  <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
-    Protein
-  </label>
-  <div className="relative">
-    <input
-      type="number"
-      name="protein"
-      className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-      required
-    />
-  </div>
-
-  <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
-    Carbs
-  </label>
-  <div className="relative">
-    <input
-      type="number"
-      name="carbs"
-      className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-      required
-    />
-  </div>
-
-  <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
-    Calories
-  </label>
-  <div className="relative">
-    <input
-      type="number"
-      name="calories"
-      className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-      required
-    />
-  </div>
-</div>
-
-
-
-            <div className="mt-4">
-              <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                <Users className="w-4 h-4 mr-2 text-orange-500" />
-                Serving Size
-              </label>
-              <input
-                type="text"
-                name="servingSize"
-                placeholder="e.g., 1 cup, 200g"
-                required
-                className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-              />
-            </div>
-          </div>
-
-          {/* Preparation Time */}
-          <div>
-            <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-              <Clock className="w-4 h-4 mr-2 text-orange-500" />
-              Preparation Time
-            </label>
-            <div className="relative w-full md:w-1/4">
-              <input
-                type="number"
-                name="preparationTime"
-                placeholder="30"
-                className="w-full rounded-lg border-gray-200 focus:border-orange-500 focus:ring focus:ring-orange-200"
-                required
-              />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">min</span>
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <div className="flex justify-end pt-6">
-            <button
-              type="submit"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-black bg-[#76fb74] hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
-            >
-              {loading? <span className="loading loading-spinner loading-md"></span>:'Create Listing'}
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </button>
-          </div>
-        </form>
-      </div>
+                    <div className="mt-6 space-y-2">
+                      <Label className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-emerald-500" />
+                        Preparation Time (minutes) *
+                      </Label>
+                      <Input
+                        type="number"
+                        name="preparationTime"
+                        value={formData.preparationTime}
+                        onChange={handleInputChange}
+                        placeholder="30"
+                        required
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+                <div className="flex justify-end pt-6">
+                  <Button
+                    type="submit"
+                    className="bg-emerald-500 hover:bg-emerald-600"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Processing...
+                      </div>
+                    ) : (
+                      'Create Listing'
+                    )}
+                  </Button>
+                </div>
+              </TabsContent>
+            </form>
+          </Tabs>
+        </CardContent>
+      </Card>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }

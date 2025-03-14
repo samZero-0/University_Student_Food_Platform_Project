@@ -18,7 +18,7 @@ const AllCategories = () => {
   }, []);
 
   const uniqueCategories = Array.from(
-    new Set(categories.map((food) => food.category))
+    new Set(categories.filter(food => food.category !== "").map((food) => food.category))
   ).map((category) => {
     const categoryData = categories.find((food) => food.category === category);
     return {

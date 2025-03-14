@@ -36,7 +36,12 @@ import AdminOrderManagement from './pages/Admin/AdminOrderManagement.jsx';
 import AddCategories from './pages/Admin/AddCategories.jsx';
 import CookDashboard from './pages/Cook/CookDashboard.jsx';
 import CookApplications from './pages/Admin/CookApplications.jsx';
+<<<<<<< HEAD
 import CreateListing from './components/Cook/FoodListing';
+=======
+import PaymentHistory from './pages/profile/PaymentHistory';
+import DiscountPromo from './pages/profile/DiscountPromo';
+>>>>>>> 6273bec4e22911599145bb25b1c43cfd0ac8c72f
 
 
 
@@ -181,11 +186,26 @@ const router = createBrowserRouter([
     element: <CookDashboard></CookDashboard>,
     
   },
+<<<<<<< HEAD
  
   {
     path: '/createListing',
     element: <CreateListing></CreateListing>
   },
+=======
+  {
+    path: '/paymentHistory',
+    element: <PaymentHistory></PaymentHistory>,
+  },
+  {
+    path:'/discountPromo',
+    element:<DiscountPromo></DiscountPromo>
+  },
+  {
+    path: '*',
+    element: <p>not found</p>,
+  }
+>>>>>>> 6273bec4e22911599145bb25b1c43cfd0ac8c72f
 ]);
 
 
