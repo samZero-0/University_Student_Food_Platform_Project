@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import GreenButton from "./GreenButton";
 const Hero = () => {
     return (
-        <section className="mt-2 overflow-hidden">
+        <section className="mt-2 overflow-hidden ">
             <div
-                className="hero h-[89vh]"
+                className="hero min-h-screen"
                 style={{
                     backgroundImage: "url('../Project Cover1.jpeg')",
                 }}>

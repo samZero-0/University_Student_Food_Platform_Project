@@ -4,6 +4,7 @@ import { FaChevronDown, FaBox, FaTruck, FaBan, FaCalendarAlt, FaShoppingBag } fr
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from "../../provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 export default function OrderHistory() {
   const { user } = useContext(AuthContext);
@@ -114,9 +115,11 @@ export default function OrderHistory() {
                       </div>
                       
                       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                        <button className="px-6 py-2.5 bg-primary text-black rounded-full font-medium hover:bg-orange-600 transition-colors">
-                          Buy Again
+                       <Link to={`/categories`}>
+                       <button className="px-6 py-2.5 bg-primary text-black rounded-full font-medium hover:bg-orange-600 transition-colors">
+                          Buy Again 
                         </button>
+                       </Link>
                         
                         <div className="space-y-2">
                           <div className="text-sm font-medium text-gray-600">Rate Your Experience</div>
