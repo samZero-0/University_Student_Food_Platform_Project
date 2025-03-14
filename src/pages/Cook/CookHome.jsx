@@ -12,6 +12,7 @@ import {
   Plus
 } from 'lucide-react';
 import { AuthContext } from '../../provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 export default function CookHome() {
 
@@ -52,10 +53,10 @@ export default function CookHome() {
               
             </div>
           </div>
-          <button className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+         <Link to='/createListing'> <button className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
             <Plus className="w-4 h-4 mr-2" />
             Add New Dish
-          </button>
+          </button></Link>
         </div>
 
         {/* Stats Grid */}

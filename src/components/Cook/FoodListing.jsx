@@ -3,7 +3,7 @@ import { Camera, Clock, Users, Utensils, AlertTriangle, Leaf, Info, Plus, ArrowR
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 
-export default function App() {
+export default function CreateListing() {
 
     const {user} = useContext((AuthContext));
 

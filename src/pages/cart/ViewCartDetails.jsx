@@ -162,7 +162,7 @@ const ViewCartDetails = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Order Summary Card */}
           <div className="bg-white shadow-xl rounded-lg">
-            <div className="mb-4 bg-gray-200 p-6">
+            <div className="mb-4 bg-accent p-6">
               <h2 className="text-xl font-semibold mb-4">Order Details</h2>
               <p className="text-sm text-gray-500">Order Number: #123456</p>
               <p className="text-sm text-gray-500">Placed on: {new Date().toLocaleDateString()}</p>
@@ -208,11 +208,13 @@ const ViewCartDetails = () => {
 
           {/* Order Details Card - Previous Design */}
           <div className="bg-white shadow-xl rounded-lg">
-            <div className="mb-4 bg-gray-200 p-6">
-              <h2 className="text-xl font-semibold mb-4">Order Details</h2>
+            <div className="mb-4 bg-accent p-6">
+              <h2 className="text-xl font-semibold mb-4">Bill Payment</h2>
               <p className="text-sm text-gray-500">Order Number: #123456</p>
+              
               <p className="text-sm text-gray-500">Placed on: {new Date().toLocaleDateString()}</p>
               <p className="text-sm text-gray-500">Delivery Address: House 123, Road 12, Dhaka</p>
+              
             </div>
 
             {carts?.map((item, index) => (
@@ -271,7 +273,7 @@ const ViewCartDetails = () => {
             )}
 
             <div className="text-center mt-4 p-6">
-              <button className="btn btn-outline btn-accent w-full">Cancel Shipment</button>
+              <Link to='/'><button className="btn btn-outline btn-accent w-full">Cancel Shipment</button></Link>
             </div>
           </div>
         </div>

@@ -36,6 +36,7 @@ import AdminOrderManagement from './pages/Admin/AdminOrderManagement.jsx';
 import AddCategories from './pages/Admin/AddCategories.jsx';
 import CookDashboard from './pages/Cook/CookDashboard.jsx';
 import CookApplications from './pages/Admin/CookApplications.jsx';
+import CreateListing from './components/Cook/FoodListing';
 
 
 
@@ -179,6 +180,11 @@ const router = createBrowserRouter([
     path: '/cookDashboard',
     element: <CookDashboard></CookDashboard>,
     
+  },
+ 
+  {
+    path: '/createListing',
+    element: <CreateListing></CreateListing>
   },
 ]);
 
