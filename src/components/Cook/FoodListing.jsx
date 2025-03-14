@@ -3,9 +3,6 @@ import { Camera, Clock, Users, Utensils, AlertTriangle, Leaf, Info, DollarSign }
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 
-<<<<<<< HEAD
-export default function CreateListing() {
-=======
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -45,7 +42,6 @@ export default function App() {
     servingSize: '',
     preparationTime: ''
   });
->>>>>>> 6273bec4e22911599145bb25b1c43cfd0ac8c72f
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

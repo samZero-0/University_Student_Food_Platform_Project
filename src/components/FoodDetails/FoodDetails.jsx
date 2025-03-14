@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
@@ -110,6 +110,13 @@ export default function FoodDetails() {
       </Alert>
     );
   }
+
+  const handleChangeProduct = () => {
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 1200); 
+};
+
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -294,7 +301,7 @@ export default function FoodDetails() {
               <CardTitle>More from {food.sellerName}</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
                 {relatedItems.map((item) => (
                   <Card key={item._id} className="overflow-hidden">
                     <img
@@ -305,8 +312,10 @@ export default function FoodDetails() {
                     <CardHeader>
                       <CardTitle className="text-lg">{item.foodName}</CardTitle>
                       <CardDescription>
-                        {item.price} Tk
+                        {item.price} Tk 
+
                       </CardDescription>
+                      <Link onClick={handleChangeProduct} className="btn" to={`/details/${item._id}`}>Buy now</Link>
                     </CardHeader>
                   </Card>
                 ))}
