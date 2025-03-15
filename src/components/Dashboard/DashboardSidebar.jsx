@@ -9,6 +9,7 @@ import {
   Settings, 
   LogOut,
   ChevronLeft,
+  Flame,
   Menu
 } from 'lucide-react';
 import { 
@@ -32,7 +33,7 @@ const menuItems = [
   { icon: ShoppingCart, text: 'Orders', path: '/admin/orders' },
   { icon: Utensils, text: 'Add Categories', path: '/admin/addCategories' },
   { icon: BarChart, text: 'Applications', path: '/admin/applications' },
-  { icon: Settings, text: 'Settings', path: '/admin/settings' },
+  { icon: Flame, text: 'Featured Items', path: '/admin/featuredItems' },
 ];
 
 const SidebarItem = ({ icon: Icon, text, active, collapsed, onClick }) => (

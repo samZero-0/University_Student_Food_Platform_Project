@@ -39,6 +39,7 @@ async function run() {
         const cookReqCollection = database.collection('cookRequests');
         const cookListCollection = database.collection('cookList');
         const guestOrdersCollection = database.collection('guestOrders')
+        const featuredItemsCollection = database.collection('featuredItems')
 
 
         app.get('/categories', async (req, res) => {
@@ -141,6 +142,40 @@ async function run() {
             res.send(result);
         })
 
+        app.get('/featuredItems', async (req, res) => {
+            const cursor = featuredItemsCollection.find();
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+        app.post('/featuredItems', async (req, res) => {
+            try {
+                const featuredItems = req.body;
+                
+                // Clear existing items
+                await featuredItemsCollection.deleteMany({});
+                
+                // If there are items to add, insert them
+                if (Array.isArray(featuredItems) && featuredItems.length > 0) {
+                    const result = await featuredItemsCollection.insertMany(featuredItems);
+                    res.send({
+                        success: true,
+                        message: 'Featured items updated'
+                    });
+                } else {
+                    res.send({
+                        success: true,
+                        message: 'Featured items cleared'
+                    });
+                }
+            } catch (error) {
+                res.status(500).send({
+                    success: false,
+                    message: 'Failed to update featured items'
+                });
+            }
+        });
+       
 
 
     } finally {

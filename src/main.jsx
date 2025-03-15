@@ -38,6 +38,8 @@ import CookDashboard from './pages/Cook/CookDashboard.jsx';
 import CookApplications from './pages/Admin/CookApplications.jsx';
 import PaymentHistory from './pages/profile/PaymentHistory';
 import DiscountPromo from './pages/profile/DiscountPromo';
+import FeaturedItems from './components/home/FeaturedItems/FeaturedItems';
+import FeaturedItemsManagement from './pages/Admin/FeaturedItems';
 
 
 
@@ -165,6 +167,7 @@ const router = createBrowserRouter([
       { path: 'orders', element:<AdminOrderManagement></AdminOrderManagement>},
       { path: 'addCategories', element:<AddCategories></AddCategories>},
       { path: 'applications', element:<CookApplications></CookApplications>},
+      { path: 'featuredItems', element:<FeaturedItemsManagement></FeaturedItemsManagement>},
     ],
   },
   {
