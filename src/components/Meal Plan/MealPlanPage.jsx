@@ -4,6 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recha
 import CreateMealCard from "./CreateMealCard"
 import Marquee from "react-fast-marquee";
 import DietPlanner from "./DietPlanner";
+import RecipeSuggestions from "./Recipe";
 
 
 export default function MealPlanner() {
@@ -109,33 +110,7 @@ export default function MealPlanner() {
 
       </div> */}
 
-      <div className="card bg-base-100 shadow-xl">
-
-        <div className="card-body text-center">
-          <h2 className="card text-3xl font-bold my-5 ">Recipe Suggestions</h2>
-          <p className="my-3">Explore new recipes for your meal plan</p>
-          <Marquee pauseOnHover={true} speed={120} className="w-full">
-            <div className="flex gap-4">
-              {[
-                { name: "Grilled Chicken Salad", image: "https://i.ibb.co/12pX328/grilled-chicken.jpg" },
-                { name: "Fish Curry", image: "https://i.ibb.co/zSLF0TT/fish-currry.jpg" },
-                { name: "Pancakes", image: "https://i.ibb.co/M28NHdn/pancake.jpg" },
-              ].map((recipe) => (
-                <div key={recipe.name} className="card bg-base-200 cursor-pointer w-full">
-                  <figure>
-                    <img src={recipe.image} alt={recipe.name} className="w-full h-[250px] object-cover" />
-                  </figure>
-                  <div className="card-body p-2">
-                    <p className="text-sm font-medium">{recipe.name}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Marquee>
-
-        </div>
-
-      </div>
+      <RecipeSuggestions></RecipeSuggestions>
 
 
 

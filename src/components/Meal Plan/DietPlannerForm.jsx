@@ -24,7 +24,7 @@ export function DietPlannerForm({ formData, setFormData, selectedDiets, setSelec
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="w-full mx-auto">
       <CardHeader className="bg-gradient-to-r from-primary to-secondary text-white">
         <CardTitle className="text-3xl font-bold">Diet Planner</CardTitle>
         <CardDescription className="text-purple-100">Get your personalized meal plan</CardDescription>

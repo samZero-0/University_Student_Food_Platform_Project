@@ -54,7 +54,7 @@ export function DietResults({ results }) {
   }, [selectedMeals]);
 
   return (
-    <div className="space-y-6 mt-8">
+    <div className="space-y-6 mt-8 ">
       <Card>
         <CardHeader>
           <CardTitle>Body Mass Index (BMI)</CardTitle>

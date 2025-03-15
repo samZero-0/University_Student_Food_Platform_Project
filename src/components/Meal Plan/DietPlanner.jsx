@@ -61,7 +61,7 @@ export default function DietPlanner() {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4 min-h-screen">
+    <div className="w-full mx-auto py-8 px-4 ">
       <DietPlannerForm 
         formData={formData}
         setFormData={setFormData}
@@ -72,6 +72,7 @@ export default function DietPlanner() {
         handleGenerate={handleGenerate}
         isGenerating={isGenerating}
         errors={errors}
+       
       />
       {results && <DietResults results={results} />}
       <Toaster position="top-center" reverseOrder={false} />
