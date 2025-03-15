@@ -45,7 +45,6 @@ const CookDashboard = () => {
   const menuItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'create', label: 'Create Listing', icon: PlusCircle },
-    { id: 'listings', label: 'Food Listings', icon: ListOrdered },
     { id: 'ratings', label: 'Ratings', icon: Star },
     { id: 'transactions', label: 'Transactions', icon: DollarSign },
     { id: 'sold', label: 'Sold Foods', icon: ShoppingCart },
@@ -59,7 +58,7 @@ const CookDashboard = () => {
             <CookHome />
           </div>
         );
-      case 'listings':
+     
         return (
           <div className="p-6">
             <h2 className="text-3xl font-bold mb-6">Your Food Listings</h2>

@@ -70,12 +70,12 @@ export default function CookHome() {
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
               <Input placeholder="Search dishes..." className="pl-8" />
             </div>
-            <Link to="/createListing">
+            {/* <Link to="/createListing">
               <Button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700">
                 <Plus className="w-4 h-4 mr-2" />
                 Add New Dish
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
 
