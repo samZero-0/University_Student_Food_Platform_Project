@@ -5,6 +5,7 @@ import axios from 'axios';
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
+import Swal from "sweetalert2";
 
 export default function OrderHistory() {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,7 @@ export default function OrderHistory() {
     setLoading(true);
     axios.get(`https://platematebackend.vercel.app/orders/${user?.email}`)
       .then((response) => {
-        // Sort orders by date, newest first
+      // Sort orders by date, newest first
         const sortedOrders = response.data.sort((a, b) => 
           new Date(b.orderDate) - new Date(a.orderDate)
         );
@@ -70,30 +71,40 @@ export default function OrderHistory() {
 
   const filteredOrders = getFilteredOrders();
 
-  // Handle cancel order
+
   const handleCancelOrder = (orderId) => {
-    if (window.confirm('Are you sure you want to cancel this order?')) {
-      setLoading(true);
-      
-      // Make API call to cancel order
-      axios.post(`https://platematebackend.vercel.app/orders/cancel/${orderId}`)
-        .then(response => {
-          // Update local state
-          setOrders(orders.map(order => {
-            if (order._id === orderId) {
-              return { ...order, cancelled: true };
-            }
-            return order;
-          }));
-          toast.success('Order cancelled successfully');
-          setLoading(false);
-        })
-        .catch(error => {
-          console.error('Error cancelling order:', error);
-          toast.error('Failed to cancel order. Please try again.');
-          setLoading(false);
-        });
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to cancel this order?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, cancel it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+  
+        // Make API call to cancel order
+        axios.post(`https://platematebackend.vercel.app/orders/cancel/${orderId}`)
+          .then(response => {
+            // Update local state
+            setOrders(orders.map(order => {
+              if (order._id === orderId) {
+                return { ...order, cancelled: true };
+              }
+              return order;
+            }));
+            toast.success('Order cancelled successfully');
+            setLoading(false);
+          })
+          .catch(error => {
+            console.error('Error cancelling order:', error);
+            toast.error('Failed to cancel order. Please try again.');
+            setLoading(false);
+          });
+      }
+    });
   };
 
   // Handle rating submission
