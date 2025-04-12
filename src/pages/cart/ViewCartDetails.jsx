@@ -10,6 +10,7 @@ import { Context } from "../../provider/Context";
 import BkashPayment from "../bkashPayment";
 import CardPayment from "./CardPayment";
 import { AuthContext } from "../../provider/AuthProvider";
+import axios from "axios";
 
 
 const ViewCartDetails = () => {
@@ -21,7 +22,8 @@ const ViewCartDetails = () => {
     setModalVisible,
     isModalVisible,
     modalContent,
-    updateItemQuantity
+    updateItemQuantity,
+    shipmentTotal
   } = useContext(Context);
 
   const { user } = useContext(AuthContext);
@@ -58,6 +60,26 @@ const ViewCartDetails = () => {
     setModalVisible(false);
     setModalContent(null);
   };
+
+  const handleCreatePayment = async ()=>{
+      const payment ={
+        email: user.email,
+        name: user.displayName,
+        price: shipmentTotal,
+        transactionId: "",
+        date: new Date(),
+        cartIds: carts.map((item)=>item._id),
+        status:'pending'
+      }
+
+      const response = await axios.post('http://localhost:5000/create-ssl-payment',payment)
+
+      console.log("res",response);
+
+      if(response.data?.gateway){
+        window.location.replace(response.data.gateway)
+      }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 py-6" data-aos="fade-up" >
@@ -255,14 +277,14 @@ const ViewCartDetails = () => {
                   <img src="/BKash.png" className="md:h-[30px] h-[12px] md:w-[30px] w-[12px] inline-block" alt="bKash" />
                   <p>Pay with bKash</p>
                 </button>
-
-                <button
+                <button onClick={handleCreatePayment} className="btn btn-outline w-1/2 flex gap-2 items-center">SSLCOMMERZ</button>
+                {/* <button
                   className="btn btn-outline w-1/2 flex gap-2 items-center"
                   onClick={() => openModal("Card")}
                 >
                   <CiCreditCard2 className="md:text-xl text-sm" />
                   Pay with Card
-                </button>
+                </button> */}
               </div>
             ) : (
               <div className="py-5 ml-5 w-11/12">

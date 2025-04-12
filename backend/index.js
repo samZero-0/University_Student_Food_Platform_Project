@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const { default: axios } = require("axios");
 dotenv.config();    
 const port = process.env.PORT || 5000;
 
@@ -23,6 +24,25 @@ const client = new MongoClient(uri, {
     }
 });
 
+
+// Store ID: plate67fa009b87ec4
+// Store Password (API/Secret Key): plate67fa009b87ec4@ssl
+
+
+// Merchant Panel URL: https://sandbox.sslcommerz.com/manage/ (Credential as you inputted in the time of registration)
+
+
+ 
+// Store name: testplategp15
+// Registered URL: https://platemate-3c7a2.web.app/
+// Session API to generate transaction: https://sandbox.sslcommerz.com/gwprocess/v3/api.php
+// Validation API: https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?wsdl
+// Validation API (Web Service) name: https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php
+
+
+
+
+
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
@@ -40,7 +60,69 @@ async function run() {
         const cookListCollection = database.collection('cookList');
         const guestOrdersCollection = database.collection('guestOrders')
         const featuredItemsCollection = database.collection('featuredItems')
+        const paymentCollection = database.collection('payment')
 
+
+        // payment apis
+
+        app.post('/create-ssl-payment',async (req,res)=>{
+            const payment = req.body;
+            console.log("payment info",payment);
+
+            const trxid = new ObjectId().toString();
+
+            payment.transactionId = trxid;
+
+            const initiate = {
+                store_id : 'plate67fa009b87ec4',
+                store_passwd :'plate67fa009b87ec4@ssl',
+                total_amount: payment.price,
+                currency: 'BDT',
+                tran_id: trxid, // use unique tran_id for each api call
+                success_url: 'http://localhost:5000/success-payment',
+                fail_url: 'http://localhost:5173/fail',
+                cancel_url: 'http://localhost:5173/cancel',
+                ipn_url: 'http://localhost:5000/ipn-success-payment',
+                shipping_method: 'Courier',
+                product_name: 'Computer.',
+                product_category: 'Electronic',
+                product_profile: 'general',
+                cus_name: payment.name,
+                cus_email:  payment.email,
+                cus_add1: 'Dhaka',
+                cus_add2: 'Dhaka',
+                cus_city: 'Dhaka',
+                cus_state: 'Dhaka',
+                cus_postcode: '1000',
+                cus_country: 'Bangladesh',
+                cus_phone: '01711111111',
+                cus_fax: '01711111111',
+                ship_name: 'Customer Name',
+                ship_add1: 'Dhaka',
+                ship_add2: 'Dhaka',
+                ship_city: 'Dhaka',
+                ship_state: 'Dhaka',
+                ship_postcode: 1000,
+                ship_country: 'Bangladesh',
+            }
+
+            const iniResponse = await axios({
+                url:'https://sandbox.sslcommerz.com/gwprocess/v4/api.php',
+                method:'POST',
+                data: initiate,
+                headers:{
+                    "Content-Type" : "application/x-www-form-urlencoded"
+                }
+            })
+
+            const saveData = await paymentCollection.insertOne(payment)
+            // console.log(iniResponse);
+            const gateway = iniResponse?.data?.GatewayPageURL;
+
+            console.log("gateway",gateway);
+
+            res.send({gateway})
+        })
 
         app.get('/categories', async (req, res) => {
             const cursor = categoryCollection.find();
