@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-
+app.use(express.urlencoded())
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k2nj4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -123,6 +123,49 @@ async function run() {
 
             res.send({gateway})
         })
+
+        app.post('/success-payment',async (req,res)=>{
+            const paymentSuccess = req.body;
+            // console.log("payment success info",paymentSuccess);
+
+
+            const {data} = await axios.get(`https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?val_id=${paymentSuccess.val_id}&store_id=plate67fa009b87ec4&store_passwd=plate67fa009b87ec4@ssl`)
+            
+            if(data.success!=="VALID"){
+                return res.send({message: "Invalid Payment"})
+            }
+
+            const updatePayment = await paymentCollection.updateOne({transaction_Id:data.tran_id},{
+                $set:{
+                    status: "Success",
+                }
+            })
+
+            console.log("upadatedPayment",updatePayment);
+        })
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         app.get('/categories', async (req, res) => {
             const cursor = categoryCollection.find();
